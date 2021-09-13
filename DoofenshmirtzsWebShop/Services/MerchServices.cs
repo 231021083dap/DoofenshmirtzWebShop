@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShop.Services
 {
-    public class ProductsService
+    public class MerchServices
     {
 
     }

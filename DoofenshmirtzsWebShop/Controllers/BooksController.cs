@@ -9,8 +9,7 @@ namespace DoofenshmirtzsWebShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class BooksController : ControllerBase
     {
-
     }
 }
