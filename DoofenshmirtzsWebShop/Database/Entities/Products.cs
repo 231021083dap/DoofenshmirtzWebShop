@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace DoofenshmirtzWebShopTests
+namespace DoofenshmirtzsWebShop.Database.Entities
 {
-    class ProductsServiceTests
+    public class Products
     {
 
     }
