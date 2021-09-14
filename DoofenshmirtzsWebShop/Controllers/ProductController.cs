@@ -11,5 +11,10 @@ namespace DoofenshmirtzsWebShop.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return Ok("Hello world");
+        }
     }
 }
