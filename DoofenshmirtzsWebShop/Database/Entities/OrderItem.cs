@@ -18,8 +18,10 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         [Required]
         public int orderItemPrice { get; set; }
 
-        // Add foreign key to orderID (INT) 
+        [ForeignKey("Order.orderID")]
+        public int orderID { get; set; }
 
-        // Add foreign key to productID (INT) 
+        [ForeignKey("Product.productID")]
+        public int productID { get; set; }
     }
 }

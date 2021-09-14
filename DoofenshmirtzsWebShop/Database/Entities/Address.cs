@@ -27,6 +27,7 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         [Column(TypeName = "nvarchar(50)")]
         public string addressCountryName { get; set; }
 
-        // Add foreign key to userID (INT)
+        [ForeignKey("User.userID")]
+        public int userID { get; set; }
     }
 }

@@ -26,6 +26,7 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         [Column(TypeName ="nvarchar(3200)")]
         public string productDescription { get; set; }
         
-        // Add foreign key to categoryID (INT)
+        [ForeignKey("Category.categoryID")]
+        public int categoryID { get; set; }
     }
 }
