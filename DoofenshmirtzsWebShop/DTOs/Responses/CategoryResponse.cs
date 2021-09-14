@@ -7,5 +7,6 @@ namespace DoofenshmirtzsWebShop.DTOs.Responses
 {
     public class CategoryResponse
     {
+        
     }
 }

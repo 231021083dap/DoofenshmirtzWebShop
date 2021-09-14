@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DoofenshmirtzsWebShop.DTOs.Responses;
+using DoofenshmirtzsWebShop.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,6 @@ namespace DoofenshmirtzsWebShop.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            return Ok("Hello world");
-        }
+                
     }
 }
