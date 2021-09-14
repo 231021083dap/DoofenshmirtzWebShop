@@ -7,6 +7,6 @@ namespace DoofenshmirtzsWebShop.Database.Entities
 {
     public class Category
     {
-        
+           
     }
 }
