@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShop.Database.Entities
 {
-    public class Category
+    public class OrderItem
     {
         [Key]
-        public int categoryID { get; set; }
+        public int orderItemID { get; set; }
 
         [Required]
-        [Column(TypeName ="nvarchar(50)")]
-        public string categoryName { get; set; }
+        public int orderItemQuantity { get; set; }
+
+        [Required]
+        public int orderItemPrice { get; set; }
+
+        // Add foreign key to orderID (INT) 
+
+        // Add foreign key to productID (INT) 
     }
 }
