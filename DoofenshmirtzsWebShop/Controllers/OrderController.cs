@@ -9,7 +9,7 @@ namespace DoofenshmirtzsWebShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class OrderController : ControllerBase
     {
         [HttpGet]
         public IActionResult GetAll()

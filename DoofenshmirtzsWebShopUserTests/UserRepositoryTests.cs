@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace DoofenshmirtzsWebShop.Database.Entities
+namespace DoofenshmirtzsWebShopUserTests
 {
-    public class Category
+    class UserRepositoryTests
     {
-           
     }
 }

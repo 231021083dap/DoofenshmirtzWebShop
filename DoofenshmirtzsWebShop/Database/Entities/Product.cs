@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShop.Database.Entities
 {
-    public class Category
+    public class Product
     {
-           
     }
 }
