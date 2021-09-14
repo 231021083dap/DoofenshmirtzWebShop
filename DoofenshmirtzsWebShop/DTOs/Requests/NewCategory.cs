@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DoofenshmirtzsWebShop.Database.Entities
+namespace DoofenshmirtzsWebShop.DTOs.Requests
 {
-    public class Merch
+    public class NewCategory
     {
     }
 }

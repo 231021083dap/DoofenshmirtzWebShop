@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace DoofenshmirtzsWebShop.Services
+namespace DoofenshmirtzsWebshopCategoryTests
 {
-    public class BookServices
+    class CategoryControllerTests
     {
     }
 }

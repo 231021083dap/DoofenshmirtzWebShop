@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace DoofenshmirtzsWebShop.DTOs.Requests
+namespace DoofenshmirtzsWebshopCategoryTests
 {
-    public class NewInator
+    class CategoryRepositoryTests
     {
     }
 }

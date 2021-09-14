@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DoofenshmirtzsWebShop.Repositories
+namespace DoofenshmirtzsWebShop.DTOs.Requests
 {
-    public class BookRepository
+    public class UpdateCategory
     {
     }
 }

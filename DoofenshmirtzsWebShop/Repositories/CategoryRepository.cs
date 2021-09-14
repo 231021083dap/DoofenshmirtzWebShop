@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DoofenshmirtzsWebShop.DTOs.Responses
+namespace DoofenshmirtzsWebShop.Repositories
 {
-    public class InatorResponse
+    public class CategoryRepository
     {
     }
 }
