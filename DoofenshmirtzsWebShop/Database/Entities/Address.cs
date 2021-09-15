@@ -13,7 +13,7 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         public int addressID { get; set; }
 
         [Required]
-        [Column(TypeName ="nvarchar(50)"]
+        [Column(TypeName ="nvarchar(50)")]
         public string addressCustomerName { get; set; }
 
         [Required]

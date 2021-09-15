@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DoofenshmirtzsWebShop.Services
+namespace DoofenshmirtzsWebShop.DTOs.Requests
 {
-    public class OrderServices
+    public class NewProductImage
     {
-
     }
 }
