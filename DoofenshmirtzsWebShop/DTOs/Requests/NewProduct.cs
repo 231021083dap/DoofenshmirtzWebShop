@@ -7,6 +7,5 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
 {
     public class NewProduct
     {
-        
     }
 }
