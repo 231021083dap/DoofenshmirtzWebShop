@@ -7,34 +7,9 @@ using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShop.Database
 {
-    public class DoofenshmirtzWebShopContext : DbContext
+    public class DoofenshmirtzWebShopContext
     {
-        public DoofenshmirtzWebShopContext() { }
-
-        public DoofenshmirtzWebShopContext(DbContextOptions<DoofenshmirtzWebShopContext> options) : base(options) { }
-
-        public DbSet<Category> Category { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Category>().HasData(
-                new Category
-                {
-                    categoryID = 1, 
-                    categoryName = "Products"
-                },
-                new Category
-                {
-                    categoryID = 2, 
-                    categoryName = "Books"
-                },
-                new Category
-                {
-                    categoryID = 3, 
-                    categoryName = "Merch"
-                }
-            );
-        }
+        
 
     }
 }

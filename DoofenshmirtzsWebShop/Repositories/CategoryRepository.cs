@@ -7,22 +7,9 @@ using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShop.Repositories
 {
-    public interface ICategoryRepository
+    
+    public class CategoryRepository
     {
-        Task<List<Category>> getAll();
-    }
-    public class CategoryRepository : ICategoryRepository
-    {
-        private readonly DoofenshmirtzWebShopContext _context;
         
-        public CategoryRepository(DoofenshmirtzWebShopContext context)
-        {
-            _context = context;
-        }
-        
-        public Task<List<Category>> getAll()
-        {
-            throw new ArgumentException();
-        }
     }
 }
