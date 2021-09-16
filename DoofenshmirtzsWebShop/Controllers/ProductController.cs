@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DoofenshmirtzsWebShop.DTOs.Requests;
+using DoofenshmirtzsWebShop.DTOs.Responses;
+using DoofenshmirtzsWebShop.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +14,126 @@ namespace DoofenshmirtzsWebShop.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAll()
+        private readonly IProductService _productService;
+        public ProductController(IProductService productService)
         {
-            return Ok("Hello world");
+            _productService = productService;
+        }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> getAllProducts()
+        {
+            try
+            {
+                List<ProductResponse> product = await _productService.getAllProducts();
+                if (product == null)
+                {
+                    return Problem("It's empty. Wait... It's empty!? It's not supposed to be empty! let me check the script...");
+                }
+                if (product.Count == 0)
+                {
+                    return NoContent();
+                }
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+        [HttpGet("{productId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> getProductById([FromRoute] int productId)
+        {
+            try
+            {
+                ProductResponse product = await _productService.getProductById(productId);
+                if (product == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> newProduct([FromBody] NewProduct newProduct)
+        {
+            try
+            {
+                ProductResponse product = await _productService.newProduct(newProduct);
+
+                if (product == null)
+                {
+                    return Problem("Product was not created, something went wrong");
+                }
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+
+        }
+
+        [HttpPut("{productId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> updateProduct([FromRoute] int productId, [FromBody] UpdateProduct updateProduct)
+        {
+            try
+            {
+                ProductResponse product = await _productService.updateProduct(productId, updateProduct);
+
+                if (product == null)
+                {
+                    return Problem("Product was not updated, Something went wrong.");
+                }
+
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [HttpDelete("{productId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> deleteProduct([FromRoute] int productId)
+        {
+            try
+            {
+                bool result = await _productService.deleteProduct(productId);
+
+                if (!result)
+                {
+                    return Problem("Product was not deleted, Something went wrong.");
+                }
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
     }
 }

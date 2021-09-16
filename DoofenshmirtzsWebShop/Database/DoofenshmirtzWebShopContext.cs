@@ -15,7 +15,10 @@ namespace DoofenshmirtzsWebShop.Database
 
         public DbSet<Address> Address { get; set; }
         public DbSet<Category> Category { get; set; }
+
         public DbSet<User> User { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Product> Product { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,6 +52,7 @@ namespace DoofenshmirtzsWebShop.Database
                 }
             );
 
+
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
@@ -59,6 +63,59 @@ namespace DoofenshmirtzsWebShop.Database
                     userRole = Helpers.Role.User
                 }
             );
+
+            modelBuilder.Entity<Order>().HasData(
+                new Order
+                {
+                    orderID = 1,
+                    orderDate = DateTime.Now,
+                    userID = 1
+                },
+                new Order
+                {
+                    orderID = 2,
+                    orderDate = DateTime.Now,
+                    userID = 2
+                },
+                 new Order
+                 {
+                    orderID = 3,
+                    orderDate = DateTime.Now,
+                    userID = 3
+                 }
+
+                );
+           
+
+
+            modelBuilder.Entity<Product>().HasData(
+                new Product
+                {
+                    productID = 1,
+                    productName = "The I-Don't-Care-Inator",
+                    productStock = 7,
+                    productPrice = 49,
+                    categoryID = 1
+                },
+                new Product
+                {
+                    productID = 2,
+                    productName = "Kill-half-the-people-in-the-world-with-a-snap-Inator",
+                    productStock = 2,
+                    productPrice = 299,
+                    categoryID = 1
+                },
+                new Product
+                {
+                    productID = 3,
+                    productName = "Shut-The-Hell-Up-Inator",
+                    productStock = 8,
+                    productPrice = 50,
+                    categoryID = 1
+                }
+                );
+
+
         }
 
     }

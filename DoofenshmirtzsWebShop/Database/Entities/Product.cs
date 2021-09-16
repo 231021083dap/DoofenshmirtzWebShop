@@ -28,5 +28,7 @@ namespace DoofenshmirtzsWebShop.Database.Entities
 
         [ForeignKey("Category.categoryID")]
         public int categoryID { get; set; }
+        public Category category { get; set; }
+
     }
 }
