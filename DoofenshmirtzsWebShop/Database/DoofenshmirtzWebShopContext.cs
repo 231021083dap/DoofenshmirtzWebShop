@@ -14,6 +14,7 @@ namespace DoofenshmirtzsWebShop.Database
         public DoofenshmirtzWebShopContext(DbContextOptions<DoofenshmirtzWebShopContext> options) : base(options) { }
 
         public DbSet<Category> Category { get; set; }
+        public DbSet<Order> Order { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,7 +41,20 @@ namespace DoofenshmirtzsWebShop.Database
                     orderID = 1,
                     orderDate = DateTime.Now,
                     userID = 1
-                }
+                },
+                new Order
+                {
+                    orderID = 2,
+                    orderDate = DateTime.Now,
+                    userID = 2
+                },
+                 new Order
+                 {
+                    orderID = 3,
+                    orderDate = DateTime.Now,
+                    userID = 3
+                 }
+
                 );
         }
 

@@ -31,8 +31,13 @@ namespace DoofenshmirtzsWebShop.Services
             {
                 ID = o.orderID,
                 date = o.orderDate,
-             
-
+                Users = new OrderUserResponse
+                {
+                    ID = o.Users.userID,
+                    email = o.Users.userEmail,
+                    password = o.Users.userPassword,
+                    username = o.Users.userName
+                }
             }).ToList();
         }
         public Task<OrderResponse> GetById(int orderId)

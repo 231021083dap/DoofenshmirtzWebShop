@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using DoofenshmirtzsWebShop.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 using DoofenshmirtzsWebShop.Database;
+using DoofenshmirtzsWebShop.Services;
+using DoofenshmirtzsWebShop.Repositories;
+using DoofenshmirtzsWebShop.DTOs.Responses;
 
 namespace DoofenshmirtzsWebShop.Repositories
 {
@@ -21,7 +24,8 @@ namespace DoofenshmirtzsWebShop.Repositories
         }
         public async Task<List<Order>> GetAll()
         {
-            return await _context.
+            return await _context.Order.Include(a => a.orderID).ToListAsync();
+ 
         }
     }
 }
