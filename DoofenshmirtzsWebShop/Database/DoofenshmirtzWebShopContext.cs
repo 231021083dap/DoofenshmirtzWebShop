@@ -34,6 +34,14 @@ namespace DoofenshmirtzsWebShop.Database
                     categoryName = "Merch"
                 }
             );
+            modelBuilder.Entity<Order>().HasData(
+                new Order
+                {
+                    orderID = 1,
+                    orderDate = DateTime.Now,
+                    userID = 1
+                }
+                );
         }
 
     }
