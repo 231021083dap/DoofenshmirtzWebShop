@@ -13,7 +13,9 @@ namespace DoofenshmirtzsWebShop.Database
 
         public DoofenshmirtzWebShopContext(DbContextOptions<DoofenshmirtzWebShopContext> options) : base(options) { }
 
+        public DbSet<Address> Address { get; set; }
         public DbSet<Category> Category { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

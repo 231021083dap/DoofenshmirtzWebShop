@@ -1,4 +1,5 @@
 ﻿using DoofenshmirtzsWebShop.Database;
+using DoofenshmirtzsWebShop.Database.Entities;
 using DoofenshmirtzsWebShop.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,7 +29,16 @@ namespace DoofenshmirtzsWebshopCategoryTests
         [Fact]
         public async Task getAll_shouldReturnListOfCategories_whenCategoriesExists()
         {
-            
+            await _context.Database.EnsureDeletedAsync();
+            _context.Category.Add(new Category
+            {
+                categoryID = 1,
+                categoryName = "Products"
+            });
+
+            await _context.SaveChangesAsync();
+
+
         }
     }
 }

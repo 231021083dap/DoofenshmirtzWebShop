@@ -78,7 +78,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
             var statusCodeResult = (IStatusCodeActionResult)result;
             Assert.Equal(500, statusCodeResult.StatusCode);
         }
-
+        /*
         [Fact]
         public async void getAll_shouldReturnStatusCode500_whenExceptionIsRaised()
         {
@@ -91,7 +91,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
 
             var statusCodeResult = (IStatusCodeActionResult)result;
             Assert.Equal(500, statusCodeResult.StatusCode);
-        }
+        }*/
 
         [Fact]
         public async void getByID_shouldReturnStatusCode404_whenCategoryDoesNotExist()
