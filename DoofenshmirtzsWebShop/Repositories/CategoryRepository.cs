@@ -10,6 +10,6 @@ namespace DoofenshmirtzsWebShop.Repositories
     
     public class CategoryRepository
     {
-       
+
     }
 }

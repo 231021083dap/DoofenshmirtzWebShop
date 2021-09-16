@@ -13,7 +13,7 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         public int productID { get; set; }
 
         [Required]
-        [Column(TypeName ="nvarchar(100)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string productName { get; set; }
 
         [Required]
@@ -23,9 +23,9 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         public int productStock { get; set; }
 
         [Required]
-        [Column(TypeName ="nvarchar(3200)")]
+        [Column(TypeName = "nvarchar(3200)")]
         public string productDescription { get; set; }
-        
+
         [ForeignKey("Category.categoryID")]
         public int categoryID { get; set; }
     }

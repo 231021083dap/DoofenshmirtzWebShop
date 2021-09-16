@@ -5,15 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DoofenshmirtzsWebShop.Database.Entities
+namespace DoofenshmirtzsWebShop.DTOs.Requests
 {
-    public class Address
+    public class UpdateAddress
     {
-        [Key]
-        public int addressID { get; set; }
-
         [Required]
-        [Column(TypeName ="nvarchar(50)")]
+        [Column(TypeName = "nvarchar(50)")]
         public string addressCustomerName { get; set; }
 
         [Required]
@@ -24,10 +21,9 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         public int addressPostalCode { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(50)")]
+        [Column(TypeName = "nvarchar(50")]
         public string addressCountryName { get; set; }
 
-        [ForeignKey("User.userID")]
         public int userID { get; set; }
     }
 }
