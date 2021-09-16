@@ -13,6 +13,6 @@ namespace DoofenshmirtzsWebShop.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        
+
     }
 }
