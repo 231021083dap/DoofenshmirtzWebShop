@@ -44,7 +44,7 @@ namespace DoofenshmirtzsWebShopProductTests
             });
             product.Add(new ProductResponse
             {
-                ID = 2,
+                ID = 3,
                 name = "i-heart-Doofenshmirtz",
                 description = "Support your local evil branch with this T-shirt!",
                 stock = 231,

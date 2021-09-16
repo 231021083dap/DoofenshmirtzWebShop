@@ -41,6 +41,7 @@ namespace DoofenshmirtzsWebShop.Database
                 {
                     productID = 1,
                     productName = "The I-Don't-Care-Inator",
+                    productDescription = "Tired of listening to meaningless things all the time? try blasting them with this gun and you'll never have to hear them again!",
                     productStock = 7,
                     productPrice = 49,
                     categoryID = 1
@@ -49,6 +50,7 @@ namespace DoofenshmirtzsWebShop.Database
                 {
                     productID = 2,
                     productName = "Kill-half-the-people-in-the-world-with-a-snap-Inator",
+                    productDescription = "Dr. Heinz Doofenshmirtz' no. 1 guide to everything you need to know about being evil!",
                     productStock = 2,
                     productPrice = 299,
                     categoryID = 1
@@ -57,6 +59,7 @@ namespace DoofenshmirtzsWebShop.Database
                 {
                     productID = 3,
                     productName = "Shut-The-Hell-Up-Inator",
+                    productDescription = "Support your local evil branch with this T-shirt!",
                     productStock = 8,
                     productPrice = 50,
                     categoryID = 1
