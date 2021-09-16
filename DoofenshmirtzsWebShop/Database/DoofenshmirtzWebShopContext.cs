@@ -13,8 +13,10 @@ namespace DoofenshmirtzsWebShop.Database
 
         public DoofenshmirtzWebShopContext(DbContextOptions<DoofenshmirtzWebShopContext> options) : base(options) { }
 
+        public DbSet<Address> Address { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Product> Product { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
