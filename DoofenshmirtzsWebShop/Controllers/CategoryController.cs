@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DoofenshmirtzsWebShop.DTOs.Responses;
+using DoofenshmirtzsWebShop.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,33 @@ namespace DoofenshmirtzsWebShop.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAll()
+        private readonly ICategoryService _categoryService;
+
+        public CategoryController(ICategoryService categoryService)
         {
-            return Ok("Hello world");
+            _categoryService = categoryService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> getAll()
+        {
+            List<CategoryResponse> categories = await _categoryService.getAllCategories();
+            try
+            {
+                if (categories == null)
+                {
+                    return Problem("Problem encountered - unexpected");
+                }
+                if (categories.Count == 0)
+                {
+                    return NoContent();
+                }
+                return Ok(categories);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
     }
 }

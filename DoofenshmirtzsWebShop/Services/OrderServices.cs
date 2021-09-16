@@ -7,5 +7,6 @@ namespace DoofenshmirtzsWebShop.Services
 {
     public class OrderServices
     {
+
     }
 }

@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShop.DTOs.Responses
 {
-    public class OrderResponse
+    public class AddressResponse
     {
         public int ID { get; set; }
-        public DateTime date { get; set; }
+        public string customerName { get; set; }
+        public string streetName { get; set; }
+        public int postalCode { get; set; }
+        public string countryName { get; set; }
     }
 
-    public class OrderUserResponse
+    public class AddressUserResponse
     {
         public int ID { get; set; }
         public string email { get; set; }
