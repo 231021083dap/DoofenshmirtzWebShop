@@ -15,6 +15,8 @@ namespace DoofenshmirtzsWebShop.Database
 
         public DbSet<Address> Address { get; set; }
         public DbSet<Category> Category { get; set; }
+
+        public DbSet<Order> Order { get; set; }
         public DbSet<Product> Product { get; set; }
 
 
@@ -37,6 +39,30 @@ namespace DoofenshmirtzsWebShop.Database
                     categoryName = "Merch"
                 }
             );
+
+            modelBuilder.Entity<Order>().HasData(
+                new Order
+                {
+                    orderID = 1,
+                    orderDate = DateTime.Now,
+                    userID = 1
+                },
+                new Order
+                {
+                    orderID = 2,
+                    orderDate = DateTime.Now,
+                    userID = 2
+                },
+                 new Order
+                 {
+                    orderID = 3,
+                    orderDate = DateTime.Now,
+                    userID = 3
+                 }
+
+                );
+           
+
 
             modelBuilder.Entity<Product>().HasData(
                 new Product
@@ -64,6 +90,7 @@ namespace DoofenshmirtzsWebShop.Database
                     categoryID = 1
                 }
                 );
+
         }
 
     }

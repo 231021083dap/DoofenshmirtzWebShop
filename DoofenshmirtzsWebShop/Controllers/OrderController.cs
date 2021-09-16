@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DoofenshmirtzsWebShop.DTOs.Responses;
+using DoofenshmirtzsWebShop.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,32 @@ namespace DoofenshmirtzsWebShop.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetAll()
+        private readonly IOrderService _orderService;
+        public OrderController(IOrderService orderService)
         {
-            return Ok("Hello world");
+            _orderService = orderService;
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                List<OrderResponse> orders = await _orderService.GetAllOrders();
+                if(orders == null)
+                {
+                    return Problem("Got nothing... Unexpected");
+                }
+                if(orders.Count == 0)
+                {
+                    return NoContent();
+                }
+                return Ok(orders);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
         }
     }
 }
