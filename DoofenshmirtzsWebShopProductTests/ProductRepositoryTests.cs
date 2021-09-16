@@ -11,6 +11,7 @@ using Xunit;
 using static Xunit.Assert;
 using DoofenshmirtzsWebShop.Database;
 using DoofenshmirtzsWebShop.Repositories;
+using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShopProductTests
 {
@@ -35,6 +36,14 @@ namespace DoofenshmirtzsWebShopProductTests
             _sut = new ProductRepository(_context);
         }
 
-        []
+        [Fact]
+        public async Task return_ListOfProducts_WhenProductsAreFound()
+        {
+            deleteAsync();
+            _context.Product.Add(new Product
+            {
+
+            });
+        }
     }
 }
