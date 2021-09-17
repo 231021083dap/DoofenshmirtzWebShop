@@ -50,7 +50,7 @@ namespace DoofenshmirtzsWebShop.Services
                 
             };
         }
-        public async Task<OrderResponse> Create(NewOrder newOrder)
+        public Task<OrderResponse> Create(NewOrder newOrder)
         {
             throw new Exception();
             //Order order = new Order

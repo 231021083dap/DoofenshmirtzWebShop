@@ -22,7 +22,7 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         [Required]
         public int productStock { get; set; }
 
-        [Required]
+        //[Required]
         [Column(TypeName = "nvarchar(3200)")]
         public string productDescription { get; set; }
 

@@ -29,7 +29,8 @@ namespace DoofenshmirtzsWebShop.Repositories
 
         public async Task<List<Order>> GetAll()
         {
-            return await _context.Order.ToListAsync();
+            return await _context.Order.Include(a => a.Users)
+                .ToListAsync();
 
         }
         public async Task<Order> GetById(int orderId)
@@ -49,6 +50,7 @@ namespace DoofenshmirtzsWebShop.Repositories
             {
                 updateOrder.orderID = order.orderID;
                 updateOrder.orderDate = order.orderDate;
+                updateOrder.userID = order.userID;
                 await _context.SaveChangesAsync();
             }
             return updateOrder;
