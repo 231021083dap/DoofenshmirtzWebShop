@@ -22,7 +22,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
             _options = new DbContextOptionsBuilder<DoofenshmirtzWebShopContext>()
                 .UseInMemoryDatabase(databaseName: "DoofenshmirtzWebShopCatagory")
                 .Options;
-
+            _context = new DoofenshmirtzWebShopContext(_options);
             _sut = new CategoryRepository(_context);
         }
 
@@ -33,12 +33,22 @@ namespace DoofenshmirtzsWebshopCategoryTests
             _context.Category.Add(new Category
             {
                 categoryID = 1,
-                categoryName = "Products"
+                categoryName = "Inators"
+            });
+
+            _context.Category.Add(new Category
+            {
+                categoryID = 2, 
+                categoryName = "Merch"
             });
 
             await _context.SaveChangesAsync();
+            
+            var result = await _sut.getAll();
 
-
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
+            Assert.IsType<List<Category>>(result);
         }
     }
 }
