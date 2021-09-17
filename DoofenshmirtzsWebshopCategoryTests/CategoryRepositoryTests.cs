@@ -36,9 +36,19 @@ namespace DoofenshmirtzsWebshopCategoryTests
                 categoryName = "Products"
             });
 
+            _context.Category.Add(new Category
+            {
+                categoryID = 2, 
+                categoryName = "Merch"
+            });
+
             await _context.SaveChangesAsync();
+            
+            var result = await _sut.getAll();
 
-
+            Assert.NotNull(result);
+            Assert.Equal(2, result.Count);
+            Assert.IsType<List<Category>>(result);
         }
     }
 }
