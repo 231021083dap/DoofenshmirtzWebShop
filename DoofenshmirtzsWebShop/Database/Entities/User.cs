@@ -13,7 +13,7 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         public int userID { get; set; }
 
         [Required]
-        [Column(TypeName ="nvarchar(320")]
+        [Column(TypeName ="nvarchar(320)")]
         public string userEmail { get; set; }
 
         [Required]

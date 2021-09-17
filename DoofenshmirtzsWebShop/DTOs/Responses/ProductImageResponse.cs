@@ -10,6 +10,7 @@ namespace DoofenshmirtzsWebShop.DTOs.Responses
         public int ID { get; set; }
         public string image { get; set; }
         public string description { get; set; }
+        public ProductImageProductResponse FK_Product { get; set; }
     }
 
     public class ProductImageProductResponse

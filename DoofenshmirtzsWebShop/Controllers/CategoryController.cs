@@ -1,4 +1,5 @@
-﻿using DoofenshmirtzsWebShop.DTOs.Responses;
+﻿using DoofenshmirtzsWebShop.DTOs.Requests;
+using DoofenshmirtzsWebShop.DTOs.Responses;
 using DoofenshmirtzsWebShop.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,11 +22,14 @@ namespace DoofenshmirtzsWebShop.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> getAll()
         {
-            List<CategoryResponse> categories = await _categoryService.getAllCategories();
             try
             {
+                List<CategoryResponse> categories = await _categoryService.getAllCategories();
                 if (categories == null)
                 {
                     return Problem("Problem encountered - unexpected");
@@ -42,9 +46,91 @@ namespace DoofenshmirtzsWebShop.Controllers
             }
         }
 
+        [HttpGet("{categoryID}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> getByID([FromRoute] int categoryID)
+        {
+            try
+            {
+                CategoryResponse category = await _categoryService.getByID(categoryID);
 
+                if (category == null)
+                {
+                    return NotFound();
+                }
+                return Ok(category);
 
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
 
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> create([FromBody] NewCategory newCategory)
+        {
+            try
+            {
+                CategoryResponse category = await _categoryService.create(newCategory);
+                if (category == null)
+                {
+                    return Problem("Category was not created - error occured");
+                }
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
 
+        [HttpPut("{categoryID}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> update([FromRoute] int categoryID, [FromBody] UpdateCategory updateCategory)
+        {
+            try
+            {
+                CategoryResponse category = await _categoryService.update(categoryID, updateCategory);
+                if (category == null)
+                {
+                    return Problem("Category wasn't updated - error occured");
+                }
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [HttpDelete("{categoryID}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> delete([FromRoute] int categoryID)
+        {
+            try
+            {
+                bool result = await _categoryService.delete(categoryID);
+                if (!result)
+                {
+                    return Problem("Category wasn't deleted - error occured");
+                }
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
     }
 }
