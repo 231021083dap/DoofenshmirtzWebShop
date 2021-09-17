@@ -27,11 +27,11 @@ namespace DoofenshmirtzsWebShop.Repositories
 
         public async Task<List<Product>> getAllProducts()
         {
-            return await _productContext.Product.Include(a => a.category).ToListAsync();
+            return await _productContext.Product.Include(a => a.Category).ToListAsync();
         }
         public async Task<Product> getProductById(int productId)
         {
-            return await _productContext.Product.Include(a => a.category).FirstOrDefaultAsync(a => a.productID == productId);
+            return await _productContext.Product.Include(a => a.Category).FirstOrDefaultAsync(a => a.productID == productId);
         }
         public async Task<Product> newProduct(Product product)
         {
