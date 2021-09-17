@@ -1,0 +1,31 @@
+header{
+    text-align: center;
+    border:1px solid #000;
+}
+nav{
+    border:1px solid #000;
+    display:flex;
+    justify-content: space-between;
+    padding:10px;
+}
+ul{
+    display:flex;
+    justify-content: center;
+}
+li{
+    list-style:none;
+}
+a.headerLink{
+    margin:10px;
+    padding:10px;
+    padding:10px;
+    border:1px solid #000;
+    text-decoration: none;
+    border-radius: 10px;
+}
+a.leftLink{
+    width:200px;
+}
+a.footerLink{
+    padding:0 10px;
+}
