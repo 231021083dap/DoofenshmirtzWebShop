@@ -39,8 +39,8 @@ namespace DoofenshmirtzsWebShop.Services
                 categoryId = a.categoryID,
                 category = new ProductCategoryResponse
                 {
-                    joinCategoryId = a.category.categoryID,
-                    categoryName = a.category.categoryName
+                    joinCategoryId = a.Category.categoryID,
+                    categoryName = a.Category.categoryName
                 }
             }).ToList();
         }
@@ -57,8 +57,8 @@ namespace DoofenshmirtzsWebShop.Services
                 categoryId = product.categoryID,
                 category = new ProductCategoryResponse
                 {
-                    joinCategoryId = product.category.categoryID,
-                    categoryName = product.category.categoryName
+                    joinCategoryId = product.Category.categoryID,
+                    categoryName = product.Category.categoryName
                 }
             };
         }
@@ -78,6 +78,7 @@ namespace DoofenshmirtzsWebShop.Services
             {
                 ID = product.productID,
                 name = product.productName,
+                description = product.productDescription,
                 stock = product.productStock,
                 price = product.productPrice,
                 categoryId = product.categoryID
