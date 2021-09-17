@@ -15,6 +15,7 @@ namespace DoofenshmirtzsWebShop.DTOs.Responses
         public string description { get; set; }
         public int categoryId { get; set; }
         public ProductCategoryResponse category { get; set; }
+        public List<ProductProductImageResponse> imageGallery { get; set; }
     }
 
     public class ProductCategoryResponse

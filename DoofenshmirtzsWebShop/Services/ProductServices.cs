@@ -39,9 +39,14 @@ namespace DoofenshmirtzsWebShop.Services
                 categoryId = a.categoryID,
                 category = new ProductCategoryResponse
                 {
-                    joinCategoryId = a.category.categoryID,
-                    categoryName = a.category.categoryName
-                }
+                    joinCategoryId = a.Category.categoryID,
+                    categoryName = a.Category.categoryName
+                },
+                imageGallery = a.ImageList.Select(b => new ProductProductImageResponse
+                {
+                    ID = b.productImageID,
+                    image = b.productImageImage
+                }).ToList()
             }).ToList();
         }
         public async Task<ProductResponse> getProductById(int productId)
@@ -57,9 +62,14 @@ namespace DoofenshmirtzsWebShop.Services
                 categoryId = product.categoryID,
                 category = new ProductCategoryResponse
                 {
-                    joinCategoryId = product.category.categoryID,
-                    categoryName = product.category.categoryName
-                }
+                    joinCategoryId = product.Category.categoryID,
+                    categoryName = product.Category.categoryName
+                },
+                imageGallery = product.ImageList.Select(b => new ProductProductImageResponse
+                {
+                    ID = b.productImageID,
+                    image = b.productImageImage
+                }).ToList()
             };
         }
         public async Task<ProductResponse> newProduct(NewProduct newProduct)
@@ -78,6 +88,7 @@ namespace DoofenshmirtzsWebShop.Services
             {
                 ID = product.productID,
                 name = product.productName,
+                description = product.productDescription,
                 stock = product.productStock,
                 price = product.productPrice,
                 categoryId = product.categoryID
