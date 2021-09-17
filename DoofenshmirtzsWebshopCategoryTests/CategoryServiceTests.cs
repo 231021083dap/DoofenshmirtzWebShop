@@ -76,6 +76,117 @@ namespace DoofenshmirtzsWebshopCategoryTests
             Assert.Equal(newCategory.categoryName, result.name);
         }
 
+        [Fact]
+        public async void getByID_shouldReturnEmptyListOfCategoryResponse_whenNoCategoryExists()
+        {
+            List<Category> categories = new List<Category>();
 
+            _categoryRepository.Setup(c => c.getAll())
+                .ReturnsAsync(categories);
+
+            var result = await _sut.getAllCategories();
+
+            Assert.NotNull(result);
+            Assert.Empty(result);
+            Assert.IsType<List<CategoryResponse>>(result);
+        }
+
+        [Fact]
+        public async void getByID_shouldReturnCategoryResponse_whenCategoryExists()
+        {
+            int categoryID = 1;
+
+            Category category = new Category
+            {
+                categoryID = categoryID,
+                categoryName = "Inators"
+            };
+
+            _categoryRepository.Setup(c => c.getByID(It.IsAny<int>()))
+                .ReturnsAsync(category);
+
+            var result = await _sut.getByID(categoryID);
+
+            Assert.NotNull(result);
+            Assert.IsType<CategoryResponse>(result);
+            Assert.Equal(category.categoryID, result.ID);
+            Assert.Equal(category.categoryName, result.name);
+        }
+
+        [Fact]
+        public async void getByID_shouldReturnNull_whenCategoryDoesNotExist()
+        {
+            int categoryID = 1;
+            _categoryRepository.Setup(c => c.getByID(It.IsAny<int>()))
+                .ReturnsAsync(() => null);
+
+            var result = await _sut.getByID(categoryID);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async void update_shouldReturnUpdatedCategoryResponse_whenUpdateIsSuccess()
+        {
+            UpdateCategory updateCategory = new UpdateCategory
+            {
+                categoryName = "Inators"
+            };
+
+            int categoryID = 1;
+
+            Category category = new Category
+            {
+                categoryID = categoryID,
+                categoryName = "Inators"
+            };
+
+            _categoryRepository.Setup(c => c.update(It.IsAny<int>(), It.IsAny<Category>()))
+                .ReturnsAsync(category);
+
+            var result = await _sut.update(categoryID, updateCategory);
+
+            Assert.NotNull(result);
+            Assert.IsType<CategoryResponse>(result);
+            Assert.Equal(categoryID, result.ID);
+            Assert.Equal(updateCategory.categoryName, result.name);
+        }
+
+        [Fact]
+        public async void update_shouldReturnNull_whenCategoryDoesNotExist()
+        {
+            UpdateCategory updateCategory = new UpdateCategory
+            {
+                categoryName = "Inators"
+            };
+
+            int categoryID = 1;
+
+            _categoryRepository.Setup(c => c.update(It.IsAny<int>(), It.IsAny<Category>()))
+                .ReturnsAsync(() => null);
+
+            var result = await _sut.update(categoryID, updateCategory);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async void delete_shouldReturnTrue_whenDeleteIsSuccess()
+        {
+            int categoryID = 1;
+
+            Category category = new Category
+            {
+                categoryID = categoryID,
+                categoryName = "Inators"
+            };
+
+            _categoryRepository.Setup(c => c.delete(It.IsAny<int>()))
+                .ReturnsAsync(category);
+
+            var result = await _sut.delete(categoryID);
+
+            Assert.True(result);
+        }
     }
 }
