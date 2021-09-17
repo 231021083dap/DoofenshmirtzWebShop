@@ -20,9 +20,11 @@ namespace DoofenshmirtzsWebShop.Services
     public class OrderServices : IOrderService
     {
         private readonly IOrderRepository _OrderRepository;
-        public OrderServices(IOrderRepository orderRepository)
+        private readonly IUserRepository _UserRepository;
+        public OrderServices(IOrderRepository orderRepository, IUserRepository userRepository)
         {
             _OrderRepository = orderRepository;
+            _UserRepository = userRepository;
         }
         public async Task<List<OrderResponse>> GetAllOrders()
         {
@@ -59,10 +61,18 @@ namespace DoofenshmirtzsWebShop.Services
                 userID = newOrder.userID
             };
             order = await _OrderRepository.Create(order);
-            //order.Users = await _OrderRepository.GetById(order.userID);
+            order.Users = await _UserRepository.getByID(order.orderID);
             return order == null ? null : new OrderResponse
             {
-
+                ID = order.orderID,
+                date = order.orderDate,
+                Users = new OrderUserResponse
+                {
+                    ID = order.Users.userID,
+                    email = order.Users.userEmail,
+                    password = order.Users.userPassword,
+                    username = order.Users.userName
+                }
             };
         }
 

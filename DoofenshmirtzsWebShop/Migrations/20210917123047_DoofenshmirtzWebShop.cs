@@ -152,9 +152,9 @@ namespace DoofenshmirtzsWebShop.Migrations
                 columns: new[] { "orderID", "orderDate", "userID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 9, 17, 14, 21, 4, 966, DateTimeKind.Local).AddTicks(1050), 1 },
-                    { 2, new DateTime(2021, 9, 17, 14, 21, 4, 971, DateTimeKind.Local).AddTicks(8786), 2 },
-                    { 3, new DateTime(2021, 9, 17, 14, 21, 4, 971, DateTimeKind.Local).AddTicks(8839), 2 }
+                    { 1, new DateTime(2021, 9, 17, 14, 30, 46, 990, DateTimeKind.Local).AddTicks(3747), 1 },
+                    { 2, new DateTime(2021, 9, 17, 14, 30, 46, 992, DateTimeKind.Local).AddTicks(3024), 2 },
+                    { 3, new DateTime(2021, 9, 17, 14, 30, 46, 992, DateTimeKind.Local).AddTicks(3055), 2 }
                 });
 
             migrationBuilder.InsertData(
