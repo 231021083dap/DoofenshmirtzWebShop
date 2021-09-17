@@ -12,7 +12,7 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
         [Required]
         public DateTime orderDate { get; set; }
 
-        [ForeignKey("User.userID")]
+        //[ForeignKey("User.userID")]
         public int userID { get; set; }
     }
 }

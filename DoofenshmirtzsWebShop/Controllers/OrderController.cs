@@ -40,5 +40,24 @@ namespace DoofenshmirtzsWebShop.Controllers
                 return Problem(ex.Message);
             }
         }
+
+        [HttpGet("{orderId}")]
+        public async Task<IActionResult> GetById([FromRoute] int orderId)
+        {
+            try
+            {
+                OrderResponse order = await _orderService.GetById(orderId);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
+        }
     }
 }

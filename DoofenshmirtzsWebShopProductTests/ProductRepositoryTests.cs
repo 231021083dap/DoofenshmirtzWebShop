@@ -17,9 +17,10 @@ namespace DoofenshmirtzsWebShopProductTests
 {
     public class ProductRepositoryTests
     {
-        private DbContextOptions<DoofenshmirtzWebShopContext> _options;
-        private readonly DoofenshmirtzWebShopContext _context;
-        private readonly ProductRepository _sut;
+            private DbContextOptions<DoofenshmirtzWebShopContext> _options;
+            private readonly DoofenshmirtzWebShopContext _context;
+            private readonly ProductRepository _sut;
+
 
         public ProductRepositoryTests()
         {
@@ -234,5 +235,6 @@ namespace DoofenshmirtzsWebShopProductTests
             var result = await _sut.deleteProduct(1);
             Null(result);
         }
+
     }
 }

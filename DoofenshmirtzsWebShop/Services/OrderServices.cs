@@ -19,14 +19,14 @@ namespace DoofenshmirtzsWebShop.Services
     }
     public class OrderServices : IOrderService
     {
-        private readonly IOrderRepository _IOrderRepository;
+        private readonly IOrderRepository _OrderRepository;
         public OrderServices(IOrderRepository orderRepository)
         {
-            _IOrderRepository = orderRepository;
+            _OrderRepository = orderRepository;
         }
         public async Task<List<OrderResponse>> GetAllOrders()
         {
-            List<Order> orders = await _IOrderRepository.GetAll();
+            List<Order> orders = await _OrderRepository.GetAll();
             return orders.Select(o => new OrderResponse
             {
                 ID = o.orderID,
@@ -40,22 +40,51 @@ namespace DoofenshmirtzsWebShop.Services
                 }
             }).ToList();
         }
-        public Task<OrderResponse> GetById(int orderId)
+        public async Task<OrderResponse> GetById(int orderId)
         {
-            throw new NotImplementedException();
+            Order order = await _OrderRepository.GetById(orderId);
+            return order == null ? null : new OrderResponse
+            {
+                ID = order.orderID,
+                date = order.orderDate,
+                
+            };
         }
-        public Task<OrderResponse> Create(NewOrder newOrder)
+        public async Task<OrderResponse> Create(NewOrder newOrder)
         {
-            throw new NotImplementedException();
+           
+            Order order = new()
+            {
+                orderDate = newOrder.orderDate,
+                userID = newOrder.userID
+            };
+            order = await _OrderRepository.Create(order);
+            //order.Users = await _OrderRepository.GetById(order.userID);
+            return order == null ? null : new OrderResponse
+            {
+
+            };
         }
 
-        public Task<OrderResponse> Update(int orderId, UpdateOrder updateOrder)
+        public async Task<OrderResponse> Update(int orderId, UpdateOrder updateOrder)
         {
-            throw new NotImplementedException();
+            Order order = new Order
+            {
+                orderDate = updateOrder.orderDate,
+                userID = updateOrder.userID
+            };
+            order = await _OrderRepository.Update(orderId, order);
+
+            return order == null ? null : new OrderResponse
+            {
+                ID = order.orderID,
+                date = order.orderDate,
+            };
         }
-        public Task<bool> Delete(int orderId)
+        public async Task<bool> Delete(int orderId)
         {
-            throw new NotImplementedException();
+            var result = await _OrderRepository.Delete(orderId);
+            return true;
         }
 
     }
