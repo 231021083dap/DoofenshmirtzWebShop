@@ -50,20 +50,20 @@ namespace DoofenshmirtzsWebShop.Services
                 
             };
         }
-        public Task<OrderResponse> Create(NewOrder newOrder)
+        public async Task<OrderResponse> Create(NewOrder newOrder)
         {
-            throw new Exception();
-            //Order order = new Order
-            //{
-            //    orderDate = newOrder.orderDate,
-            //    userID = newOrder.userID
-            //};
-            //order = await _OrderRepository.Create(order);
+           
+            Order order = new()
+            {
+                orderDate = newOrder.orderDate,
+                userID = newOrder.userID
+            };
+            order = await _OrderRepository.Create(order);
             //order.Users = await _OrderRepository.GetById(order.userID);
-            //return order == null ? null : new OrderResponse
-            //{
+            return order == null ? null : new OrderResponse
+            {
 
-            //}
+            };
         }
 
         public async Task<OrderResponse> Update(int orderId, UpdateOrder updateOrder)

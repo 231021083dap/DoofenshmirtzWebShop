@@ -180,6 +180,43 @@ namespace DoofenshmirtzsWebShopOrderTests
             // Assert
             Assert.Null(result);
         }
+        [Fact]
+        public async Task Delete_ShouldReturnDeletedOrder_WhenOrderIsDeleted()
+        {
+            await _context.Database.EnsureDeletedAsync();
+            _context.User.Add(new User { userID = 1, userEmail = "test@mail.dk", userPassword = "qazwsx123", userName = "Peepo" });
+            await _context.SaveChangesAsync();
+            int orderId = 1;
+            Order order = new()
+            {
+                orderID = orderId,
+                orderDate = DateTime.Now,
+                userID = 1
+            };
+            _context.Order.Add(order);
+            await _context.SaveChangesAsync();
+
+            // Act
+            var result = await _sut.Delete(orderId);
+            var orders = await _sut.GetAll();
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.IsType<Order>(result);
+            Assert.Equal(orderId, result.orderID);
+            Assert.Empty(orders);
+            
+        }
+        [Fact]
+        public async Task Delete_ShouldReturnNull_WhenOrderDoesNotExists()
+        {
+            await _context.Database.EnsureDeletedAsync();
+            int orderId = 1;
+            //Act
+            var result = await _sut.Delete(orderId);
+            //Assert
+            Assert.Null(result);
+        }
 
     }
 }
