@@ -27,11 +27,11 @@ namespace DoofenshmirtzsWebShop.Repositories
 
         public async Task<List<Product>> getAllProducts()
         {
-            return await _productContext.Product.Include(a => a.Category).ToListAsync();
+            return await _productContext.Product.Include(a => a.Category).Include(b => b.ImageList).ToListAsync();
         }
         public async Task<Product> getProductById(int productId)
         {
-            return await _productContext.Product.Include(a => a.Category).FirstOrDefaultAsync(a => a.productID == productId);
+            return await _productContext.Product.Include(a => a.Category).Include(b => b.ImageList).FirstOrDefaultAsync(a => a.productID == productId);
         }
         public async Task<Product> newProduct(Product product)
         {
@@ -49,6 +49,7 @@ namespace DoofenshmirtzsWebShop.Repositories
                 updateProduct.productStock = product.productStock;
                 updateProduct.productPrice = product.productPrice;
                 updateProduct.categoryID = product.categoryID;
+                updateProduct.ImageList = product.ImageList;
             }
             return updateProduct;
         }

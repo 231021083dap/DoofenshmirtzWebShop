@@ -41,7 +41,12 @@ namespace DoofenshmirtzsWebShop.Services
                 {
                     joinCategoryId = a.Category.categoryID,
                     categoryName = a.Category.categoryName
-                }
+                },
+                imageGallery = a.ImageList.Select(b => new ProductProductImageResponse
+                {
+                    ID = b.productImageID,
+                    image = b.productImageImage
+                }).ToList()
             }).ToList();
         }
         public async Task<ProductResponse> getProductById(int productId)
@@ -59,7 +64,12 @@ namespace DoofenshmirtzsWebShop.Services
                 {
                     joinCategoryId = product.Category.categoryID,
                     categoryName = product.Category.categoryName
-                }
+                },
+                imageGallery = product.ImageList.Select(b => new ProductProductImageResponse
+                {
+                    ID = b.productImageID,
+                    image = b.productImageImage
+                }).ToList()
             };
         }
         public async Task<ProductResponse> newProduct(NewProduct newProduct)
