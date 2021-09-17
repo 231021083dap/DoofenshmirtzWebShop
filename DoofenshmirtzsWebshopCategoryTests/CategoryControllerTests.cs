@@ -78,11 +78,10 @@ namespace DoofenshmirtzsWebshopCategoryTests
             var statusCodeResult = (IStatusCodeActionResult)result;
             Assert.Equal(500, statusCodeResult.StatusCode);
         }
-        /*
+        
         [Fact]
         public async void getAll_shouldReturnStatusCode500_whenExceptionIsRaised()
         {
-            List<CategoryResponse> categories = new();
 
             _categoryService.Setup(s => s.getAllCategories())
                 .ReturnsAsync(() => throw new System.Exception("This is an exception"));
@@ -91,7 +90,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
 
             var statusCodeResult = (IStatusCodeActionResult)result;
             Assert.Equal(500, statusCodeResult.StatusCode);
-        }*/
+        }
 
         [Fact]
         public async void getByID_shouldReturnStatusCode404_whenCategoryDoesNotExist()

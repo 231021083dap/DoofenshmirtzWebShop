@@ -27,9 +27,9 @@ namespace DoofenshmirtzsWebShop.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> getAll()
         {
-            List<CategoryResponse> categories = await _categoryService.getAllCategories();
             try
             {
+                List<CategoryResponse> categories = await _categoryService.getAllCategories();
                 if (categories == null)
                 {
                     return Problem("Problem encountered - unexpected");
