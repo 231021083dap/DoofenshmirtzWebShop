@@ -21,11 +21,6 @@ namespace DoofenshmirtzsWebShopProductTests
         private readonly DoofenshmirtzWebShopContext _context;
         private readonly ProductRepository _sut;
 
-        public async void deleteAsync()
-        {
-            await _context.Database.EnsureDeletedAsync();
-        }
-
         public ProductRepositoryTests()
         {
             _options = new DbContextOptionsBuilder<DoofenshmirtzWebShopContext>()
