@@ -61,6 +61,14 @@ namespace DoofenshmirtzsWebShop.Database
                     userPassword = "Test1234",
                     userName = "Test101",
                     userRole = Helpers.Role.User
+                },
+                new User
+                {
+                    userID = 2,
+                    userEmail = "perry@platypus.dk",
+                    userPassword = "Doofenia",
+                    userName = "Perry",
+                    userRole = Helpers.Role.User
                 }
             );
 
@@ -81,7 +89,7 @@ namespace DoofenshmirtzsWebShop.Database
                  {
                     orderID = 3,
                     orderDate = DateTime.Now,
-                    userID = 3
+                    userID = 2
                  }
 
                 );

@@ -17,6 +17,7 @@ namespace DoofenshmirtzsWebShop.Database.Entities
 
         [ForeignKey("User.userID")]
         public int userID { get; set; }
+
         public User Users { get; set; }
     }
 }
