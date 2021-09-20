@@ -1,0 +1,10 @@
+.banner{
+    border:1px solid #000;
+    text-align: center;
+}
+.links{
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #000;
+}
+

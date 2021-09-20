@@ -26,6 +26,13 @@ a.headerLink{
 a.leftLink{
     width:200px;
 }
+footer{
+    border: 1px solid #000;
+    height:150px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 a.footerLink{
     padding:0 10px;
 }
