@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShop.Controllers
@@ -92,18 +91,21 @@ namespace DoofenshmirtzsWebShop.Controllers
         }
 
         [Authorize(Role.User, Role.Admin)]
-        [HttpGet("{user.ID}")]
-        public async Task<IActionResult> GetByID([FromRoute] int userID)
+        [HttpGet("{user.userID}")]
+        public async Task<IActionResult> getByID([FromRoute] int userID)
         {
             try
             {
                 // Only admins can access other users records
                 var currentUser = (UserResponse)HttpContext.Items["User"];
+
                 if (userID != currentUser.ID && currentUser.Role != Role.Admin)
                 {
                     return Unauthorized(new { message = "Unauthorized" });
                 }
+
                 UserResponse user = await _userService.getByID(userID);
+
                 if (user == null)
                 {
                     return NoContent();
