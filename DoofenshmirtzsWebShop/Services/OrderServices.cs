@@ -87,7 +87,7 @@ namespace DoofenshmirtzsWebShop.Services
             };
             order = await _OrderRepository.Update(orderId, order);
             order.Users = await _UserRepository.getByID(order.userID);
-            //order.orderItems = await _productRepository
+            //order.orderItems = await _productRepository.
             return order == null ? null : new OrderResponse
             {
                 ID = order.orderID,
