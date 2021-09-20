@@ -17,13 +17,9 @@ namespace DoofenshmirtzsWebShop.Database.Entities
 
         [Required]
         public int orderItemPrice { get; set; }
-
-        //[ForeignKey("Order.orderID")]
-        //public int orderID { get; set; }
-
-        
+ 
         public int productID { get; set; }
         public Product Products { get; set; }
-        //public Order Orders { get; set; }
+        
     }
 }

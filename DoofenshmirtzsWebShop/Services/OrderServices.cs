@@ -41,6 +41,16 @@ namespace DoofenshmirtzsWebShop.Services
                     email = o.Users.userEmail,
                     password = o.Users.userPassword,
                     username = o.Users.userName
+                },
+                OrderItems = new OrderItemResponse
+                {
+                    ID = o.orderItems.orderItemID,
+                    quantity = o.orderItems.orderItemQuantity,
+                    price = o.orderItems.orderItemPrice,
+                    //Products = new ProductResponse
+                    //{
+                    //    ID = o.
+                    //}
                 }
             }).ToList();
         }
