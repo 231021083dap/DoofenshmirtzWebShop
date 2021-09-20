@@ -117,15 +117,12 @@ namespace DoofenshmirtzsWebShop.Migrations
                     b.Property<int>("orderItemId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("orderItemsorderItemID")
-                        .HasColumnType("int");
-
                     b.Property<int>("userID")
                         .HasColumnType("int");
 
                     b.HasKey("orderID");
 
-                    b.HasIndex("orderItemsorderItemID");
+                    b.HasIndex("orderItemId");
 
                     b.HasIndex("userID");
 
@@ -135,22 +132,22 @@ namespace DoofenshmirtzsWebShop.Migrations
                         new
                         {
                             orderID = 1,
-                            orderDate = new DateTime(2021, 9, 20, 18, 4, 22, 463, DateTimeKind.Local).AddTicks(9903),
-                            orderItemId = 0,
+                            orderDate = new DateTime(2021, 9, 20, 18, 54, 4, 206, DateTimeKind.Local).AddTicks(2979),
+                            orderItemId = 1,
                             userID = 1
                         },
                         new
                         {
                             orderID = 2,
-                            orderDate = new DateTime(2021, 9, 20, 18, 4, 22, 467, DateTimeKind.Local).AddTicks(1527),
-                            orderItemId = 0,
+                            orderDate = new DateTime(2021, 9, 20, 18, 54, 4, 209, DateTimeKind.Local).AddTicks(4030),
+                            orderItemId = 3,
                             userID = 2
                         },
                         new
                         {
                             orderID = 3,
-                            orderDate = new DateTime(2021, 9, 20, 18, 4, 22, 467, DateTimeKind.Local).AddTicks(1561),
-                            orderItemId = 0,
+                            orderDate = new DateTime(2021, 9, 20, 18, 54, 4, 209, DateTimeKind.Local).AddTicks(4067),
+                            orderItemId = 2,
                             userID = 2
                         });
                 });
@@ -161,9 +158,6 @@ namespace DoofenshmirtzsWebShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("orderID")
-                        .HasColumnType("int");
 
                     b.Property<int>("orderItemPrice")
                         .HasColumnType("int");
@@ -176,13 +170,14 @@ namespace DoofenshmirtzsWebShop.Migrations
 
                     b.HasKey("orderItemID");
 
+                    b.HasIndex("productID");
+
                     b.ToTable("OrderItem");
 
                     b.HasData(
                         new
                         {
                             orderItemID = 1,
-                            orderID = 1,
                             orderItemPrice = 100,
                             orderItemQuantity = 1,
                             productID = 1
@@ -190,7 +185,6 @@ namespace DoofenshmirtzsWebShop.Migrations
                         new
                         {
                             orderItemID = 2,
-                            orderID = 1,
                             orderItemPrice = 30,
                             orderItemQuantity = 1,
                             productID = 1
@@ -198,7 +192,6 @@ namespace DoofenshmirtzsWebShop.Migrations
                         new
                         {
                             orderItemID = 3,
-                            orderID = 2,
                             orderItemPrice = 125,
                             orderItemQuantity = 5,
                             productID = 2
@@ -357,7 +350,9 @@ namespace DoofenshmirtzsWebShop.Migrations
                 {
                     b.HasOne("DoofenshmirtzsWebShop.Database.Entities.OrderItem", "orderItems")
                         .WithMany()
-                        .HasForeignKey("orderItemsorderItemID");
+                        .HasForeignKey("orderItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", "Users")
                         .WithMany()
@@ -368,6 +363,17 @@ namespace DoofenshmirtzsWebShop.Migrations
                     b.Navigation("orderItems");
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.OrderItem", b =>
+                {
+                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.Product", "Products")
+                        .WithMany()
+                        .HasForeignKey("productID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Product", b =>

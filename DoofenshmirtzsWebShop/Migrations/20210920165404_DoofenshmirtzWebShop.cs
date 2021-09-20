@@ -21,22 +21,6 @@ namespace DoofenshmirtzsWebShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderItem",
-                columns: table => new
-                {
-                    orderItemID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    orderItemQuantity = table.Column<int>(type: "int", nullable: false),
-                    orderItemPrice = table.Column<int>(type: "int", nullable: false),
-                    orderID = table.Column<int>(type: "int", nullable: false),
-                    productID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderItem", x => x.orderItemID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -99,30 +83,23 @@ namespace DoofenshmirtzsWebShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "OrderItem",
                 columns: table => new
                 {
-                    orderID = table.Column<int>(type: "int", nullable: false)
+                    orderItemID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    orderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    userID = table.Column<int>(type: "int", nullable: false),
-                    orderItemId = table.Column<int>(type: "int", nullable: false),
-                    orderItemsorderItemID = table.Column<int>(type: "int", nullable: true)
+                    orderItemQuantity = table.Column<int>(type: "int", nullable: false),
+                    orderItemPrice = table.Column<int>(type: "int", nullable: false),
+                    productID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.orderID);
+                    table.PrimaryKey("PK_OrderItem", x => x.orderItemID);
                     table.ForeignKey(
-                        name: "FK_Order_OrderItem_orderItemsorderItemID",
-                        column: x => x.orderItemsorderItemID,
-                        principalTable: "OrderItem",
-                        principalColumn: "orderItemID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Order_User_userID",
-                        column: x => x.userID,
-                        principalTable: "User",
-                        principalColumn: "userID",
+                        name: "FK_OrderItem_Product_productID",
+                        column: x => x.productID,
+                        principalTable: "Product",
+                        principalColumn: "productID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -147,6 +124,33 @@ namespace DoofenshmirtzsWebShop.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    orderID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    orderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    userID = table.Column<int>(type: "int", nullable: false),
+                    orderItemId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.orderID);
+                    table.ForeignKey(
+                        name: "FK_Order_OrderItem_orderItemId",
+                        column: x => x.orderItemId,
+                        principalTable: "OrderItem",
+                        principalColumn: "orderItemID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Order_User_userID",
+                        column: x => x.userID,
+                        principalTable: "User",
+                        principalColumn: "userID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Category",
                 columns: new[] { "categoryID", "categoryName" },
@@ -155,16 +159,6 @@ namespace DoofenshmirtzsWebShop.Migrations
                     { 1, "Products" },
                     { 2, "Books" },
                     { 3, "Merch" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "OrderItem",
-                columns: new[] { "orderItemID", "orderID", "orderItemPrice", "orderItemQuantity", "productID" },
-                values: new object[,]
-                {
-                    { 1, 1, 100, 1, 1 },
-                    { 2, 1, 30, 1, 1 },
-                    { 3, 2, 125, 5, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -187,16 +181,6 @@ namespace DoofenshmirtzsWebShop.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Order",
-                columns: new[] { "orderID", "orderDate", "orderItemId", "orderItemsorderItemID", "userID" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2021, 9, 20, 18, 4, 22, 463, DateTimeKind.Local).AddTicks(9903), 0, null, 1 },
-                    { 2, new DateTime(2021, 9, 20, 18, 4, 22, 467, DateTimeKind.Local).AddTicks(1527), 0, null, 2 },
-                    { 3, new DateTime(2021, 9, 20, 18, 4, 22, 467, DateTimeKind.Local).AddTicks(1561), 0, null, 2 }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Product",
                 columns: new[] { "productID", "categoryID", "productDescription", "productName", "productPrice", "productStock" },
                 values: new object[,]
@@ -206,20 +190,55 @@ namespace DoofenshmirtzsWebShop.Migrations
                     { 3, 1, "Support your local evil branch with this T-shirt!", "Shut-The-Hell-Up-Inator", 50, 8 }
                 });
 
+            migrationBuilder.InsertData(
+                table: "OrderItem",
+                columns: new[] { "orderItemID", "orderItemPrice", "orderItemQuantity", "productID" },
+                values: new object[] { 1, 100, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "OrderItem",
+                columns: new[] { "orderItemID", "orderItemPrice", "orderItemQuantity", "productID" },
+                values: new object[] { 2, 30, 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "OrderItem",
+                columns: new[] { "orderItemID", "orderItemPrice", "orderItemQuantity", "productID" },
+                values: new object[] { 3, 125, 5, 2 });
+
+            migrationBuilder.InsertData(
+                table: "Order",
+                columns: new[] { "orderID", "orderDate", "orderItemId", "userID" },
+                values: new object[] { 1, new DateTime(2021, 9, 20, 18, 54, 4, 206, DateTimeKind.Local).AddTicks(2979), 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Order",
+                columns: new[] { "orderID", "orderDate", "orderItemId", "userID" },
+                values: new object[] { 3, new DateTime(2021, 9, 20, 18, 54, 4, 209, DateTimeKind.Local).AddTicks(4067), 2, 2 });
+
+            migrationBuilder.InsertData(
+                table: "Order",
+                columns: new[] { "orderID", "orderDate", "orderItemId", "userID" },
+                values: new object[] { 2, new DateTime(2021, 9, 20, 18, 54, 4, 209, DateTimeKind.Local).AddTicks(4030), 3, 2 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Address_userID",
                 table: "Address",
                 column: "userID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_orderItemsorderItemID",
+                name: "IX_Order_orderItemId",
                 table: "Order",
-                column: "orderItemsorderItemID");
+                column: "orderItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_userID",
                 table: "Order",
                 column: "userID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_productID",
+                table: "OrderItem",
+                column: "productID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_categoryID",

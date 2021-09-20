@@ -96,19 +96,23 @@ namespace DoofenshmirtzsWebShop.Database
                 {
                     orderID = 1,
                     orderDate = DateTime.Now,
-                    userID = 1
+                    userID = 1,
+                    orderItemId = 1
                 },
                 new Order
                 {
                     orderID = 2,
                     orderDate = DateTime.Now,
-                    userID = 2
+                    userID = 2,
+                    orderItemId = 3
                 },
                  new Order
                  {
                     orderID = 3,
                     orderDate = DateTime.Now,
-                    userID = 2
+                    userID = 2,
+                    orderItemId = 2
+
                  }
 
                 );
@@ -150,15 +154,13 @@ namespace DoofenshmirtzsWebShop.Database
                     orderItemID = 1,
                     orderItemQuantity = 1,
                     orderItemPrice = 100,
-                    orderID = 1,
                     productID = 1
                 },
                  new OrderItem
                  {
-                   orderItemID = 2,
+                    orderItemID = 2,
                     orderItemQuantity = 1,
                     orderItemPrice = 30,
-                    orderID = 1,
                     productID = 1
                  },
                  new OrderItem
@@ -166,7 +168,6 @@ namespace DoofenshmirtzsWebShop.Database
                  orderItemID = 3,
                  orderItemQuantity = 5,
                  orderItemPrice = 125,
-                 orderID = 2,
                  productID = 2
                  }
                 );
