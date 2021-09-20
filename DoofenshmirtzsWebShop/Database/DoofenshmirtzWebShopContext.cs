@@ -25,13 +25,23 @@ namespace DoofenshmirtzsWebShop.Database
             modelBuilder.Entity<Address>().HasData(
                 new Address
                 {
-                    addressID = 1,
-                    addressCustomerName = "Test McTesting",
-                    addressStreetName = "Danville 101",
+                    addressID = 1, 
+                    addressCustomerName = "Pinky the Chihuahua",
+                    addressStreetName = "2034 Danville Avenue",
                     addressPostalCode = 6969,
-                    addressCountryName = "Carkeys",
-                    userID = 1
+                    addressCountryName = "TriState Area",
+                    userID = 2
+                },
+                new Address
+                {
+                    addressID = 2,
+                    addressCustomerName = "Planty the PottedPlant",
+                    addressStreetName = "1001 Danville Boulevard",
+                    addressPostalCode = 6969,
+                    addressCountryName = "TriState Area",
+                    userID = 3
                 }
+
             );
 
             modelBuilder.Entity<Category>().HasData(
@@ -57,18 +67,26 @@ namespace DoofenshmirtzsWebShop.Database
                 new User
                 {
                     userID = 1,
-                    userEmail = "test@test.dk",
-                    userPassword = "Test1234",
-                    userName = "Test101",
-                    userRole = Helpers.Role.User
+                    userEmail = "doofen@evil.com",
+                    userPassword = "DamnYouPerry",
+                    userName = "EvilMaster",
+                    userRole = Helpers.Role.Admin
                 },
                 new User
                 {
                     userID = 2,
-                    userEmail = "perry@platypus.dk",
+                    userEmail = "perry@platypus.com",
                     userPassword = "Doofenia",
                     userName = "Perry",
                     userRole = Helpers.Role.User
+                },
+                new User
+                {
+                 userID = 3,
+                 userEmail = "planty@pottedplant.com",
+                 userPassword = "Planty1234",
+                 userName = "Planty",
+                 userRole = Helpers.Role.User
                 }
             );
 
