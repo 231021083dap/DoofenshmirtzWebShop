@@ -21,10 +21,12 @@ namespace DoofenshmirtzsWebShop.Services
     {
         private readonly IOrderRepository _OrderRepository;
         private readonly IUserRepository _UserRepository;
-        public OrderServices(IOrderRepository orderRepository, IUserRepository userRepository)
+        private readonly IProductRepository _productRepository;
+        public OrderServices(IOrderRepository orderRepository, IUserRepository userRepository, IProductRepository productRepository)
         {
             _OrderRepository = orderRepository;
             _UserRepository = userRepository;
+            _productRepository = productRepository;
         }
         public async Task<List<OrderResponse>> GetAllOrders()
         {
@@ -85,6 +87,7 @@ namespace DoofenshmirtzsWebShop.Services
             };
             order = await _OrderRepository.Update(orderId, order);
             order.Users = await _UserRepository.getByID(order.userID);
+            //order.orderItems = await _productRepository
             return order == null ? null : new OrderResponse
             {
                 ID = order.orderID,
@@ -95,7 +98,8 @@ namespace DoofenshmirtzsWebShop.Services
                     email = order.Users.userEmail,
                     password = order.Users.userPassword,
                     username = order.Users.userName
-                }
+                },
+                
             };
         }
         public async Task<bool> Delete(int orderId)

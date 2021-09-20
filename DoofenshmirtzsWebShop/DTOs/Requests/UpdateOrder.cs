@@ -14,5 +14,6 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
 
         [ForeignKey("User.userID")]
         public int userID { get; set; }
+        public int orderItemId { get; set; }
     }
 }
