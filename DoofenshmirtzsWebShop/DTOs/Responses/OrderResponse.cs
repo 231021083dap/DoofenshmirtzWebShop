@@ -10,6 +10,7 @@ namespace DoofenshmirtzsWebShop.DTOs.Responses
         public int ID { get; set; }
         public DateTime date { get; set; }
         public OrderUserResponse Users { get; set; }
+        public OrderItemResponse OrderItems { get; set; }
         
     }
 

@@ -19,6 +19,7 @@ namespace DoofenshmirtzsWebShop.Database
         public DbSet<User> User { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<Product> Product { get; set; }
+        public DbSet<OrderItem> OrderItem { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -142,6 +143,32 @@ namespace DoofenshmirtzsWebShop.Database
                     productPrice = 50,
                     categoryID = 1
                 }
+                );
+            modelBuilder.Entity<OrderItem>().HasData(
+                new OrderItem
+                {
+                    orderItemID = 1,
+                    orderItemQuantity = 1,
+                    orderItemPrice = 100,
+                    orderID = 1,
+                    productID = 1
+                },
+                 new OrderItem
+                 {
+                   orderItemID = 2,
+                    orderItemQuantity = 1,
+                    orderItemPrice = 30,
+                    orderID = 1,
+                    productID = 1
+                 },
+                 new OrderItem
+                 {
+                 orderItemID = 3,
+                 orderItemQuantity = 5,
+                 orderItemPrice = 125,
+                 orderID = 2,
+                 productID = 2
+                 }
                 );
 
 
