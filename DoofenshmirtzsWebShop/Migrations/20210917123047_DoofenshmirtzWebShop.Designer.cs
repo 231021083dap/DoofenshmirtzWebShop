@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoofenshmirtzsWebShop.Migrations
 {
     [DbContext(typeof(DoofenshmirtzWebShopContext))]
-    [Migration("20210917122106_DoofenshmirtzWebShop")]
+    [Migration("20210917123047_DoofenshmirtzWebShop")]
     partial class DoofenshmirtzWebShop
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,19 +120,19 @@ namespace DoofenshmirtzsWebShop.Migrations
                         new
                         {
                             orderID = 1,
-                            orderDate = new DateTime(2021, 9, 17, 14, 21, 4, 966, DateTimeKind.Local).AddTicks(1050),
+                            orderDate = new DateTime(2021, 9, 17, 14, 30, 46, 990, DateTimeKind.Local).AddTicks(3747),
                             userID = 1
                         },
                         new
                         {
                             orderID = 2,
-                            orderDate = new DateTime(2021, 9, 17, 14, 21, 4, 971, DateTimeKind.Local).AddTicks(8786),
+                            orderDate = new DateTime(2021, 9, 17, 14, 30, 46, 992, DateTimeKind.Local).AddTicks(3024),
                             userID = 2
                         },
                         new
                         {
                             orderID = 3,
-                            orderDate = new DateTime(2021, 9, 17, 14, 21, 4, 971, DateTimeKind.Local).AddTicks(8839),
+                            orderDate = new DateTime(2021, 9, 17, 14, 30, 46, 992, DateTimeKind.Local).AddTicks(3055),
                             userID = 2
                         });
                 });

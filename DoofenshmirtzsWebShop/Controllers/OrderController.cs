@@ -1,4 +1,5 @@
-﻿using DoofenshmirtzsWebShop.DTOs.Responses;
+﻿using DoofenshmirtzsWebShop.DTOs.Requests;
+using DoofenshmirtzsWebShop.DTOs.Responses;
 using DoofenshmirtzsWebShop.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -57,6 +58,60 @@ namespace DoofenshmirtzsWebShop.Controllers
             {
 
                 return Problem(ex.Message);
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] NewOrder newOrder)
+        {
+            try
+            {
+                OrderResponse order = await _orderService.Create(newOrder);
+                if(order == null)
+                {
+                    return Problem("Order was not created, something went wrong");
+                }
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
+        }
+        [HttpDelete("{orderId}")]
+        public async Task<IActionResult> Delete([FromRoute] int orderId)
+        {
+            try
+            {
+                bool result = await _orderService.Delete(orderId);
+                if(!result)
+                {
+                    return Problem("Order was not deleted, something went wrong");
+                }
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+
+                return Problem(ex.Message);
+            }
+        }
+        [HttpPut("{orderId}")]
+        public async Task<IActionResult> Update([FromRoute] int orderId, [FromBody] UpdateOrder updateOrder)
+        {
+            try
+            {
+                OrderResponse order = await _orderService.Update(orderId, updateOrder);
+                if(order == null)
+                {
+                    return Problem("Order was not updated, something went wrong");
+                }
+                return Ok(order);
+            }
+            catch (Exception Ex)
+            {
+
+                return Problem(Ex.Message);
             }
         }
     }
