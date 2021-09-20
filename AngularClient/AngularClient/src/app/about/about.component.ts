@@ -8,18 +8,19 @@ declare var getPages: any;
 })
 export class AboutComponent implements OnInit {
 
+  page: string = "about1";
   constructor() { }
 
   ngOnInit(): void {
   }
   getAboutPage1(){
-    getPages.page1();
+    this.page = "about1";
   }
   getAboutPage2(){
-    getPages.page2();
+    this.page = "about2";
   }
   getAboutPage3(){
-    getPages.page3();
+    this.page = "about3";
   }
 
 }
