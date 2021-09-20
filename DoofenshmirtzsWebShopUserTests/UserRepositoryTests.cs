@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShopUserTests
 {
-    class UserRepositoryTests
+    public class UserRepositoryTests
     {
+
     }
 }
