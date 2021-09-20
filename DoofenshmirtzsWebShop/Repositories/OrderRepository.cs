@@ -48,7 +48,7 @@ namespace DoofenshmirtzsWebShop.Repositories
             Order updateOrder = await _context.Order.FirstOrDefaultAsync(a => a.orderID == orderId);
             if(updateOrder != null)
             {
-                updateOrder.orderID = order.orderID;
+                //updateOrder.orderID = order.orderID;
                 updateOrder.orderDate = order.orderDate;
                 updateOrder.userID = order.userID;
                 await _context.SaveChangesAsync();

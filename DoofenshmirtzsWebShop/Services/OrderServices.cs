@@ -61,7 +61,7 @@ namespace DoofenshmirtzsWebShop.Services
                 userID = newOrder.userID
             };
             order = await _OrderRepository.Create(order);
-            order.Users = await _UserRepository.getByID(order.orderID);
+            order.Users = await _UserRepository.getByID(order.userID);
             return order == null ? null : new OrderResponse
             {
                 ID = order.orderID,
@@ -84,11 +84,18 @@ namespace DoofenshmirtzsWebShop.Services
                 userID = updateOrder.userID
             };
             order = await _OrderRepository.Update(orderId, order);
-
+            order.Users = await _UserRepository.getByID(order.userID);
             return order == null ? null : new OrderResponse
             {
                 ID = order.orderID,
                 date = order.orderDate,
+                Users = new OrderUserResponse
+                {
+                    ID = order.Users.userID,
+                    email = order.Users.userEmail,
+                    password = order.Users.userPassword,
+                    username = order.Users.userName
+                }
             };
         }
         public async Task<bool> Delete(int orderId)
