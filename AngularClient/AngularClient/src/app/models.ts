@@ -1,16 +1,16 @@
 export interface Category{
-    categoryid: number,
+    categoryId: number,
     categoryName: string
 }
 
 export interface products{
-    productID: number,
-    productName: string,
-    productDescription: String,
-    productStock: number,
-    productPrice: number,
-    productCategoryId?: Category,
-    productGallery: productGallery[]
+    id: number,
+    name: string,
+    description: String,
+    stock: number,
+    price: number,
+    categoryId?: Category,
+    imageGallery: productGallery[]
 }
 export interface productGallery{
     galleryId: number,

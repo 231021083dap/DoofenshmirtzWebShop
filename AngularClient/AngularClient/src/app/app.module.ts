@@ -19,6 +19,7 @@ import { AdminNewProductComponent } from './admin/admin-new-product/admin-new-pr
 import { AdminNewuserComponent } from './admin/admin-newuser/admin-newuser.component';
 import { AdminNewRoleComponent } from './admin/admin-new-role/admin-new-role.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
