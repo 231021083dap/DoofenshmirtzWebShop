@@ -34,6 +34,7 @@ namespace DoofenshmirtzsWebShop.DTOs.Responses
         public int quantity { get; set; }
         public int orderID { get; set; }
         public ProductResponse Product { get; set; }
+
     }
 
 

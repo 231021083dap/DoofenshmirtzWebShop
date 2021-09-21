@@ -72,7 +72,20 @@ namespace DoofenshmirtzsWebShop.Services
                     ID = a.orderItemID,
                     quantity = a.orderItemQuantity,
                     price = a.orderItemPrice,
-                    orderID = a.orderID
+                    orderID = a.orderID,
+                    Product = new ProductResponse
+                    {
+                        ID = a.Product.productID,
+                        name  = a.Product.productName,
+                        price = a.Product.productPrice,
+                        stock = a.Product.productStock,
+                        description = a.Product.productDescription,
+                        category = new ProductCategoryResponse
+                        {
+                            joinCategoryId = a.Product.categoryID,
+                            categoryName = a.Product.Category.categoryName
+                        }
+                    }
                 }).ToList()
 
             };

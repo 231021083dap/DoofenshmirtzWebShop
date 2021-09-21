@@ -41,6 +41,7 @@ namespace DoofenshmirtzsWebShop.Repositories
                 .ThenInclude(a => a.address)
                 .Include(i => i.orderItems)
                 .ThenInclude(a => a.Product)
+                .ThenInclude(a => a.Category)
                 .FirstOrDefaultAsync(b => b.orderID == orderId);
         }
         public async Task<Order> Create(Order order)
