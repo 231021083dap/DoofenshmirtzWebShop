@@ -16,12 +16,12 @@ namespace DoofenshmirtzsWebShop
     public class Startup
     {
         private readonly string CORSRules = "_CORSRules";
-        //private readonly IWebHostEnvironment = _env;
+        private readonly IWebHostEnvironment _env;
         private readonly IConfiguration _configuration;
 
-        public Startup( IConfiguration configuration)
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
-            //_env = env;
+            _env = env;
             _configuration = configuration;
         }
 
@@ -35,7 +35,7 @@ namespace DoofenshmirtzsWebShop
             options.AddPolicy(name: CORSRules,
                 builder => 
                     {
-                        builder.WithOrigins("http://localhost.4200")
+                        builder.WithOrigins("http://localhost:4200")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                     });
@@ -69,9 +69,23 @@ namespace DoofenshmirtzsWebShop
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer",
-                    BearerFormat = "JwT",
+                    BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "JwT Authorization header using the Bearer Scheme.  \r\r\r\n Enter 'Bearer'[space] and then your token in the text input below. \r\r\r\n Example: \"Bearer 1234abcdef\"",
+                    Description = "JWT Authorization header using the Bearer scheme. \r\r\r\n Enter 'Bearer'[space] and then your token in the text input below. \r\r\r\n Example: \"Bearer 1234abcdef\"",
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
                 });
 
             });
@@ -89,9 +103,13 @@ namespace DoofenshmirtzsWebShop
 
             app.UseHttpsRedirection();
 
+            app.UseCors(CORSRules);
+
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
+
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

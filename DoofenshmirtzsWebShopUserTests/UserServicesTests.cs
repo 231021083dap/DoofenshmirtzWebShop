@@ -1,4 +1,5 @@
-﻿using DoofenshmirtzsWebShop.Repositories;
+﻿using DoofenshmirtzsWebShop.Authorization;
+using DoofenshmirtzsWebShop.Repositories;
 using DoofenshmirtzsWebShop.Services;
 using Moq;
 using System;
@@ -18,6 +19,13 @@ namespace DoofenshmirtzsWebShopUserTests
         //Update(int userID, UpdateUser updateUser)
         //Delete(int userID)
 
-        //private readonly 
+        private readonly UserServices _sut;
+        private readonly Mock<IUserRepository> _userRepository = new();
+        //private readonly Mock<IJwtUtils> = _jwtUtils = new();
+        /*
+        public UserServicesTests()
+        {
+            _sut = new UserServices(_userRepository.Object);
+        }*/
     }
 }
