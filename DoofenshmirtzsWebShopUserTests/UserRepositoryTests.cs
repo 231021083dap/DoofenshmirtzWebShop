@@ -137,10 +137,10 @@ namespace DoofenshmirtzsWebShopUserTests
             User user = new User
             {
                 userID = 1,
-                userEmail = "perry@platypbbbbus.com",
+                userEmail = "perry@platypus.com",
+                userPassword = "Grrrr",
                 userName = "Perry",
-                userPassword = "Grrrr", // 4 + r
-                userRole = Role.Admin
+                userRole = Role.User
             };
 
             _context.User.Add(user);
@@ -148,7 +148,9 @@ namespace DoofenshmirtzsWebShopUserTests
 
             Func<Task> action = async () => await _sut.register(user);
 
+
             var ex = await Assert.ThrowsAsync<ArgumentException>(action);
+
             Assert.Contains("An item with the same key has already been added", ex.Message);
         }
 
@@ -168,7 +170,80 @@ namespace DoofenshmirtzsWebShopUserTests
             _context.User.Add(user);
             await _context.SaveChangesAsync();
 
-            //User updateUser 
+            User updateUser = new User
+            {
+                userID = userID,
+                userEmail = "doof@evil.com",
+                userName = "Doofenia",
+                userPassword = "EvilInc"
+            };
+
+            var result = await _sut.update(userID, updateUser);
+
+            Assert.NotNull(result);
+            Assert.IsType<User>(result);
+            Assert.Equal(userID, result.userID);
+            Assert.Equal(updateUser.userEmail, result.userEmail);
+            Assert.Equal(updateUser.userName, result.userName);
+            Assert.Equal(updateUser.userPassword, result.userPassword);
+        }
+
+        [Fact]
+        public async Task update_shouldReturnNull_whenUserDoesNotExist()
+        {
+            await _context.Database.EnsureDeletedAsync();
+
+            int userID = 1;
+
+            User updateUser = new User
+            {
+                userID = userID, 
+                userEmail = "perry@platypus.com",
+                userName = "Perry",
+                userPassword = "Grrrr"
+            };
+
+            var result = await _sut.update(userID, updateUser);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task delete_shouldReturnDeletedUser_whenUserIsDeleted()
+        {
+            await _context.Database.EnsureDeletedAsync();
+
+            int userID = 1;
+            User user = new User
+            {
+                userID = userID,
+                userEmail = "perry@platypus.com",
+                userName = "Perry",
+                userPassword = "Grrrr",
+                userRole = Role.User
+            };
+
+            _context.User.Add(user);
+            await _context.SaveChangesAsync();
+
+            var result = await _sut.delete(userID);
+            var users = await _sut.getAll();
+
+            Assert.NotNull(result);
+            Assert.IsType<User>(result);
+            Assert.Equal(userID, result.userID);
+            Assert.Empty(users);
+        }
+
+        [Fact]
+        public async Task delete_shouldReturnNull_whenUserDoesNotExist()
+        {
+            await _context.Database.EnsureDeletedAsync();
+            int userID = 1;
+
+            var result = await _sut.delete(userID);
+
+            Assert.Null(result);
         }
     }
 }
