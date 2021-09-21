@@ -104,6 +104,8 @@ namespace DoofenshmirtzsWebShop
 
             app.UseHttpsRedirection();
 
+            app.UseCors(CORSRules);
+
             app.UseRouting();
 
             app.UseAuthorization();
