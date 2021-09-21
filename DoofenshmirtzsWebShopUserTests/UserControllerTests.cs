@@ -1,6 +1,7 @@
 ﻿using DoofenshmirtzsWebShop.Controllers;
 using DoofenshmirtzsWebShop.DTOs.Responses;
 using DoofenshmirtzsWebShop.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Moq;
 using System;
@@ -55,9 +56,51 @@ namespace DoofenshmirtzsWebShopUserTests
         }
 
         [Fact]
+        public async void getAll_shouldReturnStatusCode204_whenNoDataExists()
+        {
+            List<UserResponse> users = new();
+
+            _userService.Setup(s => s.getAll())
+                .ReturnsAsync(users);
+
+            var result = await _sut.getAll();
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(204, statusCodeResult.StatusCode);
+        }
+
+        /*
+        [Fact]
         public async void getByID_shouldReturnStatusCode404_whenUserDoesNotExist()
         {
+            int userID = 1;
             
+
+    
+            _userService
+                .Setup(s => s.getByID(It.IsAny<int>()))
+                .ReturnsAsync(() => null);
+
+            var result = await _sut.getByID(userID);
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(404, statusCodeResult.StatusCode);
+        }*/
+
+        [Fact]
+        public async void getAll_shouldReturnStatusCode500_whenNullIsReturnedFromService()
+        {
+            List<UserResponse> users = new();
+
+            _userService.Setup(s => s.getAll())
+                .ReturnsAsync(() => null);
+
+            var result = await _sut.getAll();
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(500, statusCodeResult.StatusCode);
         }
+
+        
     }
 }

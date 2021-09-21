@@ -69,11 +69,10 @@ namespace DoofenshmirtzsWebShop
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer",
-                    BearerFormat = "JwT",
+                    BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "JwT Authorization header using the Bearer Scheme.  \r\r\r\n Enter 'Bearer'[space] and then your token in the text input below. \r\r\r\n Example: \"Bearer 1234abcdef\"",
+                    Description = "JWT Authorization header using the Bearer scheme. \r\r\r\n Enter 'Bearer'[space] and then your token in the text input below. \r\r\r\n Example: \"Bearer 1234abcdef\"",
                 });
-
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -85,7 +84,7 @@ namespace DoofenshmirtzsWebShop
                                 Id = "Bearer"
                             }
                         },
-                        new string[] { }
+                        new string[] {}
                     }
                 });
 
@@ -108,7 +107,7 @@ namespace DoofenshmirtzsWebShop
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseMiddleware<JwtMiddleware>();
 
