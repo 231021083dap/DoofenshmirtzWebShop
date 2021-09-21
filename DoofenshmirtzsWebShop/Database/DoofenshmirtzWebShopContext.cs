@@ -1,9 +1,6 @@
 ﻿using DoofenshmirtzsWebShop.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DoofenshmirtzsWebShop.Database
 {
@@ -26,7 +23,7 @@ namespace DoofenshmirtzsWebShop.Database
             modelBuilder.Entity<Address>().HasData(
                 new Address
                 {
-                    addressID = 1, 
+                    addressID = 1,
                     addressCustomerName = "Pinky the Chihuahua",
                     addressStreetName = "2034 Danville Avenue",
                     addressPostalCode = 6969,
@@ -83,11 +80,11 @@ namespace DoofenshmirtzsWebShop.Database
                 },
                 new User
                 {
-                 userID = 3,
-                 userEmail = "planty@pottedplant.com",
-                 userPassword = "Planty1234",
-                 userName = "Planty",
-                 userRole = Helpers.Role.User
+                    userID = 3,
+                    userEmail = "planty@pottedplant.com",
+                    userPassword = "Planty1234",
+                    userName = "Planty",
+                    userRole = Helpers.Role.User
                 }
             );
 
@@ -95,28 +92,27 @@ namespace DoofenshmirtzsWebShop.Database
                 new Order
                 {
                     orderID = 1,
-                    orderDate = DateTime.Now,
-                    userID = 1,
-                    orderItemId = 1
+                    orderDate = DateTime.Parse("2021-9-21 12:23:21"),
+                    userID = 2
+
                 },
                 new Order
                 {
                     orderID = 2,
-                    orderDate = DateTime.Now,
-                    userID = 2,
-                    orderItemId = 3
+                    orderDate = DateTime.Parse("2021-10-21 12:23:21"),
+                    userID = 3
+
                 },
                  new Order
                  {
-                    orderID = 3,
-                    orderDate = DateTime.Now,
-                    userID = 2,
-                    orderItemId = 2
+                     orderID = 3,
+                     orderDate = DateTime.Parse("2021-9-25 12:23:21"),
+                     userID = 3
 
                  }
 
                 );
-           
+
 
 
             modelBuilder.Entity<Product>().HasData(
@@ -154,22 +150,49 @@ namespace DoofenshmirtzsWebShop.Database
                     orderItemID = 1,
                     orderItemQuantity = 1,
                     orderItemPrice = 100,
-                    productID = 1
+                    productID = 1,
+                    orderID = 1
                 },
                  new OrderItem
                  {
-                    orderItemID = 2,
-                    orderItemQuantity = 1,
-                    orderItemPrice = 30,
-                    productID = 1
+                     orderItemID = 2,
+                     orderItemQuantity = 1,
+                     orderItemPrice = 30,
+                     productID = 1,
+                     orderID = 1
                  },
                  new OrderItem
                  {
-                 orderItemID = 3,
-                 orderItemQuantity = 5,
-                 orderItemPrice = 125,
-                 productID = 2
-                 }
+                     orderItemID = 3,
+                     orderItemQuantity = 5,
+                     orderItemPrice = 125,
+                     productID = 2,
+                     orderID = 2
+                 },
+                 new OrderItem
+                 {
+                     orderItemID = 4,
+                     orderItemQuantity = 1,
+                     orderItemPrice = 30,
+                     productID = 2,
+                     orderID = 2
+                 },
+                 new OrderItem
+                 {
+                     orderItemID = 5,
+                     orderItemQuantity = 1,
+                     orderItemPrice = 30,
+                     productID = 3,
+                     orderID = 3
+                 },
+                  new OrderItem
+                  {
+                      orderItemID = 6,
+                      orderItemQuantity = 55,
+                      orderItemPrice = 500,
+                      productID = 3,
+                      orderID = 3
+                  }
                 );
 
 

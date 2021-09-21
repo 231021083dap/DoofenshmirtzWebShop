@@ -12,13 +12,13 @@ namespace DoofenshmirtzsWebShop.DTOs.Responses
         public string streetName { get; set; }
         public int postalCode { get; set; }
         public string countryName { get; set; }
+        public AddressUserResponse user { get; set; }
     }
 
     public class AddressUserResponse
     {
         public int ID { get; set; }
         public string email { get; set; }
-        public string password { get; set; }
         public string username { get; set; }
     }
 }

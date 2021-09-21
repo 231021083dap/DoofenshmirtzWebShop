@@ -45,14 +45,15 @@ namespace DoofenshmirtzsWebShop.Services
                 ID = o.orderItemID,
                 quantity = o.orderItemQuantity,
                 price = o.orderItemPrice,
-                Products = new ProductResponse
+                orderID = o.orderID,
+                Product = new ProductResponse
                 {
-                    ID = o.Products.productID,
-                    name = o.Products.productName,
-                    stock = o.Products.productStock,
-                    price = o.Products.productPrice,
-                    description = o.Products.productDescription,
-                    categoryId = o.Products.categoryID,
+                    ID = o.Product.productID,
+                    name = o.Product.productName,
+                    stock = o.Product.productStock,
+                    price = o.Product.productPrice,
+                    description = o.Product.productDescription,
+                    categoryId = o.Product.categoryID,
                 },
                 
                 

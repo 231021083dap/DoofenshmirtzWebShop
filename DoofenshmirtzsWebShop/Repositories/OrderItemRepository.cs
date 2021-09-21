@@ -44,7 +44,7 @@ namespace DoofenshmirtzsWebShop.Repositories
 
         public async Task<List<OrderItem>> GetAll()
         {
-            return await _context.OrderItem.Include(a => a.Products).ToListAsync();
+            return await _context.OrderItem.Include(a => a.Product).ToListAsync();
         }
 
         public async Task<OrderItem> GetById(int orderItemId)
