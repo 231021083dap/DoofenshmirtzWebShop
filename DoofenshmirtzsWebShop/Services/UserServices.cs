@@ -82,7 +82,7 @@ namespace DoofenshmirtzsWebShop.Services
                 userRole = Helpers.Role.User // Force all users created through register to Role.User
             };
 
-            user = await _userRepository.create(user);
+            user = await _userRepository.register(user);
 
             return userResponse(user);
         }

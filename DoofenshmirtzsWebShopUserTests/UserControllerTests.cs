@@ -1,5 +1,8 @@
 ﻿using DoofenshmirtzsWebShop.Controllers;
+using DoofenshmirtzsWebShop.Database.Entities;
+using DoofenshmirtzsWebShop.DTOs.Requests;
 using DoofenshmirtzsWebShop.DTOs.Responses;
+using DoofenshmirtzsWebShop.Repositories;
 using DoofenshmirtzsWebShop.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -101,6 +104,47 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.Equal(500, statusCodeResult.StatusCode);
         }
 
+        [Fact]
+        public async void getAll_shouldReturnStatusCode500_whenExceptionIsRaised()
+        {
+            List<UserResponse> users = new();
+
+            _userService.Setup(s => s.getAll())
+                .ReturnsAsync(() => throw new System.Exception("This is an exception"));
+
+            var result = await _sut.getAll();
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(500, statusCodeResult.StatusCode);
+        }
+
+        [Fact]
+        public async void create_shouldReturnStatusCode200_whenCreateIsSuccessful()
+        {
+            int userID = 1;
+
+            RegisterUser newUser = new RegisterUser
+            {
+                Email = "perry@platypus.com",
+                Username = "Perry",
+                Password = "Platypus"
+            };
+            User user = new User
+            {
+                userID = userID,
+                userEmail = "perry@platypus.com",
+                userName = "Perry",
+                userPassword = "Platypus"
+            };
+
+            //_userService.Setup(s => s.Register(It.IsAny<RegisterUser>())).ReturnsAsync(user);
+
+            var result = await _sut.Register(newUser);
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(200, statusCodeResult.StatusCode);
+            
+        }
         
     }
 }
