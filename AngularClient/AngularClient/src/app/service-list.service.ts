@@ -9,12 +9,14 @@ import * as service from './models';
 })
 
 export class productService{
-  private apiUrl = 'https://localhost:5001/api/products';
+  private apiUrl = 'https://localhost:5001/api/Product';
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'}),
   };
   constructor(private http:HttpClient) { }
+  
   getProducts(): Observable<service.products[]>{return this.http.get<service.products[]>(this.apiUrl)}
+
   getProductById(productId: number): Observable<service.products> {return this.http.get<service.products>(`${this.apiUrl}/${productId}`);}
   newProduct(product: service.products): Observable<service.products> {return this.http.post<service.products>(this.apiUrl, product, this.httpOptions);}
   updateProduct(productId: number, product: service.products): Observable<service.products> {return this.http.put<service.products>(`${this.apiUrl}/${productId}`, product, this.httpOptions);}
