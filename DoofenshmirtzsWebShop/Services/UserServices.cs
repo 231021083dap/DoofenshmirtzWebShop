@@ -108,6 +108,7 @@ namespace DoofenshmirtzsWebShop.Services
             {
                 ID = user.userID,
                 email = user.userEmail,
+                password = user.userPassword,
                 username = user.userName,
                 Role = user.userRole
             };

@@ -57,16 +57,7 @@ namespace DoofenshmirtzsWebShopUserTests
         [Fact]
         public async void getByID_shouldReturnStatusCode404_whenUserDoesNotExist()
         {
-            int userID = 1;
-
-            _userService
-                .Setup(s => s.getByID(It.IsAny<int>()))
-                .ReturnsAsync(() => null);
-
-            var result = await _sut.getByID(userID);
-
-            var statusCodeResult = (IStatusCodeActionResult)result;
-            Assert.Equal(404, statusCodeResult.StatusCode);
+            
         }
     }
 }

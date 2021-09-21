@@ -90,13 +90,14 @@ namespace DoofenshmirtzsWebShop.Controllers
             }
         }
 
+
         [Authorize(Role.User, Role.Admin)]
-        [HttpGet("{user.userID}")]
+        [HttpGet("{user.ID}")]
         public async Task<IActionResult> getByID([FromRoute] int userID)
         {
             try
             {
-                // Only admins can access other users records
+                // Only admins can access other user records
                 var currentUser = (UserResponse)HttpContext.Items["User"];
 
                 if (userID != currentUser.ID && currentUser.Role != Role.Admin)
@@ -116,6 +117,7 @@ namespace DoofenshmirtzsWebShop.Controllers
             {
                 return Problem(ex.Message);
             }
+
         }
     }
-}
+ }
