@@ -1,0 +1,35 @@
+.content{
+    margin:10px auto;
+    padding:10px;
+    border:1px solid #000;
+    border-radius:40px;
+    width:70%;
+    text-align: center;
+}
+.login-box{
+    display:flex;
+    flex-direction: column;
+    padding:10px;
+    width:80%;
+    margin:auto;
+}
+.login-box label{
+    margin:0 10px;
+    text-align: left;
+}
+.login-box br{
+    margin: 10px;
+}
+.textbox{
+    margin:0 10px;
+    padding:10px;
+}
+.login-box a{
+    font-size: 12px;
+    text-align: right;
+}
+.login-box button{
+    border-radius: 20px;
+    padding:10px;
+    margin:10px;
+}

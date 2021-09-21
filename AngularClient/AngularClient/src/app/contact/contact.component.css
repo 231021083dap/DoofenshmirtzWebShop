@@ -1,0 +1,39 @@
+.title{
+    width:80%;
+    margin:0 auto;
+    text-align: center;
+    border-bottom: 1px solid #000;
+}
+.contact-box{
+    margin:10px;
+    padding:10px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 10% 10% 40% 15%;
+}
+.textbox{
+    margin:10px;
+}
+#name{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+#email{
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+#subject, #message{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+#message{
+    border-radius: 10px;
+    height: 150px;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+.contact-box button{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin: auto;
+}
