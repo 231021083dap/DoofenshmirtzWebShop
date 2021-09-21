@@ -1,0 +1,20 @@
+<div class="banner">
+<h2>About Doofenshmirtz</h2>
+</div>
+
+<div class="links">
+    <p (click)="getAboutPage1()">Our work</p>
+    <p (click)="getAboutPage2()">Who we are</p>
+    <p (click)="getAboutPage3()">Our history</p>
+</div>
+<div class="content">
+    <div id="about1" *ngIf="page=='about1'">
+        <p>Our Work Page Here</p>
+    </div>
+    <div id="about2" *ngIf="page=='about2'">
+        <p>Who we are Page Here</p>
+    </div>
+    <div id="about3" *ngIf="page=='about3'">
+        <p>Our history Page Here</p>
+    </div>
+</div>

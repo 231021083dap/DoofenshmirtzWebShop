@@ -1,0 +1,20 @@
+.banner{
+    border:1px solid #000;
+    text-align: center;
+}
+.links{
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #000;
+}
+.links p{
+    cursor: pointer;
+    padding:10px;
+    border-radius:10px;
+}
+.links p:hover{
+    background-color:#eee;
+    border-bottom: 1px solid #000;
+    transition: 0.7s;
+}
+

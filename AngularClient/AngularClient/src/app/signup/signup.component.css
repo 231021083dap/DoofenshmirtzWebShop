@@ -1,0 +1,51 @@
+.content{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.formula-box{
+    border:1px solid #000;
+    margin:10px;
+    padding:10px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+}
+.formula-box h3{
+    text-align: center;
+}
+br{
+    margin:10px;
+}
+.firstname{
+    grid-column-start:1;
+    grid-column-end: 1;
+}
+
+.lastname{
+    grid-column-start: 2;
+    grid-column-end:2;
+}
+
+.email, .username, .password{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.input{
+    padding:10px;
+}
+.box{
+    grid-column-start:1;
+    grid-column-end:1;
+}
+.checkbox{
+    margin:10px;
+}
+.formula-box button{
+    border-radius: 20px;
+    padding: 10px;
+}
+a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
