@@ -44,12 +44,18 @@ namespace DoofenshmirtzsWebShop.Repositories
 
         public async Task<List<OrderItem>> GetAll()
         {
-            return await _context.OrderItem.Include(a => a.Product).ToListAsync();
+            return await _context.OrderItem
+                .Include(a => a.Product)
+                .ThenInclude(c => c.Category)
+                .ToListAsync();
         }
 
         public async Task<OrderItem> GetById(int orderItemId)
         {
-            return await _context.OrderItem.FirstOrDefaultAsync(b => b.orderItemID == orderItemId);
+            return await _context.OrderItem
+                .Include(a => a.Product)
+                .ThenInclude(c => c.Category)
+                .FirstOrDefaultAsync(b => b.orderItemID == orderItemId);
         }
 
         public async Task<OrderItem> Update(int orderItemId, OrderItem orderItem)
