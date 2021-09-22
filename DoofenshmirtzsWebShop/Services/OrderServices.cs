@@ -35,13 +35,13 @@ namespace DoofenshmirtzsWebShop.Services
             {
                 ID = o.orderID,
                 date = o.orderDate,
-                Users = new OrderUserResponse
+                User = new OrderUserResponse
                 {
-                    ID = o.Users.userID,
-                    email = o.Users.userEmail,
-                    password = o.Users.userPassword,
-                    username = o.Users.userName
+                    ID = o.User.userID,
+                    email = o.User.userEmail,
+                    username = o.User.userName
                 }
+
             }).ToList();
         }
         public async Task<OrderResponse> GetById(int orderId)
@@ -51,7 +51,43 @@ namespace DoofenshmirtzsWebShop.Services
             {
                 ID = order.orderID,
                 date = order.orderDate,
-                
+                User = new OrderUserResponse
+                {
+
+                    ID = order.User.userID,
+                    email = order.User.userEmail,
+                    username = order.User.userName,
+                    address = order.User.address.Select(a => new AddressResponse
+                    {
+                        ID = a.addressID,
+                        customerName = a.addressCustomerName,
+                        streetName = a.addressStreetName,
+                        postalCode = a.addressPostalCode,
+                        countryName = a.addressCountryName,
+                    }).ToList()
+
+                },
+                OrderItems = order.orderItems.Select( a => new OrderOrderItemResponse
+                {
+                    ID = a.orderItemID,
+                    quantity = a.orderItemQuantity,
+                    price = a.orderItemPrice,
+                    orderID = a.orderID,
+                    Product = new ProductResponse
+                    {
+                        ID = a.Product.productID,
+                        name  = a.Product.productName,
+                        price = a.Product.productPrice,
+                        stock = a.Product.productStock,
+                        description = a.Product.productDescription,
+                        category = new ProductCategoryResponse
+                        {
+                            joinCategoryId = a.Product.categoryID,
+                            categoryName = a.Product.Category.categoryName
+                        }
+                    }
+                }).ToList()
+
             };
         }
         public async Task<OrderResponse> Create(NewOrder newOrder)
@@ -63,17 +99,16 @@ namespace DoofenshmirtzsWebShop.Services
                 userID = newOrder.userID
             };
             order = await _OrderRepository.Create(order);
-            order.Users = await _UserRepository.getByID(order.userID);
+            order.User = await _UserRepository.getByID(order.userID);
             return order == null ? null : new OrderResponse
             {
                 ID = order.orderID,
                 date = order.orderDate,
-                Users = new OrderUserResponse
+                User = new OrderUserResponse
                 {
-                    ID = order.Users.userID,
-                    email = order.Users.userEmail,
-                    password = order.Users.userPassword,
-                    username = order.Users.userName
+                    ID = order.User.userID,
+                    email = order.User.userEmail,
+                    username = order.User.userName
                 }
             };
         }
@@ -86,18 +121,17 @@ namespace DoofenshmirtzsWebShop.Services
                 userID = updateOrder.userID
             };
             order = await _OrderRepository.Update(orderId, order);
-            order.Users = await _UserRepository.getByID(order.userID);
-            //order.orderItems = await _productRepository
+            order.User = await _UserRepository.getByID(order.userID);
+            //order.orderItems = await _productRepository.
             return order == null ? null : new OrderResponse
             {
                 ID = order.orderID,
                 date = order.orderDate,
-                Users = new OrderUserResponse
+                User = new OrderUserResponse
                 {
-                    ID = order.Users.userID,
-                    email = order.Users.userEmail,
-                    password = order.Users.userPassword,
-                    username = order.Users.userName
+                    ID = order.User.userID,
+                    email = order.User.userEmail,
+                    username = order.User.userName
                 },
                 
             };

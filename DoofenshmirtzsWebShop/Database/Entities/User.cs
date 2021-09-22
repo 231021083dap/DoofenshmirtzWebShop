@@ -24,6 +24,8 @@ namespace DoofenshmirtzsWebShop.Database.Entities
         [Column(TypeName = "nvarchar(100)")]
         public string userName { get; set; }
 
+        public List<Address> address { get; set; } = new();
+
         public Helpers.Role userRole { get; set; }
     }
 }

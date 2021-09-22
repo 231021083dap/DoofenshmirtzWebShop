@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoofenshmirtzsWebShop.Migrations
 {
     [DbContext(typeof(DoofenshmirtzWebShopContext))]
-    [Migration("20210917123047_DoofenshmirtzWebShop")]
-    partial class DoofenshmirtzWebShop
+    [Migration("20210922074700_devs")]
+    partial class devs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,11 +56,20 @@ namespace DoofenshmirtzsWebShop.Migrations
                         new
                         {
                             addressID = 1,
-                            addressCountryName = "Carkeys",
-                            addressCustomerName = "Test McTesting",
+                            addressCountryName = "TriState Area",
+                            addressCustomerName = "Pinky the Chihuahua",
                             addressPostalCode = 6969,
-                            addressStreetName = "Danville 101",
-                            userID = 1
+                            addressStreetName = "2034 Danville Avenue",
+                            userID = 2
+                        },
+                        new
+                        {
+                            addressID = 2,
+                            addressCountryName = "TriState Area",
+                            addressCustomerName = "Planty the PottedPlant",
+                            addressPostalCode = 6969,
+                            addressStreetName = "1001 Danville Boulevard",
+                            userID = 3
                         });
                 });
 
@@ -120,20 +129,98 @@ namespace DoofenshmirtzsWebShop.Migrations
                         new
                         {
                             orderID = 1,
-                            orderDate = new DateTime(2021, 9, 17, 14, 30, 46, 990, DateTimeKind.Local).AddTicks(3747),
-                            userID = 1
+                            orderDate = new DateTime(2021, 9, 21, 12, 23, 21, 0, DateTimeKind.Unspecified),
+                            userID = 2
                         },
                         new
                         {
                             orderID = 2,
-                            orderDate = new DateTime(2021, 9, 17, 14, 30, 46, 992, DateTimeKind.Local).AddTicks(3024),
-                            userID = 2
+                            orderDate = new DateTime(2021, 10, 21, 12, 23, 21, 0, DateTimeKind.Unspecified),
+                            userID = 3
                         },
                         new
                         {
                             orderID = 3,
-                            orderDate = new DateTime(2021, 9, 17, 14, 30, 46, 992, DateTimeKind.Local).AddTicks(3055),
-                            userID = 2
+                            orderDate = new DateTime(2021, 9, 25, 12, 23, 21, 0, DateTimeKind.Unspecified),
+                            userID = 3
+                        });
+                });
+
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.OrderItem", b =>
+                {
+                    b.Property<int>("orderItemID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("orderID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("orderItemPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("orderItemQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("productID")
+                        .HasColumnType("int");
+
+                    b.HasKey("orderItemID");
+
+                    b.HasIndex("orderID");
+
+                    b.HasIndex("productID");
+
+                    b.ToTable("OrderItem");
+
+                    b.HasData(
+                        new
+                        {
+                            orderItemID = 1,
+                            orderID = 1,
+                            orderItemPrice = 100,
+                            orderItemQuantity = 1,
+                            productID = 1
+                        },
+                        new
+                        {
+                            orderItemID = 2,
+                            orderID = 1,
+                            orderItemPrice = 30,
+                            orderItemQuantity = 1,
+                            productID = 1
+                        },
+                        new
+                        {
+                            orderItemID = 3,
+                            orderID = 2,
+                            orderItemPrice = 125,
+                            orderItemQuantity = 5,
+                            productID = 2
+                        },
+                        new
+                        {
+                            orderItemID = 4,
+                            orderID = 2,
+                            orderItemPrice = 30,
+                            orderItemQuantity = 1,
+                            productID = 2
+                        },
+                        new
+                        {
+                            orderItemID = 5,
+                            orderID = 3,
+                            orderItemPrice = 30,
+                            orderItemQuantity = 1,
+                            productID = 3
+                        },
+                        new
+                        {
+                            orderItemID = 6,
+                            orderID = 3,
+                            orderItemPrice = 500,
+                            orderItemQuantity = 55,
+                            productID = 3
                         });
                 });
 
@@ -251,22 +338,41 @@ namespace DoofenshmirtzsWebShop.Migrations
                         new
                         {
                             userID = 1,
-                            userEmail = "test@test.dk",
-                            userName = "Test101",
-                            userPassword = "Test1234",
-                            userRole = 1
+                            userEmail = "doofen@evil.com",
+                            userName = "EvilMaster",
+                            userPassword = "DamnYouPerry",
+                            userRole = 0
                         },
                         new
                         {
                             userID = 2,
-                            userEmail = "perry@platypus.dk",
+                            userEmail = "perry@platypus.com",
                             userName = "Perry",
                             userPassword = "Doofenia",
+                            userRole = 1
+                        },
+                        new
+                        {
+                            userID = 3,
+                            userEmail = "planty@pottedplant.com",
+                            userName = "Planty",
+                            userPassword = "Planty1234",
                             userRole = 1
                         });
                 });
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Address", b =>
+                {
+                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", "User")
+                        .WithMany("address")
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Order", b =>
                 {
                     b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", "User")
                         .WithMany()
@@ -277,15 +383,21 @@ namespace DoofenshmirtzsWebShop.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Order", b =>
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.OrderItem", b =>
                 {
-                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", "Users")
-                        .WithMany()
-                        .HasForeignKey("userID")
+                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.Order", null)
+                        .WithMany("orderItems")
+                        .HasForeignKey("orderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Users");
+                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("productID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Product", b =>
@@ -310,9 +422,19 @@ namespace DoofenshmirtzsWebShop.Migrations
                     b.Navigation("product");
                 });
 
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Order", b =>
+                {
+                    b.Navigation("orderItems");
+                });
+
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Product", b =>
                 {
                     b.Navigation("ImageList");
+                });
+
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.User", b =>
+                {
+                    b.Navigation("address");
                 });
 #pragma warning restore 612, 618
         }
