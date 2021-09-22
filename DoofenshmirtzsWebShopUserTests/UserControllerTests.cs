@@ -1,5 +1,8 @@
 ﻿using DoofenshmirtzsWebShop.Controllers;
+using DoofenshmirtzsWebShop.Database.Entities;
+using DoofenshmirtzsWebShop.DTOs.Requests;
 using DoofenshmirtzsWebShop.DTOs.Responses;
+using DoofenshmirtzsWebShop.Repositories;
 using DoofenshmirtzsWebShop.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -69,7 +72,7 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.Equal(204, statusCodeResult.StatusCode);
         }
 
-        /*
+        
         [Fact]
         public async void getByID_shouldReturnStatusCode404_whenUserDoesNotExist()
         {
@@ -85,7 +88,7 @@ namespace DoofenshmirtzsWebShopUserTests
 
             var statusCodeResult = (IStatusCodeActionResult)result;
             Assert.Equal(404, statusCodeResult.StatusCode);
-        }*/
+        }
 
         [Fact]
         public async void getAll_shouldReturnStatusCode500_whenNullIsReturnedFromService()
@@ -101,6 +104,47 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.Equal(500, statusCodeResult.StatusCode);
         }
 
+        [Fact]
+        public async void getAll_shouldReturnStatusCode500_whenExceptionIsRaised()
+        {
+            List<UserResponse> users = new();
+
+            _userService.Setup(s => s.getAll())
+                .ReturnsAsync(() => throw new System.Exception("This is an exception"));
+
+            var result = await _sut.getAll();
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(500, statusCodeResult.StatusCode);
+        }
+
+        [Fact]
+        public async void create_shouldReturnStatusCode200_whenCreateIsSuccessful()
+        {
+            int userID = 1;
+
+            NewUser newUser = new NewUser
+            {
+                userEmail = "perry@platypus.com",
+                userName = "Perry",
+                userPassword = "Platypus"
+            };
+            User user = new User
+            {
+                userID = userID,
+                userEmail = "perry@platypus.com",
+                userName = "Perry",
+                userPassword = "Platypus"
+            };
+
+            //_userService.Setup(s => s.Register(It.IsAny<RegisterUser>())).ReturnsAsync(user);
+
+            var result = await _sut.register(newUser);
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(200, statusCodeResult.StatusCode);
+            
+        }
         
     }
 }

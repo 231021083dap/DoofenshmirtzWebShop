@@ -11,7 +11,7 @@ namespace DoofenshmirtzsWebShop.Repositories
     public interface IUserRepository
     {
         Task<List<User>> getAll();
-        Task<User> create(User user);
+        Task<User> register(User user);
         Task<User> getByEmail(string Email);
         Task<User> getByID(int userId);
         Task<User> update(int userId, User user);
@@ -32,11 +32,11 @@ namespace DoofenshmirtzsWebShop.Repositories
             return await _context.User.ToListAsync();
         }
 
-        public async Task<User> create(User user)
+        public async Task<User> register(User user)
         {
             if (_context.User.Any(u => u.userEmail == user.userEmail))
             {
-                throw new Exception("Email " + user.userEmail + "is not available");
+                throw new Exception("Email " + user.userEmail + " is not available");
             }
 
             if (_context.User.Any(u => u.userName == user.userName))
