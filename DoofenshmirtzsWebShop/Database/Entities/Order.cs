@@ -17,7 +17,6 @@ namespace DoofenshmirtzsWebShop.Database.Entities
 
         [ForeignKey("User.userID")]
         public int userID { get; set; }
-
         public User User { get; set; }
         public List<OrderItem> orderItems { get; set; }
     }
