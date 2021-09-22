@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoofenshmirtzsWebShop.Migrations
 {
-    public partial class dev : Migration
+    public partial class devs : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
