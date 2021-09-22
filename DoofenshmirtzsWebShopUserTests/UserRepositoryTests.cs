@@ -136,10 +136,9 @@ namespace DoofenshmirtzsWebShopUserTests
 
             User user = new User
             {
-                //userID = 1,
-                userEmail = "perry@platypuuuus.com",
-                userPassword = "Grrrr",
-                userName = "Perry",
+                userEmail = "test@test.com",
+                userPassword = "test",
+                userName = "Test",
                 userRole = Role.User
             };
 
@@ -147,11 +146,10 @@ namespace DoofenshmirtzsWebShopUserTests
             await _context.SaveChangesAsync();
 
             Func<Task> action = async () => await _sut.register(user);
-            /*
-
+            
             var ex = await Assert.ThrowsAsync<ArgumentException>(action);
 
-            Assert.Contains("An item with the same key has already been added", ex.Message);*/
+            Assert.Contains("An item with the same key has already been added", ex.Message);
         }
 
         [Fact]

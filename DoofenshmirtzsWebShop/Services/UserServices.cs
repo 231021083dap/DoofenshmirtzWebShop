@@ -17,6 +17,7 @@ namespace DoofenshmirtzsWebShop.Services
         Task<LoginResponse> Authenticate(LoginRequest login);
         Task<UserResponse> register(NewUser newUser);
         Task<UserResponse> update(int userID, UpdateUser updateUser);
+        Task<bool> delete(int userID);
     }
     public class UserServices : IUserService
     {
@@ -100,6 +101,12 @@ namespace DoofenshmirtzsWebShop.Services
             user = await _userRepository.update(userID, user);
 
             return userResponse(user);
+        }
+
+        public async Task<bool> delete(int userID)
+        {
+            var result = await _userRepository.delete(userID);
+            return true;
         }
 
         private UserResponse userResponse(User user)
