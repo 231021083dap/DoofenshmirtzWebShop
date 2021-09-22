@@ -50,7 +50,7 @@ namespace DoofenshmirtzsWebShop.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> register([FromBody] RegisterUser newUser)
+        public async Task<IActionResult> register([FromBody] NewUser newUser)
         {
             try
             {

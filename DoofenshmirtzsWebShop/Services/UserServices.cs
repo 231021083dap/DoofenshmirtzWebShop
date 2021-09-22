@@ -15,7 +15,7 @@ namespace DoofenshmirtzsWebShop.Services
         Task<List<UserResponse>> getAll();
         Task<UserResponse> getByID(int userID);
         Task<LoginResponse> Authenticate(LoginRequest login);
-        Task<UserResponse> register(RegisterUser newUser);
+        Task<UserResponse> register(NewUser newUser);
         Task<UserResponse> update(int userID, UpdateUser updateUser);
     }
     public class UserServices : IUserService
@@ -72,13 +72,13 @@ namespace DoofenshmirtzsWebShop.Services
             return null;
         }
 
-        public async Task<UserResponse> register(RegisterUser newUser)
+        public async Task<UserResponse> register(NewUser newUser)
         {
             User user = new User
             {
-                userEmail = newUser.Email,
-                userName = newUser.Username,
-                userPassword = newUser.Password,
+                userEmail = newUser.userEmail,
+                userPassword = newUser.userPassword,
+                userName = newUser.userName,
                 userRole = Helpers.Role.User // Force all users created through register to Role.User
             };
 

@@ -75,10 +75,10 @@ namespace DoofenshmirtzsWebShopUserTests
                 userName = "Agent P",
                 userRole = Role.User
             };
-            int userID = 1;
+            int ID = 1;
             User user = new User
             {
-                userID = userID,
+                userID = ID,
                 userEmail = "platypus@perry.com",
                 userPassword = "Grrrr",
                 userName = "Agent P",
@@ -87,15 +87,135 @@ namespace DoofenshmirtzsWebShopUserTests
 
             _userRepository.Setup(u => u.register(It.IsAny<User>()))
                 .ReturnsAsync(user);
-
+            
             var result = await _sut.register(newUser);
 
             Assert.NotNull(result);
             Assert.IsType<UserResponse>(result);
-            Assert.Equal(userID, result.ID);
+            Assert.Equal(ID, result.ID);
             Assert.Equal(newUser.userEmail, result.email);
             Assert.Equal(newUser.userPassword, result.password);
-            Assert.Equal(newUser.userName, result.name);
+            Assert.Equal(newUser.userName, result.username);
+            Assert.Equal(newUser.userRole, result.Role);
+        }
+
+        [Fact]
+        public async void getAll_shouldReturnEmptyListOfUserResponses_whenUserDoesNotExists()
+        {
+            List<User> users = new List<User>();
+
+            _userRepository.Setup(u => u.getAll())
+                .ReturnsAsync(users);
+
+            var result = await _sut.getAll();
+
+            Assert.NotNull(result);
+            Assert.Empty(result);
+            Assert.IsType<List<UserResponse>>(result);
+        }
+
+        [Fact]
+        public async void getByID_shouldReturnUserResponse_whenUserExists()
+        {
+            int userID = 1;
+
+            User user = new User
+            {
+                userID = userID,
+                userEmail = "george@test.dk",
+                userPassword = "georg",
+                userName = "The G",
+                userRole = Role.User
+            };
+
+            _userRepository.Setup(u => u.getByID(It.IsAny<int>()))
+                .ReturnsAsync(user);
+
+            var result = await _sut.getByID(userID);
+
+            Assert.NotNull(result);
+            Assert.IsType<UserResponse>(result);
+            Assert.Equal(userID, result.ID);
+            Assert.Equal(user.userEmail, result.email);
+            Assert.Equal(user.userPassword, result.password);
+            Assert.Equal(user.userName, result.username);
+            Assert.Equal(user.userRole, result.Role);
+        }
+
+        [Fact]
+        public async void getByID_shouldReturnNull_whenUserDoesNotExist()
+        {
+            int userID = 1;
+
+            _userRepository.Setup(u => u.getByID(It.IsAny<int>()))
+                .ReturnsAsync(() => null);
+
+            var result = await _sut.getByID(userID);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async void update_shouldReturnUpdatedUserResponse_whenUpdateIsSuccessful()
+        {
+            UpdateUser updateUser = new UpdateUser
+            {
+                userEmail = "tests@testa.dk",
+                userPassword = "George",
+                userName = "George",
+                userRole = Role.User
+            };
+
+            int ID = 1;
+
+            User user = new User
+            {
+                userID = ID,
+                userEmail = "tests@testa.dk",
+                userPassword = "George",
+                userName = "George",
+                userRole = Role.User
+            };
+
+            _userRepository.Setup(u => u.update(It.IsAny<int>(), It.IsAny<User>()))
+                .ReturnsAsync(user);
+
+            var result = await _sut.update(ID, updateUser);
+
+            Assert.NotNull(result);
+            Assert.IsType<UserResponse>(result);
+            Assert.Equal(ID, result.ID);
+            Assert.Equal(updateUser.userEmail, result.email);
+            Assert.Equal(updateUser.userPassword, result.password);
+            Assert.Equal(updateUser.userName, result.username);
+
+        }
+
+        [Fact]
+        public async void update_shouldReturnNull_whenUserDoesNotExist()
+        {
+            UpdateUser updateUser = new UpdateUser
+            {
+                userEmail = "John@dieharder.dk",
+                userPassword = "George",
+                userName = "John",
+                userRole = Role.User
+            };
+
+            int ID = 1;
+
+            _userRepository.Setup(u => u.update(It.IsAny<int>(), It.IsAny<User>()))
+                .ReturnsAsync(() => null);
+
+            var result = await _sut.update(ID, updateUser);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async void authenticate_shouldReturnTrue_whenAuthenticateIsSuccessful()
+        {
+            
         }
     }
 }

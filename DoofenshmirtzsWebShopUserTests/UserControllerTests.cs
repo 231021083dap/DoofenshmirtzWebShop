@@ -123,11 +123,11 @@ namespace DoofenshmirtzsWebShopUserTests
         {
             int userID = 1;
 
-            RegisterUser newUser = new RegisterUser
+            NewUser newUser = new NewUser
             {
-                Email = "perry@platypus.com",
-                Username = "Perry",
-                Password = "Platypus"
+                userEmail = "perry@platypus.com",
+                userName = "Perry",
+                userPassword = "Platypus"
             };
             User user = new User
             {
