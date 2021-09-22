@@ -53,6 +53,9 @@ namespace DoofenshmirtzsWebShop
             services.AddScoped<IOrderService, OrderServices>();
             services.AddScoped<IOrderRepository, OrderRepository>();
 
+            services.AddScoped<IOrderItemService, OrderItemService>();
+            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+
             services.AddScoped<IProductService, ProductServices>();
             services.AddScoped<IProductRepository, ProductRepository>();
 

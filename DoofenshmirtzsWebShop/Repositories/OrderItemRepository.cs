@@ -42,13 +42,6 @@ namespace DoofenshmirtzsWebShop.Repositories
             return orderItem;
         }
 
-        public async Task<List<OrderItem>> GetAll()
-        {
-            return await _context.OrderItem
-                .Include(a => a.Product)
-                .ThenInclude(c => c.Category)
-                .ToListAsync();
-        }
 
         public async Task<OrderItem> GetById(int orderItemId)
         {
@@ -63,6 +56,13 @@ namespace DoofenshmirtzsWebShop.Repositories
              _context.OrderItem.Add(orderItem);
             await _context.SaveChangesAsync();
             return orderItem;
+        }
+        public async Task<List<OrderItem>> GetAll()
+        {
+            return await _context.OrderItem
+                .Include(a => a.Product)
+                .ThenInclude(c => c.Category)
+                .ToListAsync();
         }
     }
 }

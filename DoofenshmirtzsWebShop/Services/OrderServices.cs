@@ -1,11 +1,10 @@
-﻿using DoofenshmirtzsWebShop.DTOs.Requests;
+﻿using DoofenshmirtzsWebShop.Database.Entities;
+using DoofenshmirtzsWebShop.DTOs.Requests;
 using DoofenshmirtzsWebShop.DTOs.Responses;
-using System;
+using DoofenshmirtzsWebShop.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DoofenshmirtzsWebShop.Repositories;
-using DoofenshmirtzsWebShop.Database.Entities;
 
 namespace DoofenshmirtzsWebShop.Services
 {
@@ -22,11 +21,13 @@ namespace DoofenshmirtzsWebShop.Services
         private readonly IOrderRepository _OrderRepository;
         private readonly IUserRepository _UserRepository;
         private readonly IProductRepository _productRepository;
-        public OrderServices(IOrderRepository orderRepository, IUserRepository userRepository, IProductRepository productRepository)
+        private readonly IOrderItemRepository _orderItemRepository;
+        public OrderServices(IOrderRepository orderRepository, IUserRepository userRepository, IProductRepository productRepository, IOrderItemRepository orderItemRepository)
         {
             _OrderRepository = orderRepository;
             _UserRepository = userRepository;
             _productRepository = productRepository;
+            _orderItemRepository = orderItemRepository;
         }
         public async Task<List<OrderResponse>> GetAllOrders()
         {
@@ -67,7 +68,7 @@ namespace DoofenshmirtzsWebShop.Services
                     }).ToList()
 
                 },
-                OrderItems = order.orderItems.Select( a => new OrderOrderItemResponse
+                OrderItems = order.orderItems.Select(a => new OrderOrderItemResponse
                 {
                     ID = a.orderItemID,
                     quantity = a.orderItemQuantity,
@@ -76,7 +77,7 @@ namespace DoofenshmirtzsWebShop.Services
                     Product = new ProductResponse
                     {
                         ID = a.Product.productID,
-                        name  = a.Product.productName,
+                        name = a.Product.productName,
                         price = a.Product.productPrice,
                         stock = a.Product.productStock,
                         description = a.Product.productDescription,
@@ -92,25 +93,67 @@ namespace DoofenshmirtzsWebShop.Services
         }
         public async Task<OrderResponse> Create(NewOrder newOrder)
         {
-           
+
             Order order = new()
             {
                 orderDate = newOrder.orderDate,
-                userID = newOrder.userID
+                userID = newOrder.userID,
             };
             order = await _OrderRepository.Create(order);
-            order.User = await _UserRepository.getByID(order.userID);
-            return order == null ? null : new OrderResponse
+            if (order != null)
             {
-                ID = order.orderID,
-                date = order.orderDate,
-                User = new OrderUserResponse
+                List<OrderItem> orderItems = new();
+                foreach (CartItemsRequest item in newOrder.cartItems)
                 {
-                    ID = order.User.userID,
-                    email = order.User.userEmail,
-                    username = order.User.userName
+                    OrderItem orderItem = new OrderItem
+                    {
+                        orderID = order.orderID,
+                        orderItemQuantity = item.amount,
+                        orderItemPrice = item.price,
+                        Product = await _productRepository.getProductById(item.ProductID)
+                    };
+
+                    orderItem = await _orderItemRepository.Create(orderItem);
+                    orderItems.Add(orderItem);
                 }
-            };
+                order.orderItems = orderItems;
+                order.User = await _UserRepository.getByID(order.userID);
+
+
+
+                return new OrderResponse
+                {
+                    ID = order.orderID,
+                    date = order.orderDate,
+                    User = new OrderUserResponse
+                    {
+                        ID = order.User.userID,
+                        email = order.User.userEmail,
+                        username = order.User.userName,
+                        address = order.User.address.Select(a => new AddressResponse
+                        {
+                            ID = a.addressID,
+                            customerName = a.addressCustomerName,
+                            streetName = a.addressStreetName,
+                            postalCode = a.addressPostalCode,
+                            countryName = a.addressCountryName,
+                        }).ToList()
+                    },
+                    OrderItems = order.orderItems.Select(i => new OrderOrderItemResponse
+                    {
+                        ID = i.orderItemID,
+                        quantity = i.orderItemQuantity,
+                        price = i.orderItemPrice,
+                        Product = new ProductResponse
+                        {
+                            ID = i.Product.productID,
+                            name = i.Product.productName
+                        }
+                    }).ToList()
+                };
+            }
+            return null;
+
         }
 
         public async Task<OrderResponse> Update(int orderId, UpdateOrder updateOrder)
@@ -122,7 +165,7 @@ namespace DoofenshmirtzsWebShop.Services
             };
             order = await _OrderRepository.Update(orderId, order);
             order.User = await _UserRepository.getByID(order.userID);
-            //order.orderItems = await _productRepository.
+
             return order == null ? null : new OrderResponse
             {
                 ID = order.orderID,
@@ -133,7 +176,7 @@ namespace DoofenshmirtzsWebShop.Services
                     email = order.User.userEmail,
                     username = order.User.userName
                 },
-                
+
             };
         }
         public async Task<bool> Delete(int orderId)

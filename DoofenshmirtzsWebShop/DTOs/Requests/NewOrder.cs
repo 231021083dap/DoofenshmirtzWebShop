@@ -11,9 +11,7 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
     {
         [Required]
         public DateTime orderDate { get; set; }
-
-        //[ForeignKey("User.userID")]
         public int userID { get; set; }
-        public int orderItemId { get; set; }
+        public List<CartItemsRequest> cartItems { get; set; }
     }
 }
