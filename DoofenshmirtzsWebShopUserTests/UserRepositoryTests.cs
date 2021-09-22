@@ -136,8 +136,8 @@ namespace DoofenshmirtzsWebShopUserTests
 
             User user = new User
             {
-                userID = 1,
-                userEmail = "perry@platypus.com",
+                //userID = 1,
+                userEmail = "perry@platypuuuus.com",
                 userPassword = "Grrrr",
                 userName = "Perry",
                 userRole = Role.User

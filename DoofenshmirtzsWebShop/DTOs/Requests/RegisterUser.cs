@@ -9,15 +9,15 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
     public class RegisterUser
     {
         [Required]
-        [StringLength(128, ErrorMessage = "Email must be less than 128 chars")]
-        public string Email { get; set; }
+        [StringLength(320, ErrorMessage = "Email must be less than 128 chars")]
+        public string mmail { get; set; }
 
         [Required]
-        [StringLength(32, ErrorMessage = "Username must be less than 32 chars")]
-        public string Username { get; set; }
+        [StringLength(50, ErrorMessage = "Password must be less than 32 chars")]
+        public string password { get; set; }
 
         [Required]
-        [StringLength(32, ErrorMessage = "Password must be less than 32 chars")]
-        public string Password { get; set; }
+        [StringLength(100, ErrorMessage = "Username must be less than 32 chars")]
+        public string username { get; set; }
     }
 }

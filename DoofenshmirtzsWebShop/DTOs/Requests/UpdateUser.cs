@@ -10,15 +10,18 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
     public class UpdateUser
     {
         [Required]
-        [Column(TypeName = "nvarchar(320)")]
+        [StringLength(320, ErrorMessage = "Email has to be less than 320 chars")]
+        [MinLength(1, ErrorMessage = "Email must contain at least 1 char")]
         public string userEmail { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(50)")]
+        [StringLength(50, ErrorMessage = "Email has to be less than 320 chars")]
+        [MinLength(1, ErrorMessage = "Email must contain at least 1 char")]
         public string userPassword { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(100)")]
+        [StringLength(100, ErrorMessage = "Username has to be less than 320 chars")]
+        [MinLength(1, ErrorMessage = "Username must contain at least 1 char")]
         public string userName { get; set; }
 
         public Helpers.Role userRole { get; set; }

@@ -15,8 +15,8 @@ namespace DoofenshmirtzsWebShop.Services
         Task<List<UserResponse>> getAll();
         Task<UserResponse> getByID(int userID);
         Task<LoginResponse> Authenticate(LoginRequest login);
-        Task<UserResponse> Register(RegisterUser newUser);
-        Task<UserResponse> Update(int userID, UpdateUser updateUser);
+        Task<UserResponse> register(RegisterUser newUser);
+        Task<UserResponse> update(int userID, UpdateUser updateUser);
     }
     public class UserServices : IUserService
     {
@@ -72,7 +72,7 @@ namespace DoofenshmirtzsWebShop.Services
             return null;
         }
 
-        public async Task<UserResponse> Register(RegisterUser newUser)
+        public async Task<UserResponse> register(RegisterUser newUser)
         {
             User user = new User
             {
@@ -87,7 +87,7 @@ namespace DoofenshmirtzsWebShop.Services
             return userResponse(user);
         }
 
-        public async Task<UserResponse> Update(int userID, UpdateUser updateUser)
+        public async Task<UserResponse> update(int userID, UpdateUser updateUser)
         {
             User user = new User
             {

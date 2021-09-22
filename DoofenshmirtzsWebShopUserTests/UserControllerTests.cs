@@ -72,7 +72,7 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.Equal(204, statusCodeResult.StatusCode);
         }
 
-        /*
+        
         [Fact]
         public async void getByID_shouldReturnStatusCode404_whenUserDoesNotExist()
         {
@@ -88,7 +88,7 @@ namespace DoofenshmirtzsWebShopUserTests
 
             var statusCodeResult = (IStatusCodeActionResult)result;
             Assert.Equal(404, statusCodeResult.StatusCode);
-        }*/
+        }
 
         [Fact]
         public async void getAll_shouldReturnStatusCode500_whenNullIsReturnedFromService()
@@ -139,7 +139,7 @@ namespace DoofenshmirtzsWebShopUserTests
 
             //_userService.Setup(s => s.Register(It.IsAny<RegisterUser>())).ReturnsAsync(user);
 
-            var result = await _sut.Register(newUser);
+            var result = await _sut.register(newUser);
 
             var statusCodeResult = (IStatusCodeActionResult)result;
             Assert.Equal(200, statusCodeResult.StatusCode);

@@ -50,11 +50,11 @@ namespace DoofenshmirtzsWebShop.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Register([FromBody] RegisterUser newUser)
+        public async Task<IActionResult> register([FromBody] RegisterUser newUser)
         {
             try
             {
-                UserResponse user = await _userService.Register(newUser);
+                UserResponse user = await _userService.register(newUser);
                 return Ok(user);
             }
             catch (Exception ex)
