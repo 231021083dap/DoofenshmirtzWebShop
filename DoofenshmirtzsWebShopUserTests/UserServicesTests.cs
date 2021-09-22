@@ -215,7 +215,15 @@ namespace DoofenshmirtzsWebShopUserTests
         [Fact]
         public async void authenticate_shouldReturnTrue_whenAuthenticateIsSuccessful()
         {
-            
+            string email = "perry@platypus.com", password = "Grrrr";
+
+            LoginRequest login = new LoginRequest
+            {
+                Email = email,
+                Password = password
+            };
+
+
         }
     }
 }
