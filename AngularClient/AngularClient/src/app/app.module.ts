@@ -21,6 +21,7 @@ import { AdminNewRoleComponent } from './admin/admin-new-role/admin-new-role.com
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { searchPipe } from './products/search.pipe';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FormsModule } from '@angular/forms';
     AdminNewuserComponent,
     AdminNewRoleComponent,
     AdminOrdersComponent,
+    searchPipe
     
   ],
   imports: [
