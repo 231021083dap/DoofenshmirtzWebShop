@@ -97,19 +97,17 @@ namespace DoofenshmirtzsWebShop.Controllers
         {
             try
             {
-                // Only admins can access other user records
+                //Only admins can access other user records
                 var currentUser = (UserResponse)HttpContext.Items["User"];
-
-                if (userID != currentUser.ID && currentUser.Role != Role.Admin)
+                if (currentUser == null || (userID != currentUser.ID && currentUser.Role != Role.Admin))
                 {
                     return Unauthorized(new { message = "Unauthorized" });
                 }
 
                 UserResponse user = await _userService.getByID(userID);
-
                 if (user == null)
                 {
-                    return NoContent();
+                    NoContent();
                 }
                 return Ok(user);
             }
@@ -117,7 +115,6 @@ namespace DoofenshmirtzsWebShop.Controllers
             {
                 return Problem(ex.Message);
             }
-
         }
     }
  }

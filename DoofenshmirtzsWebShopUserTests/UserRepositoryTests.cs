@@ -21,7 +21,7 @@ namespace DoofenshmirtzsWebShopUserTests
         public UserRepositoryTests()
         {
             _options = new DbContextOptionsBuilder<DoofenshmirtzWebShopContext>()
-                .UseInMemoryDatabase(databaseName: "DoofenshmirtzWebShopUser")
+                .UseInMemoryDatabase(databaseName: "DoofenshmirtzWebShopUser2")
                 .Options;
 
             _context = new DoofenshmirtzWebShopContext(_options);
@@ -130,29 +130,6 @@ namespace DoofenshmirtzsWebShopUserTests
         }
 
         [Fact]
-        public async Task register_shouldFailToAddUser_whenAddingUserWithExistingID()
-        {
-            await _context.Database.EnsureDeletedAsync();
-
-            User user = new User
-            {
-                userEmail = "test@test.com",
-                userPassword = "test",
-                userName = "Test",
-                userRole = Role.User
-            };
-
-            _context.User.Add(user);
-            await _context.SaveChangesAsync();
-
-            Func<Task> action = async () => await _sut.register(user);
-            
-            var ex = await Assert.ThrowsAsync<ArgumentException>(action);
-
-            Assert.Contains("An item with the same key has already been added", ex.Message);
-        }
-
-        [Fact]
         public async Task update_shouldChangeValueOnUser_whenUserExists()
         {
             await _context.Database.EnsureDeletedAsync();
@@ -242,6 +219,33 @@ namespace DoofenshmirtzsWebShopUserTests
             var result = await _sut.delete(userID);
 
             Assert.Null(result);
+        }
+
+
+        [Fact]
+        public async Task register_shouldFailToAddUser_whenAddingUserWithExistingID()
+        {
+            // Arrange
+            await _context.Database.EnsureDeletedAsync();
+
+            User user = new User
+            {
+               userEmail = "bobby@spider.dk",
+                userName = "Perry",
+                userPassword = "SpiderWeb",
+                userRole = Role.User
+            };
+
+            _context.User.Add(user);
+            await _context.SaveChangesAsync();
+
+            // Act
+            Func<Task> action = async () => await _sut.register(user);
+
+            // Assert
+            var ex = await Assert.ThrowsAsync<System.Exception>(action);
+            Assert.Contains("is not available", ex.Message);
+
         }
     }
 }

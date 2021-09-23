@@ -36,7 +36,7 @@ namespace DoofenshmirtzsWebShop.Repositories
         {
             if (_context.User.Any(u => u.userEmail == user.userEmail))
             {
-                throw new Exception("Email " + user.userEmail + " is not available");
+               throw new Exception("Email " + user.userEmail + " is not available");
             }
 
             if (_context.User.Any(u => u.userName == user.userName))
