@@ -19,6 +19,8 @@ import { AdminNewProductComponent } from './admin/admin-new-product/admin-new-pr
 import { AdminNewuserComponent } from './admin/admin-newuser/admin-newuser.component';
 import { AdminNewRoleComponent } from './admin/admin-new-role/admin-new-role.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,10 +41,13 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
     AdminNewuserComponent,
     AdminNewRoleComponent,
     AdminOrdersComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

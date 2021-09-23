@@ -1,14 +1,11 @@
 <div class="content">
     <div class="search">
-        <input type="search" placeholder="search">
+        <input type="search"  placeholder="search">
         <br>
         <!--DUMMY DATA - REMEMBER TO CHANGE TO DATABASE DATA-->
-        <select name="categories" id="categories">
-            <option value="dummydata">Dummy Data 1</option>
-            <option value="dummydata">Dummy Data 2</option>
-            <option value="dummydata">Dummy Data 3</option>
-            <option value="dummydata">Dummy Data 4</option>
-            <option value="dummydata">Dummy Data 5</option>
+        <select [(ngModel)]="category.id" id="dropdownCategory">
+            <option value="0">Select Category</option>
+            <option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
         </select>
         <br>
         <select name="sort" id="sort">
@@ -16,16 +13,16 @@
             <option value="alphateical_reverse">z-a</option>
             <option value="pricelow">Price (low - high)</option>
             <option value="pricehigh">Price (high - low)</option>
-            <option value="popularity">Most popular</option>
         </select>
+        <button>Search</button>
     </div>
     <div class="display">
         <div class="item" *ngFor="let product of products">
             <div class="portrait">
                 <img src="#" alt="portrait">
             </div>
-            <h3>{{product.productName}}</h3>
-            <p>{{product.productDescription}}</p>
+            <h3>{{product.name}}</h3>
+            <p>{{product.description}}</p>
         </div>
     </div>
 </div>
