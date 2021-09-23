@@ -11,7 +11,7 @@ namespace DoofenshmirtzsWebShop.DTOs.Responses
         public DateTime date { get; set; }
         public OrderUserResponse User { get; set; }
         public List<OrderOrderItemResponse> OrderItems { get; set; } = new();
-
+            
         
         
         
@@ -33,7 +33,7 @@ namespace DoofenshmirtzsWebShop.DTOs.Responses
         public int price { get; set; }
         public int quantity { get; set; }
         public int orderID { get; set; }
-        public ProductResponse Product { get; set; }
+        public string productName { get; set; }
 
     }
 
