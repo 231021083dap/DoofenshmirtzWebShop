@@ -215,7 +215,37 @@ namespace DoofenshmirtzsWebShopUserTests
         [Fact]
         public async void authenticate_shouldReturnTrue_whenAuthenticateIsSuccessful()
         {
+            string email = "perry@platypus.com", password = "Grrrr";
+
+            LoginRequest login = new LoginRequest
+            {
+                Email = email,
+                Password = password
+            };
+
             
+        }
+
+        [Fact]
+        public async void delete_shouldReturnTrue_whenDeleteIsSuccessful()
+        {
+            int ID = 1;
+
+            User user = new User
+            {
+                userID = ID,
+                userEmail = "perry@platypus.com",
+                userPassword = "Grrrr",
+                userName = "Perry",
+                userRole = Role.User
+            };
+
+            _userRepository.Setup(u => u.delete(It.IsAny<int>()))
+                .ReturnsAsync(user);
+
+            var result = await _sut.delete(ID);
+
+            Assert.True(result);
         }
     }
 }
