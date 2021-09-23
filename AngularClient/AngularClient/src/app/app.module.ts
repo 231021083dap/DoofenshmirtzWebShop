@@ -20,6 +20,7 @@ import { AdminNewuserComponent } from './admin/admin-newuser/admin-newuser.compo
 import { AdminNewRoleComponent } from './admin/admin-new-role/admin-new-role.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,11 +41,13 @@ import { HttpClientModule } from '@angular/common/http';
     AdminNewuserComponent,
     AdminNewRoleComponent,
     AdminOrdersComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
