@@ -74,19 +74,8 @@ namespace DoofenshmirtzsWebShop.Services
                     quantity = a.orderItemQuantity,
                     price = a.orderItemPrice,
                     orderID = a.orderID,
-                    Product = new ProductResponse
-                    {
-                        ID = a.Product.productID,
-                        name = a.Product.productName,
-                        price = a.Product.productPrice,
-                        stock = a.Product.productStock,
-                        description = a.Product.productDescription,
-                        category = new ProductCategoryResponse
-                        {
-                            joinCategoryId = a.Product.categoryID,
-                            categoryName = a.Product.Category.categoryName
-                        }
-                    }
+                    productName = a.Product.productName
+
                 }).ToList()
 
             };
@@ -96,7 +85,7 @@ namespace DoofenshmirtzsWebShop.Services
 
             Order order = new()
             {
-                orderDate = newOrder.orderDate,
+                orderDate = System.DateTime.Now,
                 userID = newOrder.userID,
             };
             order = await _OrderRepository.Create(order);
@@ -105,19 +94,22 @@ namespace DoofenshmirtzsWebShop.Services
                 List<OrderItem> orderItems = new();
                 foreach (CartItemsRequest item in newOrder.cartItems)
                 {
+                    Product product = await _productRepository.getProductById(item.ProductID);
                     OrderItem orderItem = new OrderItem
                     {
                         orderID = order.orderID,
                         orderItemQuantity = item.amount,
-                        orderItemPrice = item.price,
-                        Product = await _productRepository.getProductById(item.ProductID)
+                        orderItemPrice = product.productPrice,
+                        productID = item.ProductID
                     };
 
                     orderItem = await _orderItemRepository.Create(orderItem);
+                    orderItem.Product = product;
                     orderItems.Add(orderItem);
                 }
                 order.orderItems = orderItems;
                 order.User = await _UserRepository.getByID(order.userID);
+                
 
 
 
@@ -143,12 +135,8 @@ namespace DoofenshmirtzsWebShop.Services
                     {
                         ID = i.orderItemID,
                         quantity = i.orderItemQuantity,
-                        price = i.orderItemPrice,
-                        Product = new ProductResponse
-                        {
-                            ID = i.Product.productID,
-                            name = i.Product.productName
-                        }
+                        price = i.Product.productPrice,
+                        productName = i.Product.productName
                     }).ToList()
                 };
             }

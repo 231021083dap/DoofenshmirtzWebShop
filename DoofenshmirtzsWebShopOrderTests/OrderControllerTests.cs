@@ -134,7 +134,7 @@ namespace DoofenshmirtzsWebShopOrderTests
             int orderId = 1;
             NewOrder newOrder = new NewOrder
             {
-                orderDate = DateTime.Parse("2021-9-21 12:23:21"),
+                
                 userID = 2
             };
             OrderResponse order = new OrderResponse
@@ -156,7 +156,6 @@ namespace DoofenshmirtzsWebShopOrderTests
             int orderId = 1;
             NewOrder newOrder = new NewOrder
             {
-                orderDate = DateTime.Parse("2021-9-21 12:23:21"),
                 userID = 2
             };
             _orderService.Setup(s => s.Create(It.IsAny<NewOrder>())).ReturnsAsync(() => throw new Exception("This is an "));

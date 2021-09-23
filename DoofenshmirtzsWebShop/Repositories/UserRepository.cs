@@ -57,7 +57,9 @@ namespace DoofenshmirtzsWebShop.Repositories
 
         public async Task<User> getByID(int userID)
         {
-            return await _context.User.FirstOrDefaultAsync(u => u.userID == userID);
+            return await _context.User
+                .Include(a => a.address)
+                .FirstOrDefaultAsync(u => u.userID == userID);
         }
 
         public async Task<User> update(int userID, User user)

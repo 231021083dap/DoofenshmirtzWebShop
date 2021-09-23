@@ -75,41 +75,93 @@ namespace DoofenshmirtzsWebShopOrderTests
             Assert.IsType<List<OrderResponse>>(result);
         }
         [Fact]
-        public async void Create_ShouldReturnOrderResponse_WhenCreateIsSuccess()
+        public async void Create_ShouldReturnOrderResponse_WHenCreateIsSuccesful()
         {
-            NewOrder newOrder = new()
+            List<CartItemsRequest> cartItems = new();
+            cartItems.Add(new CartItemsRequest
             {
-                orderDate = DateTime.Parse("2021-9-21 12:23:21"),
-                userID = 2
-
+                amount = 1,
+                price = 2,
+                productName = "ting",
+                ProductID = 1
+            });
+            cartItems.Add(new CartItemsRequest
+            {
+                amount = 51,
+                price = 22,
+                productName = "ting2",
+                ProductID = 2
+            });
+            NewOrder newOrder = new NewOrder
+            {
+                userID = 2,
+                cartItems = cartItems
             };
             int orderId = 1;
-            Order order = new()
+            OrderItem orderItem = new OrderItem
             {
                 orderID = orderId,
-                orderDate = DateTime.Parse("2021-9-21 12:23:21"),
-                User = new User
-                {
-                    userID = 2,
-                    userEmail = "doofen@evil.com",
-                    userPassword = "DamnYouPerry",
-                    userName = "EvilMaster"
-                }
-
-
+                orderItemQuantity = 100,
+                orderItemPrice = 100,
+                productID = 2,
+                orderItemID = 1
             };
+            Order order = new Order
+            {
+                orderID = orderId,
+                orderDate = DateTime.Parse("2021-9-25 12:23:21"),
+                userID = 2
+            };
+            List<Address> addresses = new();
+            addresses.Add(new Address
+            {
+                addressID = 1,
+                addressCountryName = "Danmark",
+                addressCustomerName = "jeppe",
+                addressPostalCode = 2300,
+                addressStreetName = "Ejler billes alle",
+                userID = 2
+            });
+            User user = new User
+            {
+                userID = 2,
+                userEmail = "asd",
+                userName = "asd",
+                userPassword = "Aasd",
+                userRole = DoofenshmirtzsWebShop.Helpers.Role.User,
+                address = addresses
+            };
+            Product product = new Product
+            {
+                productID = 1,
+                productName = "da",
+                productPrice = 222,
+                productStock = 1,
+            };
+
             _orderRepository
-                .Setup(a => a.Create(It.IsAny<Order>()))
+                .Setup(s => s.Create(It.IsAny<Order>()))
                 .ReturnsAsync(order);
-            // Act
+            _orderItemRepository.Setup(s => s.Create(It.IsAny<OrderItem>()))
+                .ReturnsAsync(orderItem);
+            _userRepository.Setup(s => s.getByID(It.IsAny<int>()))
+                .ReturnsAsync(user);
+            _productRepository.Setup(s => s.getProductById(It.IsAny<int>()))
+                .ReturnsAsync(product);
+            // ACt
             var result = await _sut.Create(newOrder);
             // Assert
             Assert.NotNull(result);
             Assert.IsType<OrderResponse>(result);
             Assert.Equal(orderId, result.ID);
-            Assert.Equal(newOrder.orderDate, result.date);
+            Assert.True(result.date > DateTime.MinValue);
             Assert.Equal(newOrder.userID, result.User.ID);
+            Assert.Equal(cartItems.Count, result.OrderItems.Count);
         }
+
+
+
+
         [Fact]
         public async void getByID_ShouldReturnOrderResponse_WhenOrderExists()
         {
@@ -118,6 +170,15 @@ namespace DoofenshmirtzsWebShopOrderTests
             {
                 orderID = orderId,
                 orderDate = DateTime.Parse("2021-9-25 12:23:21"),
+                User = new User
+                {
+                    userID = 1,
+                    userEmail = "test@gmail.com",
+                    userPassword = "asndølasd",
+                    userName = "Jabby",
+                    userRole = DoofenshmirtzsWebShop.Helpers.Role.User
+                },
+                
 
             };
             _orderRepository.Setup(a => a.GetById(It.IsAny<int>())).ReturnsAsync(order);
@@ -153,8 +214,6 @@ namespace DoofenshmirtzsWebShopOrderTests
             {
                 orderDate = DateTime.Parse("2021-9-25 12:23:21"),
                 userID = 2,
-                
-                
             };
             int orderId = 1;
 

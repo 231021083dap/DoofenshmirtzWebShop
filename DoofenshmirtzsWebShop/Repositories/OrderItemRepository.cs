@@ -53,9 +53,19 @@ namespace DoofenshmirtzsWebShop.Repositories
 
         public async Task<OrderItem> Update(int orderItemId, OrderItem orderItem)
         {
-             _context.OrderItem.Add(orderItem);
+            OrderItem updateOrderItem = await _context.OrderItem
+                .FirstOrDefaultAsync(a => a.orderItemID == orderItemId);
+            if(updateOrderItem != null)
+            {
+                updateOrderItem.orderItemQuantity = orderItem.orderItemQuantity;
+                updateOrderItem.orderItemPrice = orderItem.orderItemPrice;
+                updateOrderItem.orderID = orderItem.orderID;
+                updateOrderItem.productID = orderItem.productID;
+            }
+            return updateOrderItem;
+          /*   _context.OrderItem.Add(orderItem);
             await _context.SaveChangesAsync();
-            return orderItem;
+            return orderItem; */
         }
         public async Task<List<OrderItem>> GetAll()
         {

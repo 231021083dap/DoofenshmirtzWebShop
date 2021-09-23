@@ -10,8 +10,8 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
     public class NewOrder
     {
         [Required]
-        public DateTime orderDate { get; set; }
         public int userID { get; set; }
+        [Required]
         public List<CartItemsRequest> cartItems { get; set; }
     }
 }
