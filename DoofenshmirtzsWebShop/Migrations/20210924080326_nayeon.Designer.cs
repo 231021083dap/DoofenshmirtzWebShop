@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoofenshmirtzsWebShop.Migrations
 {
     [DbContext(typeof(DoofenshmirtzWebShopContext))]
-    [Migration("20210922181502_naya2")]
-    partial class naya2
+    [Migration("20210924080326_nayeon")]
+    partial class nayeon
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -363,13 +363,11 @@ namespace DoofenshmirtzsWebShop.Migrations
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Address", b =>
                 {
-                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", "User")
+                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", null)
                         .WithMany("address")
                         .HasForeignKey("userID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Order", b =>

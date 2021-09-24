@@ -361,13 +361,11 @@ namespace DoofenshmirtzsWebShop.Migrations
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Address", b =>
                 {
-                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", "User")
+                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", null)
                         .WithMany("address")
                         .HasForeignKey("userID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Order", b =>

@@ -210,13 +210,32 @@ namespace DoofenshmirtzsWebShopOrderTests
         [Fact]
         public async void Update_shouldReturnNull_WhenOrderDoesNotExists()
         {
+            Order orderr = new Order
+            {
+                orderID = 2,
+                orderDate = DateTime.Now,
+                userID = 2
+            };
+            User user = new User
+            {
+                userID = 2,
+                userEmail = "asd",
+                userName = "asd",
+                userPassword = "Aasd",
+                userRole = DoofenshmirtzsWebShop.Helpers.Role.User,
+            };
             UpdateOrder updateOrder = new UpdateOrder
             {
-                orderDate = DateTime.Parse("2021-9-25 12:23:21"),
                 userID = 2,
             };
-            int orderId = 1;
 
+            int orderId = 1;
+            _orderRepository
+                .Setup(o => o.Create(It.IsAny<Order>()))
+                .ReturnsAsync(orderr);
+            _userRepository
+                .Setup(s => s.getByID(It.IsAny<int>()))
+                .ReturnsAsync(user);
             _orderRepository
                 .Setup(a => a.Update(It.IsAny<int>(), It.IsAny<Order>()))
                 .ReturnsAsync(() => null);

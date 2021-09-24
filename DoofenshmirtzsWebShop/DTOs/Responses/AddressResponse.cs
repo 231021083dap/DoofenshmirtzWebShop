@@ -12,7 +12,7 @@ namespace DoofenshmirtzsWebShop.DTOs.Responses
         public string streetName { get; set; }
         public int postalCode { get; set; }
         public string countryName { get; set; }
-        public AddressUserResponse user { get; set; }
+        // public AddressUserResponse user { get; set; }
     }
 
     public class AddressUserResponse

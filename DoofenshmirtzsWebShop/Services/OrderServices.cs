@@ -148,7 +148,7 @@ namespace DoofenshmirtzsWebShop.Services
         {
             Order order = new Order
             {
-                orderDate = updateOrder.orderDate,
+                orderDate = System.DateTime.Now,
                 userID = updateOrder.userID
             };
             order = await _OrderRepository.Update(orderId, order);
