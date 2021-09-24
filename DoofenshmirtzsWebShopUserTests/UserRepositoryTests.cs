@@ -244,7 +244,7 @@ namespace DoofenshmirtzsWebShopUserTests
 
             // Assert
             var ex = await Assert.ThrowsAsync<System.Exception>(action);
-            Assert.Contains("is not available", ex.Message);
+            Assert.Contains(" is not available", ex.Message);
 
         }
     }
