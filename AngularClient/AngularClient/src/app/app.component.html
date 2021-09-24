@@ -1,4 +1,6 @@
+<a routerLink="/">developer link to Client Page</a>
 <a routerLink="/admin/dashboard">developer link to admin site</a>
+<a routerLink="/userpage">developer link to User Page</a>
 <header *ngIf="!isOnAdminPage()">
   <h1>DOOFENSHIRTZ EEEEVILLL WEEEEEEBSHOOOOOOP~</h1>
 </header>
@@ -16,9 +18,9 @@
 <article *ngIf="isOnAdminPage()">
   <nav class="admin-menu">
     <ul>
-      <li><a routerLink="/admin/dashboard"><img class="icon" src="#" alt=""> <label>Dashboard</label></a></li>
-      <li><a routerLink="/admin/databases"><img class="icon" src="#" alt=""><label>Database</label></a></li>
-      <li><a routerLink="/admin/orders"><img class="icon" src="#" alt=""><label>Orders</label></a></li>
+      <li><a routerLink="/admin/dashboard"><img class="icon" src="#" alt="I"> <label>Dashboard</label></a></li>
+      <li><a routerLink="/admin/databases"><img class="icon" src="#" alt="I"><label>Database</label></a></li>
+      <li><a routerLink="/admin/orders"><img class="icon" src="#" alt="I"><label>Orders</label></a></li>
     </ul>
   </nav>
 </article>

@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(private router:Router){}
 
   isOnAdminPage(): boolean{
+    //return true if URL has admin in it
     return this.router.url.includes("/admin/");
   }
 }
