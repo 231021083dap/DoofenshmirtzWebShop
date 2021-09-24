@@ -174,7 +174,6 @@ namespace DoofenshmirtzsWebShopOrderTests
             int orderId = 1;
             UpdateOrder updateOrder = new UpdateOrder
             {
-                orderDate = DateTime.Parse("2021-9-21 12:23:21"),
                 userID = 2
             };
             OrderResponse order = new OrderResponse
@@ -197,11 +196,9 @@ namespace DoofenshmirtzsWebShopOrderTests
             int orderId = 1;
             UpdateOrder order = new UpdateOrder
             {
-                orderDate = DateTime.Parse("2021-9-21 12:23:21"),
                 userID = 2
-
             };
-            _orderService.Setup(s => s.Update(It.IsAny<int>(), It.IsAny<UpdateOrder>())).ReturnsAsync(() => throw new Exception("This is an exception"));
+            _orderService.Setup(s => s.Update(It.IsAny<int>(), It.IsAny<UpdateOrder>())).ReturnsAsync(() => null);
             // Act
             var result = await _sut.Update(orderId, order);
             // Assert
