@@ -1,0 +1,34 @@
+.headerBox {
+    text-align: center;
+    border: 1px solid #000;
+}
+.informationBox {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    padding: 5px;
+}
+
+.informationBox .basisInformationBox {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+.input{
+    margin:5px;
+}
+
+#firstName{
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+}
+#lastName{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+#email, #address{
+    grid-column-start:1;
+    grid-column-end:3;
+}
