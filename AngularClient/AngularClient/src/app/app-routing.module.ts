@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { DatabasesComponent } from './admin/databases/databases.component';
+import { OrdersComponent } from './admin/orders/orders.component';
 import { CartComponent } from './cart/cart.component';
 import { ContactComponent } from './contact/contact.component';
 import { FrontPageComponent } from './front-page/front-page.component';
@@ -24,7 +25,7 @@ const routes: Routes = [
   {path: 'userpage', component:UserPageComponent},
   {path: 'admin/dashboard', component:DashboardComponent},
   {path: 'admin/databases', component:DatabasesComponent},
-  {path: 'admin/orders', component:DashboardComponent}
+  {path: 'admin/orders', component:OrdersComponent}
 ];
 
 @NgModule({
