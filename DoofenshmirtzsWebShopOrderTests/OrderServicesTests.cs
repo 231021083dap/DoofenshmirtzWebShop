@@ -25,7 +25,7 @@ namespace DoofenshmirtzsWebShopOrderTests
         [Fact]
         public async void GetAll_ShouldReturnListOfOrders_WhenOrdersExists()
         {
-            // Arrange
+            //Arrange
             List<Order> orders = new();
             orders.Add(new Order
             {
