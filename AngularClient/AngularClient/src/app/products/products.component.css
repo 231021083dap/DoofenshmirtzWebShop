@@ -25,6 +25,12 @@ br{
     border-radius: 20px;
     margin:10px;
     padding:10px;
+    transition: 0.7s;
+}
+.item:hover{
+    background-color: #ddd;
+    cursor: pointer;
+    transition:0.7s;
 }
 .item .portrait{
     border:1px solid #000;
