@@ -2,30 +2,13 @@
     <img class="banner-img" src="#" alt="big fucking image">
 </div>
 <div class="content">
-    <div class="item">
+    <div class="item" *ngFor="let product of products">
         <div class="portrait">
             <img class="portrait-img" src="#" alt="Item Portrait">
         </div>
-        <h2>Item</h2>
-        <p>Description</p>
+        <h2>{{product.name}}</h2>
+        <p>{{product.description}}</p>
     </div>
-    <!--DUMMY DATA-->
-    <div class="item">
-        <div class="portrait">
-            <img class="portrait-img" src="#" alt="Item Portrait">
-        </div>
-        <h2>Item</h2>
-        <p>Description</p>
-    </div>
-    <div class="item">
-        <div class="portrait">
-            <img class="portrait-img" src="#" alt="Item Portrait">
-        </div>
-        <h2>Item</h2>
-        <p>Description</p>
-    </div>
-</div>
-<!--DUMMY DATA END-->
 <div class="banner">
     <img class="banner-img" src="#" alt="big fucking image">
 </div>
