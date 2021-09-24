@@ -165,31 +165,93 @@ namespace DoofenshmirtzsWebShopOrderTests
         [Fact]
         public async void getByID_ShouldReturnOrderResponse_WhenOrderExists()
         {
+            
+            List<OrderItem> orderItemss = new();
+            orderItemss.Add(new OrderItem
+            {
+                orderItemID = 1,
+                orderItemPrice = 100,
+                orderItemQuantity = 100,
+                orderID = 1,
+                Product = new Product
+                {
+                    productID = 1,
+                    productDescription = "Hej",
+                    productName = "bla",
+                    productPrice = 100,
+                    productStock = 100,
+                    Category = new Category
+                    {
+                        categoryID = 1,
+                        categoryName = "gaj"
+                    }
+                }
+            });
+            orderItemss.Add(new OrderItem
+            {
+                orderItemID = 2,
+                orderItemPrice = 100,
+                orderItemQuantity = 100,
+                orderID = 1,
+                Product = new Product
+                {
+                    productID = 1,
+                    productDescription = "Hej",
+                    productName = "bla",
+                    productPrice = 100,
+                    productStock = 100,
+                    Category = new Category
+                    {
+                        categoryID = 1,
+                        categoryName = "gaj"
+                    }
+                }
+            });
+            List<Address> addresses = new();
+            addresses.Add(new Address
+            {
+                addressID = 1,
+                addressCountryName = "Danmark",
+                addressCustomerName = "jeppe",
+                addressPostalCode = 2300,
+                addressStreetName = "Ejler billes alle",
+                userID = 2
+            });
             int orderId = 1;
+            int userId = 2;
             Order order = new Order
             {
                 orderID = orderId,
                 orderDate = DateTime.Parse("2021-9-25 12:23:21"),
                 User = new User
                 {
-                    userID = 1,
-                    userEmail = "test@gmail.com",
-                    userPassword = "asndølasd",
-                    userName = "Jabby",
-                    userRole = DoofenshmirtzsWebShop.Helpers.Role.User
+                    userID = userId,
+                    userEmail = "asd",
+                    userName = "asd",
+                    userPassword = "Aasd",
+                    userRole = DoofenshmirtzsWebShop.Helpers.Role.User,
+                    address = addresses
                 },
+                orderItems = orderItemss
+                
+                
                 
 
+                
             };
+
+
+
+
             _orderRepository.Setup(a => a.GetById(It.IsAny<int>())).ReturnsAsync(order);
             // Act
             var result = await _sut.GetById(orderId);
             // Assert
             Assert.NotNull(result);
             Assert.IsType<OrderResponse>(result);
-            Assert.Equal(order.orderID, result.ID);
+            Assert.Equal(orderId, result.ID);
             Assert.Equal(order.orderDate, result.date);
-            Assert.Equal(order.userID, result.User.ID);
+            Assert.Equal(userId, result.User.ID);
         }
         [Fact]
         public async void GetById_ShouldReturnNull_WhenAuthorDoesNotExists()
@@ -210,32 +272,17 @@ namespace DoofenshmirtzsWebShopOrderTests
         [Fact]
         public async void Update_shouldReturnNull_WhenOrderDoesNotExists()
         {
-            Order orderr = new Order
-            {
-                orderID = 2,
-                orderDate = DateTime.Now,
-                userID = 2
-            };
-            User user = new User
-            {
-                userID = 2,
-                userEmail = "asd",
-                userName = "asd",
-                userPassword = "Aasd",
-                userRole = DoofenshmirtzsWebShop.Helpers.Role.User,
-            };
+
+            int newuserID = 3;
             UpdateOrder updateOrder = new UpdateOrder
             {
-                userID = 2,
+                
+                date = DateTime.Now,
+                userID = newuserID,
+                
             };
-
             int orderId = 1;
-            _orderRepository
-                .Setup(o => o.Create(It.IsAny<Order>()))
-                .ReturnsAsync(orderr);
-            _userRepository
-                .Setup(s => s.getByID(It.IsAny<int>()))
-                .ReturnsAsync(user);
+
             _orderRepository
                 .Setup(a => a.Update(It.IsAny<int>(), It.IsAny<Order>()))
                 .ReturnsAsync(() => null);

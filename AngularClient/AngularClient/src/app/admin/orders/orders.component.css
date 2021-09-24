@@ -1,0 +1,36 @@
+.content {
+  display: grid;
+  grid-template-rows: [row1-start] 50% [row1-end row2-start] 50% [row2-end] ;
+  border: 1px solid #000;
+  height: 200px;
+}
+
+.rep {
+  width: 90px;
+  margin: 10px;
+  padding: 10px;
+  border: solid 1px #000;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dop {
+  height: 50px;
+  margin: 10px;
+  padding: 10px;
+  border: solid 1px #000;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lip {
+  border: solid 1px #000;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+}
