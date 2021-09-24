@@ -15,6 +15,8 @@ import { UserPageComponent } from './user-page/user-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { searchPipe } from './products/search.pipe';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { DatabasesComponent } from './admin/databases/databases.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,9 @@ import { searchPipe } from './products/search.pipe';
     ContactComponent,
     AboutComponent,
     UserPageComponent,
-    searchPipe
-    
+    searchPipe,
+    DashboardComponent,
+    DatabasesComponent
   ],
   imports: [
     BrowserModule,
