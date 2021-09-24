@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { products, productGallery, Category } from '../models';
 import { productService } from '../product.service';
 import { CategoryService } from '../category.service';
-import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit, PipeTransform {
+export class ProductsComponent implements OnInit {
+  public searchInput: string;
   products: products[] = [];
   categories:Category[] = [];
   category: Category = {id: 0, name: ''};
@@ -21,11 +21,4 @@ export class ProductsComponent implements OnInit, PipeTransform {
     this.categoryService.getCategories().subscribe(a =>  this.categories = a);
   }
 
-  transform(items: any[], searchToken: string) {
-    if(searchToken == null)
-      searchToken = "";
-
-      searchToken = searchToken.toLowerCase();
-      return items.filter(elem => elem.name.toLowerCase().indexOf(searchToken) > -1);
-    }
 }

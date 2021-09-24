@@ -1,21 +1,40 @@
-<header>
+<a routerLink="/">developer link to Client Page</a>
+<a routerLink="/admin/dashboard">developer link to admin site</a>
+<a routerLink="/userpage">developer link to User Page</a>
+<header *ngIf="!isOnAdminPage()">
   <h1>DOOFENSHIRTZ EEEEVILLL WEEEEEEBSHOOOOOOP~</h1>
 </header>
-<nav>
+<nav class="client-menu" *ngIf="!isOnAdminPage()">
   <ul>
-    <li><a class="headerLink leftLink" href="/">Home</a></li>
-    <li><a class="headerLink leftLink" href="/products">Products</a></li>
+    <li><a class="headerLink leftLink" routerLink="/">Home</a></li>
+    <li><a class="headerLink leftLink" routerLink="/products">Products</a></li>
   </ul>
   <ul>
-    <li><a class="headerLink rightLink" href="/login">Log In</a></li>
-    <li><a class="headerLink rightLink" href="/cart">Cart</a></li>
+    <li><a class="headerLink rightLink" routerLink="/login">Log In</a></li>
+    <li><a class="headerLink rightLink" routerLink="/cart">Cart</a></li>
   </ul>
 </nav>
-<router-outlet></router-outlet>
-<footer>
+<section>
+<article *ngIf="isOnAdminPage()">
+  <nav class="admin-menu">
+    <ul>
+      <li><a routerLink="/admin/dashboard"><img class="icon" src="#" alt="I"> <label>Dashboard</label></a></li>
+      <li><a routerLink="/admin/databases"><img class="icon" src="#" alt="I"><label>Database</label></a></li>
+      <li><a routerLink="/admin/orders"><img class="icon" src="#" alt="I"><label>Orders</label></a></li>
+    </ul>
+  </nav>
+</article>
+<article *ngIf="isOnAdminPage()">
+  <router-outlet></router-outlet>
+</article>
+</section>
+<div *ngIf="!isOnAdminPage()" >
+  <router-outlet></router-outlet>
+</div>
+<footer *ngIf="!isOnAdminPage()">
   <ul>
-    <li><a class="footerLink" href="/contact">Contact Us</a></li>
+    <li><a class="footerLink" routerLink="/contact">Contact Us</a></li>
     <li>|</li>
-    <li><a class="footerLink" href="/about">About Us</a></li>
+    <li><a class="footerLink" routerLink="/about">About Us</a></li>
   </ul>
 </footer>
