@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { searchPipe } from './products/search.pipe';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { DatabasesComponent } from './admin/databases/databases.component';
+import { OrdersComponent } from './admin/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DatabasesComponent } from './admin/databases/databases.component';
     UserPageComponent,
     searchPipe,
     DashboardComponent,
-    DatabasesComponent
+    DatabasesComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
