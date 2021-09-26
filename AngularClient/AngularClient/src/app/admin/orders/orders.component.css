@@ -67,6 +67,9 @@
 .link{
   text-decoration: none;
 }
+a:hover{
+  color: pink;
+}
 .detailslink{
   display: flex;
   justify-content: center;
