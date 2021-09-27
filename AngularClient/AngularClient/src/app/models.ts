@@ -17,3 +17,18 @@ export interface productGallery{
     galleryPath: string,
     productId?: products
 }
+export interface OrderItems{
+
+}
+export interface User{
+userID:number,
+email:number,
+username:number
+}
+export interface Orders{
+    orderID:number,
+    orderDate:Date,
+    userID:number,
+    user:User,
+    orderItems:OrderItems[]
+}
