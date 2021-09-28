@@ -44,16 +44,16 @@ namespace DoofenshmirtzsWebShop.Controllers
                 return Problem(ex.Message);
             }
         }
-        [HttpGet("{productId}")]
+        [HttpGet("{productID}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> getProductById([FromRoute] int productId)
+        public async Task<IActionResult> getProductById([FromRoute] int productID)
         {
             try
             {
-                ProductResponse product = await _productService.getProductById(productId);
+                ProductResponse product = await _productService.getProductById(productID);
                 if (product == null)
                 {
                     return NotFound();
@@ -90,15 +90,15 @@ namespace DoofenshmirtzsWebShop.Controllers
 
         }
 
-        [HttpPut("{productId}")]
+        [HttpPut("{productID}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> updateProduct([FromRoute] int productId, [FromBody] UpdateProduct updateProduct)
+        public async Task<IActionResult> updateProduct([FromRoute] int productID, [FromBody] UpdateProduct updateProduct)
         {
             try
             {
-                ProductResponse product = await _productService.updateProduct(productId, updateProduct);
+                ProductResponse product = await _productService.updateProduct(productID, updateProduct);
 
                 if (product == null)
                 {
@@ -113,15 +113,15 @@ namespace DoofenshmirtzsWebShop.Controllers
             }
         }
 
-        [HttpDelete("{productId}")]
+        [HttpDelete("{productID}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> deleteProduct([FromRoute] int productId)
+        public async Task<IActionResult> deleteProduct([FromRoute] int productID)
         {
             try
             {
-                bool result = await _productService.deleteProduct(productId);
+                bool result = await _productService.deleteProduct(productID);
 
                 if (!result)
                 {
@@ -135,5 +135,8 @@ namespace DoofenshmirtzsWebShop.Controllers
                 return Problem(ex.Message);
             }
         }
+
+
+        
     }
 }
