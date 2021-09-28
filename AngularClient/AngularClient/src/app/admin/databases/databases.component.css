@@ -11,17 +11,24 @@ nav ul{
     justify-content: space-evenly;
 }
 nav ul li{
-    padding:10px;
-    font-size: 10px;
-    width:100px;
-    text-align: center;
-    transition: 0.7s;
+padding:10px;
 }
 nav ul li:hover{
     box-shadow: 0 1px 4px;
     transition: 0.7s;
     font-size: 12px;
-    cursor: pointer;
+}
+nav ul li a{
+    transition: 0.7s;
+    text-decoration: none;
+    padding:50px;
+    font-size: 24px;
+    color:#000;
+    font-style: oblique;
+}
+nav ul li a :active{
+    color:#888;
+    background-color:#ccc;
 }
 .search{
     display: flex;
@@ -57,7 +64,7 @@ nav ul li:hover{
     margin:10px;
     height: 120px;
 }
-.content button{
+.content h2{
     font-size:20px;
     width:50px;
     height:50px;

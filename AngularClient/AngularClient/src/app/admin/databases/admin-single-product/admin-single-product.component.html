@@ -1,0 +1,27 @@
+<article>
+    <section class="banner">
+        <header>
+            <h2>PRODUCT PAGE</h2>
+        </header>
+    </section>
+    <section class="leftPanel">
+        <img src="#" alt="Product Image">
+        <input type="file">
+    </section>
+    <section class="rightPanel">
+        <input type="text" placeholder="Product Name" [value]="product.name">
+        <select name="category" id="category" se>
+            <option value="0" selected disabled hidden>Select Category...</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+        <textarea id="desc"  placeholder="description" [value]="product.description"></textarea>
+        <div>
+            <label>Stock:</label><input type="number" placeholder="Stock" [value]="product.stock">
+            <label>$</label><input type="number" placeholder="Price" [value]="product.price">
+        </div>
+    </section>
+    <section class="footer">
+        <button>Edit</button>
+        <button>Delete</button>
+    </section>
+</article>

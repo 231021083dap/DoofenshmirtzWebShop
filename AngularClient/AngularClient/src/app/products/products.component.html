@@ -4,7 +4,7 @@
         <br>
         <!--DUMMY DATA - REMEMBER TO CHANGE TO DATABASE DATA-->
         <select [(ngModel)]="category.id" id="dropdownCategory">
-            <option value="0">Select Category</option>
+            <option value="0" selected disabled hidden>Select Category</option>
             <option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
         </select>
         <br>
