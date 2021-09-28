@@ -1,22 +1,25 @@
-<div class="content">
+<div class="content" *ngFor="let order of Orders">
+
+
+
     <div class="dop">
-<p>DATE OF PURCHASE</p>
+      <p>{{order.date}}</p>
     </div>
     <div class="rep">
-<p>Recipient</p>
+      <p>{{order.user.username}}</p>
     </div>
     <div class="orderid">
-        <p>OrderID: </p>
+      <p>OrderID: {{order.id}} </p>
     </div>
     <div class="lip">
-<p>MANY SWEET LIPS</p>
+      <p>MANY SWEET LIPS</p>
     </div>
     <div class="price">
-        <p>
-            PRICE
-        </p> 
+      <p>
+        PRICE
+      </p>
     </div>
     <div class="detailslink">
-        <a href="#" class="link">Product Link</a>
+      <a href="#" class="link">Product Link</a>
     </div>
 </div>

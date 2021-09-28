@@ -26,24 +26,29 @@ countryName:string
 
 }
 export interface OrderItems{
-ID:number,
+id:number,
 price:number,
 quantity:number,
 orderID:number,
 order?:Orders
-Product:products
+Product?:products
 }
 export interface User{
-userID:number,
-email:number,
-username:number
-password:string,
-address:address[]
+id:number,
+email:string,
+username:string,
+role?: Role
+token: string
+}
+export enum Role{
+    User = 'User',
+    Admin = 'Admin'
+
 }
 export interface Orders{
-    orderID:number,
-    orderDate:Date,
+    id:number,
+    date:Date,
     userID:number,
-    user:User,
-    orderItems:OrderItems[]
+    user?:User,
+    orderItems?:OrderItems[] 
 }
