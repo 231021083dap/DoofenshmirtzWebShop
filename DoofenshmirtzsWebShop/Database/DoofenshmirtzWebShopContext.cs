@@ -17,6 +17,7 @@ namespace DoofenshmirtzsWebShop.Database
         public DbSet<Order> Order { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<OrderItem> OrderItem { get; set; }
+        public DbSet<ProductImage> ProductImage { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -113,7 +114,22 @@ namespace DoofenshmirtzsWebShop.Database
 
                 );
 
-
+            modelBuilder.Entity<ProductImage>().HasData(
+                new ProductImage
+                {
+                    productImageID = 1,
+                    productImageImage = "...",
+                    productImageImageDescription = "..............",
+                    productID = 1,
+                },
+                new ProductImage
+                {
+                    productImageID = 2,
+                    productImageImage = ".....",
+                    productImageImageDescription = "....",
+                    productID = 2
+                }
+                );
 
             modelBuilder.Entity<Product>().HasData(
                 new Product

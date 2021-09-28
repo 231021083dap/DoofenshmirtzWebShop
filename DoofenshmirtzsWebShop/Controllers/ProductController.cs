@@ -137,20 +137,6 @@ namespace DoofenshmirtzsWebShop.Controllers
         }
 
 
-        [HttpGet("{productImageID}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> productImageGalleryByID([FromRoute] int productID, int productImageID)
-        {
-            try
-            {
-                //List<ProductImageResponse> productImage = await _productService
-            }
-            catch (Exception ex)
-            {
-                return Problem(ex.Message);
-            }
-        }
+        
     }
 }
