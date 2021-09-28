@@ -4,14 +4,16 @@ using DoofenshmirtzsWebShop.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DoofenshmirtzsWebShop.Migrations
 {
     [DbContext(typeof(DoofenshmirtzWebShopContext))]
-    partial class DoofenshmirtzWebShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210921113312_products")]
+    partial class products
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,21 +137,21 @@ namespace DoofenshmirtzsWebShop.Migrations
                         new
                         {
                             orderID = 1,
-                            orderDate = new DateTime(2021, 9, 24, 11, 16, 27, 778, DateTimeKind.Local).AddTicks(6402),
+                            orderDate = new DateTime(2021, 9, 21, 13, 33, 11, 860, DateTimeKind.Local).AddTicks(5797),
                             orderItemId = 0,
                             userID = 1
                         },
                         new
                         {
                             orderID = 2,
-                            orderDate = new DateTime(2021, 9, 24, 11, 16, 27, 781, DateTimeKind.Local).AddTicks(2272),
+                            orderDate = new DateTime(2021, 9, 21, 13, 33, 11, 865, DateTimeKind.Local).AddTicks(410),
                             orderItemId = 0,
                             userID = 2
                         },
                         new
                         {
                             orderID = 3,
-                            orderDate = new DateTime(2021, 9, 24, 11, 16, 27, 781, DateTimeKind.Local).AddTicks(2326),
+                            orderDate = new DateTime(2021, 9, 21, 13, 33, 11, 865, DateTimeKind.Local).AddTicks(476),
                             orderItemId = 0,
                             userID = 2
                         });
