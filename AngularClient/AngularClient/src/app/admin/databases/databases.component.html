@@ -1,9 +1,9 @@
 <nav>
     <ul>
-        <li><h4>Products</h4></li>
-        <li><h4>Categories</h4></li>
-        <li><h4>Users</h4></li>
-        <li><h4>Roles</h4></li>
+        <li><a routerLink="admin/databases/products">Products</a></li>
+        <li><a routerLink="admin/databases/categories">Categories</a></li>
+        <li><a routerLink="admin/databases/users">Users</a></li>
+        <li><a routerLink="admin/databases/roles">Roles</a></li>
     </ul>
 </nav>
 <div class="search">
@@ -19,26 +19,29 @@
     <ul>
         <li><label>IMAGE</label></li>
         <li><label>NAME + DESCRIPTION</label></li>
-        <li><label>EDIT</label></li>
-        <li><label>DELETE?</label></li>
+        <li><label>STOCK</label></li>
+        <li><label>PRICE</label></li>
     </ul>
 </div>
     <!--DISPLAY PRODUCTS-->
-    <div class="content" id="products">
-        <img src="#" alt="portrait">
-        <div class="textfield">
-            <h4>Heading</h4>
-            <p>lorem ipsum sdf sajk fas asjk vkl dklsf vsdkl sdfjk vsdfjk</p>
-        </div>
-        <button class="edit">Edit</button>
-        <button class="delete">X</button>
-    </div>
+        <div class="content" id="products" *ngFor="let product of products">
+            <a routerLink="/admin/databases/singleProduct/{{product.id}}">
 
+            <img src="#" alt="portrait">
+            <div class="textfield">
+                <h4>{{product.name}}</h4>
+                <p>{{product.description}}</p>
+            </div>
+            <h2>{{product.stock}}</h2>
+            <h2>${{product.price}}</h2>
+        </a>
+        </div>
+        
+        
     <!--DISPLAY CATEGORIES-->
     <div class="content" id="categories">
-        <img src="#" alt="portrait">
         <div class="textfield">
-            <h4>Heading</h4>
+            <h4>Category</h4>
             <p>lorem ipsum sdf sajk fas asjk vkl dklsf vsdkl sdfjk vsdfjk</p>
         </div>
         <button class="edit">Edit</button>
@@ -47,9 +50,8 @@
 
     <!--DISPLAY USERS-->
     <div class="content" id="users">
-        <img src="#" alt="portrait">
         <div class="textfield">
-            <h4>Heading</h4>
+            <h4>User</h4>
             <p>lorem ipsum sdf sajk fas asjk vkl dklsf vsdkl sdfjk vsdfjk</p>
         </div>
         <button class="edit">Edit</button>
@@ -58,9 +60,8 @@
 
     <!--DISPLAY ROLES-->
     <div class="content" id="roles">
-        <img src="#" alt="portrait">
         <div class="textfield">
-            <h4>Heading</h4>
+            <h4>Roles</h4>
             <p>lorem ipsum sdf sajk fas asjk vkl dklsf vsdkl sdfjk vsdfjk</p>
         </div>
         <button class="edit">Edit</button>

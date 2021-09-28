@@ -1,83 +1,82 @@
-header{
-    text-align: center;
-    border:1px solid #000;
-}
-.client-menu{
-    border:1px solid #000;
-    display:flex;
-    justify-content: space-between;
-    padding:10px;
-}
-.client-menu ul{
-    display:flex;
-    justify-content: center;
-}
-li{
-    list-style:none;
-}
-a.headerLink{
-    margin:10px;
-    padding:10px;
-    border:1px solid #000;
+li, a{
+    list-style: none;
     text-decoration: none;
+}
+.clientSide{
+    display: flex;
+    flex-direction: column;
+}
+
+.clientSide header{
+    grid-area: header;
+}
+.clientSide nav{
+    grid-area: nav;
+    display: flex;
+    justify-content: space-between;
+}
+.clientSide nav ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+.clientSide nav ul li{
+    margin:10px;
+}
+.clientSide nav ul li a{
+    padding:10px;
     border-radius: 10px;
+    transition: 0.7s;
+    color:#000;
 }
-a.leftLink{
-    width:200px;
+.clientSide nav ul li a:hover{
+    background-color: #ddd;
+    transition: 0.7s;
+    box-shadow: 2px 2px 5px;
 }
+.adminSide{
+    display:grid;
+    grid-template-columns: 25% auto;
+    grid-template-areas: 
+    "nav main"
+    "nav main";
+}
+
+.adminSide nav{
+    grid-area: nav  ;
+    background-color:#aaa;
+}
+.adminSide nav ul li{
+    margin:10px;
+    border:1px solid #000;
+}
+.adminSide nav ul li a{
+    display: flex;
+    justify-content: space-between;
+    padding:10px;
+}
+.adminSide nav ul li a img{
+    width:20px;
+    height: 20px;
+    border:1px solid #000;
+}
+.adminSide nav ul li label:hover{
+    cursor: pointer;
+}
+
+.container > .clientSide, .adminSide{
+    grid-area: main;
+}
+
 footer{
-    border: 1px solid #000;
-    height:150px;
     display:flex;
     justify-content: center;
     align-items: center;
 }
+
 footer ul{
-    display:flex;
-}
-a.footerLink{
-    padding:0 10px;
-}
-
-section{
-    display: grid;
-    grid-template-columns: 25% auto;
-}
-
-.admin-menu{
-    border:1px solid #000;
-    background-color: #777;
     display: flex;
-    flex-flow: column;
-    height: 100%;
 }
-.admin-menu ul{
-    border:1px solid #0f0;
-    padding:10px;
-    flex: 0 1 auto;
-}
-.admin-menu ul li{
-    border: 1px solid #f00;
+
+footer ul li{
     margin:10px;
-    flex:1 1 auto
-}
-.admin-menu ul li .icon{
-    border:1px solid #00f;
-    width: 20px;
-    height:20px;
-}
-.admin-menu ul li a{
-    border:1px solid #000;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.7s;
-    text-decoration: none;
-    color:#ddd;
-}
-.admin-menu ul li a:hover{
-    background-color: #ddd;
-    color:#000;
-    transition: 0.7s;
 }

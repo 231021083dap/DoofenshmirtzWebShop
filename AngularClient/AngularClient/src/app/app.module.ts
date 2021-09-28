@@ -18,6 +18,7 @@ import { searchPipe } from './products/search.pipe';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { DatabasesComponent } from './admin/databases/databases.component';
 import { OrdersComponent } from './admin/orders/orders.component';
+import { AdminSingleProductComponent } from './admin/databases/admin-single-product/admin-single-product.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { OrdersComponent } from './admin/orders/orders.component';
     searchPipe,
     DashboardComponent,
     DatabasesComponent,
-    OrdersComponent
+    OrdersComponent,
+    AdminSingleProductComponent
   ],
   imports: [
     BrowserModule,
