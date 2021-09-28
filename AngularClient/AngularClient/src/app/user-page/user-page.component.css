@@ -1,0 +1,84 @@
+.headerBox {
+    text-align: center;
+    border: 1px solid #000;
+}
+.informationBox {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    padding: 5px;
+}
+
+.basisInformationBox {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+.textInformationBox {
+    padding: 5px;
+    line-height: 0%;
+}
+
+.input{
+    margin:5px;
+}
+
+#userFirstName{
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+}
+#userLastName{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+#userEmail, #address{
+    grid-column-start:1;
+    grid-column-end:3;
+}
+
+.listOfOrders {
+    padding: 5px;
+}
+
+.orderInformation {
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.specificOrder {
+    display: grid;
+    grid-template-columns: 20% 65% 15%;
+    line-height: 0%;
+    margin: 5px;
+}
+
+.orderPicture {
+    border: 1px solid #000;
+    border-radius: 10px;
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+.orderText {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    padding: 15px;
+}
+
+#title {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+#bodyText {
+    font-size: 15px;
+}
+
+.viewOrderButton {
+    height: 20%;
+    align-self: flex-end;
+    border-radius: 5px;
+}

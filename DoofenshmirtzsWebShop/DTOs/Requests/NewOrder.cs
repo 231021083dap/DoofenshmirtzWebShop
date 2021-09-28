@@ -10,10 +10,8 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
     public class NewOrder
     {
         [Required]
-        public DateTime orderDate { get; set; }
-
-        //[ForeignKey("User.userID")]
         public int userID { get; set; }
-        public int orderItemId { get; set; }
+        [Required]
+        public List<CartItemsRequest> cartItems { get; set; }
     }
 }

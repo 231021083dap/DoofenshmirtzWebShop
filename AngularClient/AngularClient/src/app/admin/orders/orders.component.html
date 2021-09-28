@@ -1,1 +1,25 @@
-<p>orders works!</p>
+<div class="content" *ngFor="let order of Orders">
+
+
+
+    <div class="dop">
+      <p>{{order.date}}</p>
+    </div>
+    <div class="rep">
+      <p>{{order.user.username}}</p>
+    </div>
+    <div class="orderid">
+      <p>OrderID: {{order.id}} </p>
+    </div>
+    <div class="lip">
+      <p>MANY SWEET LIPS</p>
+    </div>
+    <div class="price">
+      <p>
+        PRICE
+      </p>
+    </div>
+    <div class="detailslink">
+      <a href="#" class="link">Product Link</a>
+    </div>
+</div>

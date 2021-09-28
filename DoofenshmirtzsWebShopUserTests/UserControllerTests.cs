@@ -1,5 +1,8 @@
 ﻿using DoofenshmirtzsWebShop.Controllers;
+using DoofenshmirtzsWebShop.Database.Entities;
+using DoofenshmirtzsWebShop.DTOs.Requests;
 using DoofenshmirtzsWebShop.DTOs.Responses;
+using DoofenshmirtzsWebShop.Repositories;
 using DoofenshmirtzsWebShop.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -21,6 +24,7 @@ namespace DoofenshmirtzsWebShopUserTests
         public UserControllerTests()
         {
             _sut = new UserController(_userService.Object);
+            _sut.ControllerContext.HttpContext = new DefaultHttpContext() { };
         }
 
         [Fact]
@@ -69,23 +73,42 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.Equal(204, statusCodeResult.StatusCode);
         }
 
-        /*
+        
         [Fact]
-        public async void getByID_shouldReturnStatusCode404_whenUserDoesNotExist()
+        public async void getByID_shouldReturnUnauthorized_whenUserIsNotLoggedIn()
         {
-            int userID = 1;
-            
+            _sut.ControllerContext.HttpContext.Items["User"] = null;
 
-    
-            _userService
-                .Setup(s => s.getByID(It.IsAny<int>()))
-                .ReturnsAsync(() => null);
-
-            var result = await _sut.getByID(userID);
+            var result = await _sut.getByID(1);
 
             var statusCodeResult = (IStatusCodeActionResult)result;
-            Assert.Equal(404, statusCodeResult.StatusCode);
-        }*/
+            Assert.Equal(401, statusCodeResult.StatusCode);
+        }
+
+        [Fact]
+        public async void getByID_shouldReturnUser_whenUserIsLoggedOnAsUser()
+        {
+            _sut.ControllerContext.HttpContext.Items["User"] = new UserResponse
+            {
+                ID = 2,
+                Role = DoofenshmirtzsWebShop.Helpers.Role.User
+            };
+
+            UserResponse user = new UserResponse
+            {
+                ID = 2,
+                email = "test@test.dk",
+                username = "Test"
+            };
+
+            _userService.Setup(u => u.getByID(It.IsAny<int>()))
+                .ReturnsAsync(user);
+
+            var result = await _sut.getByID(2);
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(200, statusCodeResult.StatusCode);
+        }
 
         [Fact]
         public async void getAll_shouldReturnStatusCode500_whenNullIsReturnedFromService()
@@ -101,6 +124,47 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.Equal(500, statusCodeResult.StatusCode);
         }
 
+        [Fact]
+        public async void getAll_shouldReturnStatusCode500_whenExceptionIsRaised()
+        {
+            List<UserResponse> users = new();
+
+            _userService.Setup(s => s.getAll())
+                .ReturnsAsync(() => throw new System.Exception("This is an exception"));
+
+            var result = await _sut.getAll();
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(500, statusCodeResult.StatusCode);
+        }
+
+        [Fact]
+        public async void create_shouldReturnStatusCode200_whenCreateIsSuccessful()
+        {
+            int userID = 1;
+
+            NewUser newUser = new NewUser
+            {
+                userEmail = "perry@platypus.com",
+                userName = "Perry",
+                userPassword = "Platypus"
+            };
+            User user = new User
+            {
+                userID = userID,
+                userEmail = "perry@platypus.com",
+                userName = "Perry",
+                userPassword = "Platypus"
+            };
+
+            //_userService.Setup(s => s.Register(It.IsAny<RegisterUser>())).ReturnsAsync(user);
+
+            var result = await _sut.register(newUser);
+
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(200, statusCodeResult.StatusCode);
+            
+        }
         
     }
 }

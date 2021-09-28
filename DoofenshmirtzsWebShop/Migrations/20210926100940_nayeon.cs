@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DoofenshmirtzsWebShop.Migrations
 {
-    public partial class DoofenshmirtzWebShop : Migration
+    public partial class nayeon : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -123,6 +123,34 @@ namespace DoofenshmirtzsWebShop.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "OrderItem",
+                columns: table => new
+                {
+                    orderItemID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    orderItemQuantity = table.Column<int>(type: "int", nullable: false),
+                    orderItemPrice = table.Column<int>(type: "int", nullable: false),
+                    orderID = table.Column<int>(type: "int", nullable: false),
+                    productID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItem", x => x.orderItemID);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_Order_orderID",
+                        column: x => x.orderID,
+                        principalTable: "Order",
+                        principalColumn: "orderID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_Product_productID",
+                        column: x => x.productID,
+                        principalTable: "Product",
+                        principalColumn: "productID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Category",
                 columns: new[] { "categoryID", "categoryName" },
@@ -138,23 +166,28 @@ namespace DoofenshmirtzsWebShop.Migrations
                 columns: new[] { "userID", "userEmail", "userName", "userPassword", "userRole" },
                 values: new object[,]
                 {
-                    { 1, "test@test.dk", "Test101", "Test1234", 1 },
-                    { 2, "perry@platypus.dk", "Perry", "Doofenia", 1 }
+                    { 1, "doofen@evil.com", "EvilMaster", "DamnYouPerry", 0 },
+                    { 2, "perry@platypus.com", "Perry", "Doofenia", 1 },
+                    { 3, "planty@pottedplant.com", "Planty", "Planty1234", 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Address",
                 columns: new[] { "addressID", "addressCountryName", "addressCustomerName", "addressPostalCode", "addressStreetName", "userID" },
-                values: new object[] { 1, "Carkeys", "Test McTesting", 6969, "Danville 101", 1 });
+                values: new object[,]
+                {
+                    { 1, "TriState Area", "Pinky the Chihuahua", 6969, "2034 Danville Avenue", 2 },
+                    { 2, "TriState Area", "Planty the PottedPlant", 6969, "1001 Danville Boulevard", 3 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Order",
                 columns: new[] { "orderID", "orderDate", "userID" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2021, 9, 17, 14, 30, 46, 990, DateTimeKind.Local).AddTicks(3747), 1 },
-                    { 2, new DateTime(2021, 9, 17, 14, 30, 46, 992, DateTimeKind.Local).AddTicks(3024), 2 },
-                    { 3, new DateTime(2021, 9, 17, 14, 30, 46, 992, DateTimeKind.Local).AddTicks(3055), 2 }
+                    { 1, new DateTime(2021, 9, 21, 12, 23, 21, 0, DateTimeKind.Unspecified), 2 },
+                    { 2, new DateTime(2021, 10, 21, 12, 23, 21, 0, DateTimeKind.Unspecified), 3 },
+                    { 3, new DateTime(2021, 9, 25, 12, 23, 21, 0, DateTimeKind.Unspecified), 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -167,6 +200,19 @@ namespace DoofenshmirtzsWebShop.Migrations
                     { 3, 1, "Support your local evil branch with this T-shirt!", "Shut-The-Hell-Up-Inator", 50, 8 }
                 });
 
+            migrationBuilder.InsertData(
+                table: "OrderItem",
+                columns: new[] { "orderItemID", "orderID", "orderItemPrice", "orderItemQuantity", "productID" },
+                values: new object[,]
+                {
+                    { 1, 1, 100, 1, 1 },
+                    { 2, 1, 30, 1, 1 },
+                    { 3, 2, 125, 5, 2 },
+                    { 4, 2, 30, 1, 2 },
+                    { 5, 3, 30, 1, 3 },
+                    { 6, 3, 500, 55, 3 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Address_userID",
                 table: "Address",
@@ -176,6 +222,16 @@ namespace DoofenshmirtzsWebShop.Migrations
                 name: "IX_Order_userID",
                 table: "Order",
                 column: "userID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_orderID",
+                table: "OrderItem",
+                column: "orderID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_productID",
+                table: "OrderItem",
+                column: "productID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_categoryID",
@@ -194,16 +250,19 @@ namespace DoofenshmirtzsWebShop.Migrations
                 name: "Address");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "OrderItem");
 
             migrationBuilder.DropTable(
                 name: "ProductImage");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Order");
 
             migrationBuilder.DropTable(
                 name: "Product");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Category");

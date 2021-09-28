@@ -1,11 +1,10 @@
-﻿using DoofenshmirtzsWebShop.DTOs.Requests;
+﻿using DoofenshmirtzsWebShop.Database.Entities;
+using DoofenshmirtzsWebShop.DTOs.Requests;
 using DoofenshmirtzsWebShop.DTOs.Responses;
-using System;
+using DoofenshmirtzsWebShop.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DoofenshmirtzsWebShop.Repositories;
-using DoofenshmirtzsWebShop.Database.Entities;
 
 namespace DoofenshmirtzsWebShop.Services
 {
@@ -22,11 +21,13 @@ namespace DoofenshmirtzsWebShop.Services
         private readonly IOrderRepository _OrderRepository;
         private readonly IUserRepository _UserRepository;
         private readonly IProductRepository _productRepository;
-        public OrderServices(IOrderRepository orderRepository, IUserRepository userRepository, IProductRepository productRepository)
+        private readonly IOrderItemRepository _orderItemRepository;
+        public OrderServices(IOrderRepository orderRepository, IUserRepository userRepository, IProductRepository productRepository, IOrderItemRepository orderItemRepository)
         {
             _OrderRepository = orderRepository;
             _UserRepository = userRepository;
             _productRepository = productRepository;
+            _orderItemRepository = orderItemRepository;
         }
         public async Task<List<OrderResponse>> GetAllOrders()
         {
@@ -35,13 +36,13 @@ namespace DoofenshmirtzsWebShop.Services
             {
                 ID = o.orderID,
                 date = o.orderDate,
-                Users = new OrderUserResponse
+                User = new OrderUserResponse
                 {
-                    ID = o.Users.userID,
-                    email = o.Users.userEmail,
-                    password = o.Users.userPassword,
-                    username = o.Users.userName
+                    ID = o.User.userID,
+                    email = o.User.userEmail,
+                    username = o.User.userName
                 }
+
             }).ToList();
         }
         public async Task<OrderResponse> GetById(int orderId)
@@ -51,55 +52,119 @@ namespace DoofenshmirtzsWebShop.Services
             {
                 ID = order.orderID,
                 date = order.orderDate,
-                
+                User = new OrderUserResponse
+                {
+
+                    ID = order.User.userID,
+                    email = order.User.userEmail,
+                    username = order.User.userName,
+                    address = order.User.address.Select(a => new AddressResponse
+                    {
+                        ID = a.addressID,
+                        customerName = a.addressCustomerName,
+                        streetName = a.addressStreetName,
+                        postalCode = a.addressPostalCode,
+                        countryName = a.addressCountryName,
+                    }).ToList()
+
+                },
+                OrderItems = order.orderItems.Select(a => new OrderOrderItemResponse
+                {
+                    ID = a.orderItemID,
+                    quantity = a.orderItemQuantity,
+                    price = a.orderItemPrice,
+                    orderID = a.orderID,
+                    productName = a.Product.productName
+
+                }).ToList()
+
             };
         }
         public async Task<OrderResponse> Create(NewOrder newOrder)
         {
-           
+
             Order order = new()
             {
-                orderDate = newOrder.orderDate,
-                userID = newOrder.userID
+                orderDate = System.DateTime.Now,
+                userID = newOrder.userID,
             };
             order = await _OrderRepository.Create(order);
-            order.Users = await _UserRepository.getByID(order.userID);
-            return order == null ? null : new OrderResponse
+            if (order != null)
             {
-                ID = order.orderID,
-                date = order.orderDate,
-                Users = new OrderUserResponse
+                List<OrderItem> orderItems = new();
+                foreach (CartItemsRequest item in newOrder.cartItems)
                 {
-                    ID = order.Users.userID,
-                    email = order.Users.userEmail,
-                    password = order.Users.userPassword,
-                    username = order.Users.userName
+                    Product product = await _productRepository.getProductById(item.ProductID);
+                    OrderItem orderItem = new OrderItem
+                    {
+                        orderID = order.orderID,
+                        orderItemQuantity = item.amount,
+                        orderItemPrice = product.productPrice,
+                        productID = item.ProductID
+                    };
+
+                    orderItem = await _orderItemRepository.Create(orderItem);
+                    orderItem.Product = product;
+                    orderItems.Add(orderItem);
                 }
-            };
+                order.orderItems = orderItems;
+                order.User = await _UserRepository.getByID(order.userID);
+                
+
+
+
+                return new OrderResponse
+                {
+                    ID = order.orderID,
+                    date = order.orderDate,
+                    User = new OrderUserResponse
+                    {
+                        ID = order.User.userID,
+                        email = order.User.userEmail,
+                        username = order.User.userName,
+                        address = order.User.address.Select(a => new AddressResponse
+                        {
+                            ID = a.addressID,
+                            customerName = a.addressCustomerName,
+                            streetName = a.addressStreetName,
+                            postalCode = a.addressPostalCode,
+                            countryName = a.addressCountryName,
+                        }).ToList()
+                    },
+                    OrderItems = order.orderItems.Select(i => new OrderOrderItemResponse
+                    {
+                        ID = i.orderItemID,
+                        quantity = i.orderItemQuantity,
+                        price = i.Product.productPrice,
+                        productName = i.Product.productName
+                    }).ToList()
+                };
+            }
+            return null;
+
         }
 
         public async Task<OrderResponse> Update(int orderId, UpdateOrder updateOrder)
         {
             Order order = new Order
             {
-                orderDate = updateOrder.orderDate,
+                orderDate = System.DateTime.Now,
                 userID = updateOrder.userID
             };
             order = await _OrderRepository.Update(orderId, order);
-            order.Users = await _UserRepository.getByID(order.userID);
-            //order.orderItems = await _productRepository
+            order.User = await _UserRepository.getByID(order.userID);
+
             return order == null ? null : new OrderResponse
             {
                 ID = order.orderID,
                 date = order.orderDate,
-                Users = new OrderUserResponse
+                User = new OrderUserResponse
                 {
-                    ID = order.Users.userID,
-                    email = order.Users.userEmail,
-                    password = order.Users.userPassword,
-                    username = order.Users.userName
+                    ID = order.User.userID,
+                    email = order.User.userEmail,
+                    username = order.User.userName
                 },
-                
+
             };
         }
         public async Task<bool> Delete(int orderId)

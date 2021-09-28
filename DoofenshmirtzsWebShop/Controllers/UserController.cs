@@ -50,11 +50,11 @@ namespace DoofenshmirtzsWebShop.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Register([FromBody] RegisterUser newUser)
+        public async Task<IActionResult> register([FromBody] NewUser newUser)
         {
             try
             {
-                UserResponse user = await _userService.Register(newUser);
+                UserResponse user = await _userService.register(newUser);
                 return Ok(user);
             }
             catch (Exception ex)
@@ -97,19 +97,17 @@ namespace DoofenshmirtzsWebShop.Controllers
         {
             try
             {
-                // Only admins can access other user records
+                //Only admins can access other user records
                 var currentUser = (UserResponse)HttpContext.Items["User"];
-
-                if (userID != currentUser.ID && currentUser.Role != Role.Admin)
+                if (currentUser == null || (userID != currentUser.ID && currentUser.Role != Role.Admin))
                 {
                     return Unauthorized(new { message = "Unauthorized" });
                 }
 
                 UserResponse user = await _userService.getByID(userID);
-
                 if (user == null)
                 {
-                    return NoContent();
+                    NoContent();
                 }
                 return Ok(user);
             }
@@ -117,7 +115,6 @@ namespace DoofenshmirtzsWebShop.Controllers
             {
                 return Problem(ex.Message);
             }
-
         }
     }
  }
