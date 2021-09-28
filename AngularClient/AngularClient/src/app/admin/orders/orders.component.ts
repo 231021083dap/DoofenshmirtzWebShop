@@ -24,4 +24,13 @@ export class OrdersComponent implements OnInit {
     .subscribe(a => this.Orders = a)
   }
 
+  delete(order:Orders):void{
+    if(confirm('Er du sikker på at slette?')){
+     
+  this.orderService.deleteOrder(order.id)
+  .subscribe(() =>  {this.getOrders()})}
+  }
+
+  
+
 }

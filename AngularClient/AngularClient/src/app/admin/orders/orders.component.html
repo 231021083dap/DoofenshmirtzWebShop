@@ -1,6 +1,6 @@
 <div class="content" *ngFor="let order of Orders">
 
-
+  <button (click)="delete(order)" class="btnDelete">Delete</button>
 
     <div class="dop">
       <p>{{order.date}}</p>
@@ -19,6 +19,8 @@
         PRICE
       </p>
     </div>
+
+
     <div class="detailslink">
       <a href="#" class="link">Product Link</a>
     </div>
