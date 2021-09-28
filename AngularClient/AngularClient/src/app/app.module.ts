@@ -19,6 +19,10 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { DatabasesComponent } from './admin/databases/databases.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { AdminSingleProductComponent } from './admin/databases/admin-single-product/admin-single-product.component';
+import { AdminCategoriesComponent } from './admin/databases/admin-categories/admin-categories.component';
+import { AdminUsersComponent } from './admin/databases/admin-users/admin-users.component';
+import { AdminProductsComponent } from './admin/databases/admin-products/admin-products.component';
+import { AdminRolesComponent } from './admin/databases/admin-roles/admin-roles.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { AdminSingleProductComponent } from './admin/databases/admin-single-prod
     DashboardComponent,
     DatabasesComponent,
     OrdersComponent,
-    AdminSingleProductComponent
+    AdminSingleProductComponent,
+    AdminCategoriesComponent,
+    AdminUsersComponent,
+    AdminProductsComponent,
+    AdminRolesComponent
   ],
   imports: [
     BrowserModule,

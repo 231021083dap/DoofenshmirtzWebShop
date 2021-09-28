@@ -1,9 +1,9 @@
 <div class="content">
     <div class="search">
-        <input type="search" name="searchbar"  placeholder="search" [(ngModel)]="searchInput">
+        <input type="search" name="searchbar"  placeholder="search">
         <br>
         <!--DUMMY DATA - REMEMBER TO CHANGE TO DATABASE DATA-->
-        <select [(ngModel)]="category.id" id="dropdownCategory">
+        <select id="dropdownCategory">
             <option value="0" selected disabled hidden>Select Category</option>
             <option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
         </select>
@@ -17,7 +17,7 @@
         <button>Search</button>
     </div>
     <div class="display">
-        <div class="item" *ngFor="let product of products search: searchInput">
+        <div class="item" *ngFor="let product of products">
             <div class="portrait">
                 <img src="#" alt="portrait">
             </div>

@@ -1,69 +1,8 @@
 <nav>
     <ul>
-        <li><a routerLink="admin/databases/products">Products</a></li>
-        <li><a routerLink="admin/databases/categories">Categories</a></li>
-        <li><a routerLink="admin/databases/users">Users</a></li>
-        <li><a routerLink="admin/databases/roles">Roles</a></li>
+        <li><a routerLink="/admin/databases/products">Products</a></li>
+        <li><a routerLink="/admin/databases/categories">Categories</a></li>
+        <li><a routerLink="/admin/databases/users">Users</a></li>
+        <li><a routerLink="/admin/databases/roles">Roles</a></li>
     </ul>
 </nav>
-<div class="search">
-    <label>Search: <input type="search"></label> <label>Sort: <select name="sort" id="sort">
-        <option value="0">A - Z</option>
-        <option value="0">Z - A</option>
-        <option value="0">Price (Lo- Hi)</option>
-        <option value="0">Price (Hi - Lo)</option>
-        </select> </label>
-        <button>New</button>
-</div>
-<div class="result">
-    <ul>
-        <li><label>IMAGE</label></li>
-        <li><label>NAME + DESCRIPTION</label></li>
-        <li><label>STOCK</label></li>
-        <li><label>PRICE</label></li>
-    </ul>
-</div>
-    <!--DISPLAY PRODUCTS-->
-        <div class="content" id="products" *ngFor="let product of products">
-            <a routerLink="/admin/databases/singleProduct/{{product.id}}">
-
-            <img src="#" alt="portrait">
-            <div class="textfield">
-                <h4>{{product.name}}</h4>
-                <p>{{product.description}}</p>
-            </div>
-            <h2>{{product.stock}}</h2>
-            <h2>${{product.price}}</h2>
-        </a>
-        </div>
-        
-        
-    <!--DISPLAY CATEGORIES-->
-    <div class="content" id="categories">
-        <div class="textfield">
-            <h4>Category</h4>
-            <p>lorem ipsum sdf sajk fas asjk vkl dklsf vsdkl sdfjk vsdfjk</p>
-        </div>
-        <button class="edit">Edit</button>
-        <button class="delete">X</button>
-    </div>
-
-    <!--DISPLAY USERS-->
-    <div class="content" id="users">
-        <div class="textfield">
-            <h4>User</h4>
-            <p>lorem ipsum sdf sajk fas asjk vkl dklsf vsdkl sdfjk vsdfjk</p>
-        </div>
-        <button class="edit">Edit</button>
-        <button class="delete">X</button>
-    </div>
-
-    <!--DISPLAY ROLES-->
-    <div class="content" id="roles">
-        <div class="textfield">
-            <h4>Roles</h4>
-            <p>lorem ipsum sdf sajk fas asjk vkl dklsf vsdkl sdfjk vsdfjk</p>
-        </div>
-        <button class="edit">Edit</button>
-        <button class="delete">X</button>
-    </div> 
