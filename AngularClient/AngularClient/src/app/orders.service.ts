@@ -17,6 +17,6 @@ export class OrdersService {
   getOrders(): Observable<Orders[]>{return this.http.get<Orders[]>(this.apiUrl)}
   getOrderById(orderID:number): Observable<Orders>{return this.http.get<Orders>(`${this.apiUrl}/${orderID}`)};
   newOrders(order:Orders): Observable<Orders> {return this.http.post<Orders>(this.apiUrl, order, this.httpOptions)};
-  updateOrders(orderID:number, order:Orders): Observable<Orders> {return this.http.put<Orders>(`${this.apiUrl}/${orderID}`, this.httpOptions)};
+  updateOrders(orderID:number, order:Orders): Observable<Orders> {return this.http.put<Orders>(`${this.apiUrl}/${orderID}`, order ,this.httpOptions)};
   deleteOrder(orderID:number): Observable<Boolean>{return this.http.delete<Boolean>(`${this.apiUrl}/${orderID}`, this.httpOptions)};
 }
