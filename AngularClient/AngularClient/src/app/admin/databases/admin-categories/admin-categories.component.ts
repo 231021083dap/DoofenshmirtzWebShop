@@ -18,7 +18,7 @@ export class AdminCategoriesComponent implements OnInit {
   categories: Category[] = [];
   category: Category = {
     id: 0,
-    name: ''
+    categoryName: ''
   }
   constructor(private categoryService: CategoryService) {}
 
@@ -33,7 +33,7 @@ export class AdminCategoriesComponent implements OnInit {
   cancel(): void {
     this.category = {
       id: 0,
-      name: ''
+      categoryName: ''
     }
   }
   edit(category: Category): void {
@@ -54,7 +54,9 @@ export class AdminCategoriesComponent implements OnInit {
         })
     } else {
       this.categoryService.updateCategory(this.category.id, this.category)
-      .subscribe(() => {this.cancel})};
+      .subscribe(() => {this.cancel})
+    this.cancel();
+    };
 
     
   }
