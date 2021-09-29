@@ -8,4 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatabasesComponent implements OnInit {
 
+
+  constructor() {}
+  ngOnInit(): void {
+    }
 }
