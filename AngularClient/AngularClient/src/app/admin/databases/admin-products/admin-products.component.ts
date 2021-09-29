@@ -18,11 +18,7 @@ export class AdminProductsComponent implements OnInit {
   ngOnInit(): void {
   this.productService.getProducts().subscribe(a => this.products = a);
   }
-
-  isOnProductsTab(): boolean{
-    return this.router.url.includes("/admin/databases/products/");
-  }
   newItem(): void{
-    this.router.navigateByUrl('admin/products/singleProduct');
+    this.router.navigateByUrl('/admin/databases/singleProduct/new');
   }
 }

@@ -19,5 +19,5 @@ export class productService{
   getProductById(productId: number): Observable<products> {return this.http.get<products>(`${this.apiUrl}/${productId}`);}
   newProduct(product: products): Observable<products> {return this.http.post<products>(this.apiUrl, product, this.httpOptions);}
   updateProduct(productId: number, product: products): Observable<products> {return this.http.put<products>(`${this.apiUrl}/${productId}`, product, this.httpOptions);}
-  deleteProcuct(productId: number): Observable<boolean> {return this.http.delete<boolean>(`${this.apiUrl}/${productId}`, this.httpOptions);}
+  deleteProduct(productId: number): Observable<boolean> {return this.http.delete<boolean>(`${this.apiUrl}/${productId}`, this.httpOptions);}
 }
