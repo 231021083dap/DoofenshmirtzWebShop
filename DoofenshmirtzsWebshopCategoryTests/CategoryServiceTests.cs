@@ -73,7 +73,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
             Assert.NotNull(result);
             Assert.IsType<CategoryResponse>(result);
             Assert.Equal(categoryID, result.ID);
-            Assert.Equal(newCategory.categoryName, result.name);
+            Assert.Equal(newCategory.categoryName, result.categoryName);
         }
 
         [Fact]
@@ -110,7 +110,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
             Assert.NotNull(result);
             Assert.IsType<CategoryResponse>(result);
             Assert.Equal(category.categoryID, result.ID);
-            Assert.Equal(category.categoryName, result.name);
+            Assert.Equal(category.categoryName, result.categoryName);
         }
 
         [Fact]
@@ -149,7 +149,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
             Assert.NotNull(result);
             Assert.IsType<CategoryResponse>(result);
             Assert.Equal(categoryID, result.ID);
-            Assert.Equal(updateCategory.categoryName, result.name);
+            Assert.Equal(updateCategory.categoryName, result.categoryName);
         }
 
         [Fact]

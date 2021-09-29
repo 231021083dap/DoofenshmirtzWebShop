@@ -48,7 +48,7 @@ namespace DoofenshmirtzsWebShop.Repositories
             Category updateCategory = await _context.Category.FirstOrDefaultAsync(a => a.categoryID == categoryID);
             if (updateCategory != null)
             {
-                updateCategory.categoryID = category.categoryID;
+                //updateCategory.categoryID = category.categoryID;
                 updateCategory.categoryName = category.categoryName;
                 await _context.SaveChangesAsync();
             }
