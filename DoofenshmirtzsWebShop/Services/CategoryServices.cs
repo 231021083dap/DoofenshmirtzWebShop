@@ -53,7 +53,7 @@ namespace DoofenshmirtzsWebShop.Services
         {
             Category category = new Category
             {
-                categoryName = newCategory.categoryName
+                categoryName = newCategory.name
             };
 
             category = await _categoryRepository.create(category);
@@ -68,7 +68,7 @@ namespace DoofenshmirtzsWebShop.Services
         {
             Category category = new Category
             {
-                categoryName = updateCategory.categoryName
+                categoryName = updateCategory.name
             };
 
             category = await _categoryRepository.update(categoryID, category);

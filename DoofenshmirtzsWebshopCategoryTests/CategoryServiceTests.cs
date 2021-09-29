@@ -56,7 +56,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
             int categoryID = 1;
             NewCategory newCategory = new NewCategory
             {
-                categoryName = "Inators"
+                name = "Inators"
             };
 
             Category category = new Category
@@ -73,7 +73,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
             Assert.NotNull(result);
             Assert.IsType<CategoryResponse>(result);
             Assert.Equal(categoryID, result.ID);
-            Assert.Equal(newCategory.categoryName, result.name);
+            Assert.Equal(newCategory.name, result.name);
         }
 
         [Fact]
@@ -130,7 +130,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
         {
             UpdateCategory updateCategory = new UpdateCategory
             {
-                categoryName = "Inators"
+                name = "Inators"
             };
 
             int categoryID = 1;
@@ -149,7 +149,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
             Assert.NotNull(result);
             Assert.IsType<CategoryResponse>(result);
             Assert.Equal(categoryID, result.ID);
-            Assert.Equal(updateCategory.categoryName, result.name);
+            Assert.Equal(updateCategory.name, result.name);
         }
 
         [Fact]
@@ -157,7 +157,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
         {
             UpdateCategory updateCategory = new UpdateCategory
             {
-                categoryName = "Inators"
+                name = "Inators"
             };
 
             int categoryID = 1;
