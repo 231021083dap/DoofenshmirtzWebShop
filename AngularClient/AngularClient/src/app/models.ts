@@ -18,7 +18,7 @@ export interface productGallery{
     productId?: products
 }
 export interface address{
-ID:number,
+id:number,
 customerName:string,
 streetName:string,
 postalCode:number,
@@ -30,6 +30,7 @@ id:number,
 price:number,
 quantity:number,
 orderID:number,
+productName:string
 order?:Orders
 Product?:products
 }
