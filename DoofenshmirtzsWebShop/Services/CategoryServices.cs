@@ -68,7 +68,7 @@ namespace DoofenshmirtzsWebShop.Services
         {
             Category category = new Category
             {
-                categoryName = updateCategory.name
+                categoryName = updateCategory.categoryName
             };
 
             category = await _categoryRepository.update(categoryID, category);

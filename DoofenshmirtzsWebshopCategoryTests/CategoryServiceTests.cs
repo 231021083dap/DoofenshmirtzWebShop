@@ -131,7 +131,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
         {
             UpdateCategory updateCategory = new UpdateCategory
             {
-                name = "Inators"
+                categoryName = "Inators"
             };
 
             int categoryID = 1;
@@ -159,7 +159,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
         {
             UpdateCategory updateCategory = new UpdateCategory
             {
-                name = "Inators"
+                categoryName = "Inators"
             };
 
             int categoryID = 1;
