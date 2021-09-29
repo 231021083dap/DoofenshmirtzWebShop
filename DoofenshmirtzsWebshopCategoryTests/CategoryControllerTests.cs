@@ -26,19 +26,19 @@ namespace DoofenshmirtzsWebshopCategoryTests
             categories.Add(new CategoryResponse
             {
                 ID = 1,
-                name = "Products"
+                categoryName = "Products"
             });
 
             categories.Add(new CategoryResponse
             {
                 ID = 2,
-                name = "Books"
+                categoryName = "Books"
             });
 
             categories.Add(new CategoryResponse
             {
                 ID = 3,
-                name = "Merch"
+                categoryName = "Merch"
             });
 
             _categoryService
