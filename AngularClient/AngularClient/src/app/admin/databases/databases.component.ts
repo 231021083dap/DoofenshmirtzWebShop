@@ -7,5 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./databases.component.css']
 })
 export class DatabasesComponent implements OnInit {
-  ngOnInit
+
+
+
+  constructor() {}
+  ngOnInit(): void {
+    }
+
 }

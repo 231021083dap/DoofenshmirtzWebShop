@@ -1,6 +1,6 @@
 .content {
   display: grid;
-  grid-template-columns: 150px 150px auto 150px;
+  grid-template-columns: auto auto auto auto 150px;
   grid-template-rows: 100px 100px;
   border: 1px solid #000;
   height: 200px;
@@ -9,7 +9,7 @@
 .rep {
   grid-column-start: 1;
   grid-row-start: 1;
-  width: 90px;
+  width: auto;
   margin: 10px;
   padding: 10px;
   border: solid 1px #000;
@@ -20,12 +20,12 @@
 }
 
 .dop {
-  grid-column-start: 2;
+  grid-column-start: 3;
   height: 50px;
   margin: 10px;
   padding: 10px;
   border: solid 1px #000;
-  width: 90px;
+  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +47,7 @@
   height: 50px;
   width: 100px;
   grid-row-start: 2;
-  grid-column-start: 4;
+  grid-column-start: 5;
   margin: 20px 10px 10px 10px;
   display: flex;
   justify-content: center;
@@ -67,16 +67,68 @@
 .link{
   text-decoration: none;
 }
-a:hover{
-  color: pink;
+.detailslink a:hover{
+  transition: 0.5s;
+  background-color: black;
+  
 }
+
 .detailslink{
   display: flex;
   justify-content: center;
   align-items: center;
-  grid-column-start: 4;
+  grid-column-start: 5;
   grid-row-start: 1;
   height: 50px;
   width: 100px;
   margin: 10%;
+}
+.detailslink a{
+
+  height: 50px;
+  width: 100px;
+  color: lawngreen;
+  background-color: hotpink;
+  border: solid 1px #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+li{
+  padding: 0px 30px 0px 0px;
+  height: 50px;
+  width: 100px;
+  list-style: none;
+  display:block
+}
+.btn{
+  grid-row-start: 1;
+  grid-column-start: 4;
+}
+.btnDelete{
+  transition: 0.5s;
+  grid-row-start: 2;
+  grid-column-start: 5;
+
+  height: 50px;
+  width: 100px;
+  color:lawngreen;
+  background-color: hotpink;
+}
+.btnDelete:hover{
+  transition: 1s;
+  background-color: #000;
+}
+.usermail{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 50px;
+  border: solid 1px #000;
+  margin: 10px;
+  padding: 10px;
+  grid-row-start: 1;
+  grid-column-start: 2;
 }
