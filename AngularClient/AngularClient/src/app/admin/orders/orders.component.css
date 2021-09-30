@@ -116,6 +116,7 @@ li{
   width: 100px;
   color:lawngreen;
   background-color: #D70170;
+  border: 1px solid #000;
 }
 .btnDelete:hover{
   transition: 1s;
