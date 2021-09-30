@@ -1,18 +1,25 @@
 <div class="content">
-  <p>Category Name:</p>
-  <input [(ngModel)]="category.categoryName">
-  <button (click)="save()">Save</button>
-  <button (click)="cancel()">Cancel</button>
-</div>
+    <div class="create">
+      <h2>Create a new category</h2>
+      <p>Category Name:</p>
+      <input [(ngModel)]="category.categoryName">
+      <br>
+      <button (click)="save()">Save</button>
+      <button (click)="cancel()">Cancel</button>
+    </div>
+    
+    
+    <div class="listcat">
+      <h2>List af categories</h2>
+      <ul>
+        <li *ngFor="let category of categories">
+          {{category.categoryName}}
+          <button (click)="edit(category)">Ret</button>
+          <button (click)="delete(category)">Slet</button>
+          
+          
+        </li>
+      </ul>
+    </div>
 
-<div class="listcat">
-  <ul>
-    <li *ngFor="let category of categories">
-      {{category.categoryName}}
-      <button (click)="edit(category)">Ret</button>
-      <button (click)="delete(category)">Slet</button>
-
-
-    </li>
-  </ul>
 </div>

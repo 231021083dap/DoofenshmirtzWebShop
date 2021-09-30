@@ -4,6 +4,7 @@
   grid-template-rows: 100px 100px;
   border: 1px solid #000;
   height: 200px;
+  background-color: teal;
 }
 
 .rep {
@@ -88,7 +89,7 @@
   height: 50px;
   width: 100px;
   color: lawngreen;
-  background-color: hotpink;
+  background-color: #D70170;
   border: solid 1px #000;
   display: flex;
   justify-content: center;
@@ -114,7 +115,7 @@ li{
   height: 50px;
   width: 100px;
   color:lawngreen;
-  background-color: hotpink;
+  background-color: #D70170;
 }
 .btnDelete:hover{
   transition: 1s;
