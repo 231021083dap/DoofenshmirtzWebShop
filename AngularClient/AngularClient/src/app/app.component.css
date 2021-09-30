@@ -6,13 +6,13 @@ article{
     display:grid;
 }
 
-.clientSide, .clientSide header{
+.clientSide, .clientSide header, .clientSide nav{
     display: inherit;
-    grid-template-columns:auto;
-    grid-template-rows:auto;
-    grid-column-start:1;
-    grid-column-end: 3;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
     text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 .clientSide header{
     background-color:rgb(70, 18, 80);
@@ -24,6 +24,8 @@ article{
 .clientSide nav, .clientSide nav ul{
     display:flex;
     justify-content: space-between;
+    background-color:lightgray
+
 }
 .clientSide nav ul li{
     display: flex;
@@ -32,11 +34,11 @@ article{
 }
 .clientSide nav ul li a{
     padding:10px;
-    border:1px solid #000;
     border-radius: 10px;
     transition: 0.7s;
 }
 .clientSide nav ul li a:hover{
+    border:1px solid #000;
     background-color: #ccc;
     transition: 0.7s;
     box-shadow: 1px 1px 5px #000;
@@ -48,14 +50,38 @@ article{
     grid-template-rows: auto;
     grid-column-start:1;
     grid-column-end:1;
+    background-color: #444;
+    width: 100%;
+}
+.adminSide nav{
+    margin:10px;
+    padding:10px;
+}
+.adminSide nav li{
+    width:200px;
+    border:1px solid #f00;
+}
+.adminSide nav li a{
+    display: flex;
+    color: #fff;
+    border:1px solid #000;
+    margin:10px;
+    padding:10px;
+}
+.adminSide nav li a img{
+    width: 20px;
+    height: 20px;
+    border:1px solid #000;
+    margin:10px;
+}
+.adminSide nav li a label{
+    margin:10px;
 }
 
 .container{
     display: inherit;
-    grid-template-columns:5% auto 10%;
-    grid-template-rows:auto;
-    grid-column-start:2;
-    grid-column-end:2;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
 }
 
 footer{

@@ -2,7 +2,7 @@
     <img class="banner-img" src="#" alt="big fucking image">
 </div>
 <div class="content">
-    <div class="item" *ngFor="let product of products">
+    <div class="item" *ngFor="let product of products |slice: 0:3">
         <div class="portrait">
             <img class="portrait-img" src="#" alt="Item Portrait">
         </div>
