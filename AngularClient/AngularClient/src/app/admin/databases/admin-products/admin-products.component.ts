@@ -10,7 +10,6 @@ import { productService } from 'src/app/product.service';
 })
 export class AdminProductsComponent implements OnInit {
   products:products[] = [];
-  getNav: any;
   constructor(
     private productService: productService, 
     private router: Router) { }
@@ -19,6 +18,6 @@ export class AdminProductsComponent implements OnInit {
   this.productService.getProducts().subscribe(a => this.products = a);
   }
   newItem(): void{
-    this.router.navigateByUrl('/admin/databases/singleProduct/new');
+    this.router.navigate(['/admin/databases/singleProduct/new']);
   }
 }
