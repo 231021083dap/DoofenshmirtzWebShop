@@ -40,7 +40,7 @@ id:number,
 email:string,
 username:string,
 role?: Role,
-token: string
+token?: string
 }
 export enum Role{
     User = 'User',
