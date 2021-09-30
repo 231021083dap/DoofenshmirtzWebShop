@@ -39,13 +39,12 @@ export interface User{
 id:number,
 email:string,
 username:string,
-role?: Role
+role?: Role,
 token: string
 }
 export enum Role{
     User = 'User',
     Admin = 'Admin'
-
 }
 export interface Orders{
     id:number,
