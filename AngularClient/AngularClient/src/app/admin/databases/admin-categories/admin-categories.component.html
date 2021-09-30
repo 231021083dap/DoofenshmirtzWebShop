@@ -1,6 +1,6 @@
 <div class="content">
   <p>Category Name:</p>
-  <input [(ngModel)]="category.name">
+  <input [(ngModel)]="category.categoryName">
   <button (click)="save()">Save</button>
   <button (click)="cancel()">Cancel</button>
 </div>
@@ -8,7 +8,7 @@
 <div class="listcat">
   <ul>
     <li *ngFor="let category of categories">
-      {{category.name}}
+      {{category.categoryName}}
       <button (click)="edit(category)">Ret</button>
       <button (click)="delete(category)">Slet</button>
 

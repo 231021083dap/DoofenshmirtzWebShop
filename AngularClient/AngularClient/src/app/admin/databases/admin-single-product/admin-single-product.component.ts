@@ -12,11 +12,23 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AdminSingleProductComponent implements OnInit {
   productId: number;
   categories: Category[] = [];
-  category: Category = {id:0, name:''}
+  category: Category = {id:0, categoryName:''}
   gallery: productGallery[] = []
   products: products[] = []
-  product: products = {id: 0, name: '', description:'', stock: 0, price: 0, categoryId: this.category, imageGallery:this.gallery};
-  constructor(private router: Router, private actRoute: ActivatedRoute, private categoryService: CategoryService, private productService: productService) { }
+  product: products = {
+    id: 0, 
+    name: '', 
+    description:'', 
+    stock: 0, 
+    price: 0, 
+    categoryId: this.category, 
+    imageGallery:this.gallery};
+  constructor(
+    private router: Router, 
+    private actRoute: ActivatedRoute, 
+    private categoryService: CategoryService, 
+    private productService: productService
+    ) { }
 
   ngOnInit(): void {
     this.productId = parseInt(this.actRoute.snapshot.params.id);

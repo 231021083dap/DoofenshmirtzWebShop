@@ -11,7 +11,7 @@
     <section class="rightPanel">
         <input type="text" placeholder="Product Name" [value]="product.name" [(ngModel)]="product.name">
         <select name="categoryList" id="categoryList" [(ngModel)]="product.categoryId">
-            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.categoryName}}</option>
         </select>
         <textarea id="desc"  placeholder="description" [value]="product.description"[(ngModel)]="product.description"></textarea>
         <div>

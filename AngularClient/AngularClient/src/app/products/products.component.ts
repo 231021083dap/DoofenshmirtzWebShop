@@ -12,7 +12,7 @@ export class ProductsComponent implements OnInit {
   public searchInput: string;
   products: products[] = [];
   categories:Category[] = [];
-  category: Category = {id: 0, name: ''};
+  category: Category = {id: 0, categoryName: ''};
   constructor(private productService: productService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {

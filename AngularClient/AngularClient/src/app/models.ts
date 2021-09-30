@@ -1,6 +1,6 @@
 export interface Category{
     id: number,
-    name: string
+    categoryName: string
 }
 
 export interface products{
