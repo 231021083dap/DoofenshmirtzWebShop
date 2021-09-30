@@ -9,7 +9,8 @@ export interface products{
     description: String,
     stock: number,
     price: number,
-    categoryId?: Category,
+    categoryId: number,
+    category?: Category,
     imageGallery: productGallery[]
 }
 export interface productGallery{

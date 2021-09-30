@@ -19,8 +19,9 @@ export class SingleProductComponent implements OnInit {
     id: 0, name: '', 
     description:'', 
     stock: 0, 
-    price: 0, 
-    categoryId: this.category, 
+    price: 0,
+    categoryId: 0,
+    category: this.category, 
     imageGallery:this.gallery
   };
   constructor(
