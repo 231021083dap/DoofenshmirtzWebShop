@@ -50,6 +50,7 @@ namespace DoofenshmirtzsWebShop.Repositories
                 updateProduct.productPrice = product.productPrice;
                 updateProduct.categoryID = product.categoryID;
                 updateProduct.ImageList = product.ImageList;
+                await _productContext.SaveChangesAsync();
             }
             return updateProduct;
         }

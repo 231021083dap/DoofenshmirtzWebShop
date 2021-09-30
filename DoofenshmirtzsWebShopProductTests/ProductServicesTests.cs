@@ -136,11 +136,11 @@ namespace DoofenshmirtzsWebShopProductTests
         {
             UpdateProduct updateProduct = new UpdateProduct
             {
-                productName = "Steal-Your-Meme-Inator",
-                productDescription = "Steal your friends memes in the name of Evil!",
-                productStock = 200,
-                productPrice = 6969,
-                categoryID = 1
+                name = "Steal-Your-Meme-Inator",
+                description = "Steal your friends memes in the name of Evil!",
+                stock = 200,
+                price = 6969,
+                categoryId = 1
             };
             Product product = new Product
             {
@@ -155,22 +155,22 @@ namespace DoofenshmirtzsWebShopProductTests
             var result = await _sut.updateProduct(1, updateProduct);
             NotNull(result);
             IsType<ProductResponse>(result);
-            Equal(updateProduct.productName, result.name);
-            Equal(updateProduct.productDescription, result.description);
-            Equal(updateProduct.productStock, result.stock);
-            Equal(updateProduct.productPrice, result.price);
-            Equal(updateProduct.categoryID, result.categoryId);
+            Equal(updateProduct.name, result.name);
+            Equal(updateProduct.description, result.description);
+            Equal(updateProduct.stock, result.stock);
+            Equal(updateProduct.price, result.price);
+            Equal(updateProduct.categoryId, result.categoryId);
         }
         [Fact]
         public async void returnUpdateError_WhenProductNotFound() 
         {
             UpdateProduct updateProduct = new UpdateProduct
             {
-                productName = "Cope-Paste-Everything-you-have-already-done-inator",
-                productDescription = "Tired of wring everything again and again? Then this inator is for you!",
-                productStock = 200,
-                productPrice = 7000,
-                categoryID = 1
+                name = "Cope-Paste-Everything-you-have-already-done-inator",
+                description = "Tired of wring everything again and again? Then this inator is for you!",
+                stock = 200,
+                price = 7000,
+                categoryId = 1
             };
             _productRepository.Setup(a => a.updateProduct(IsAny<int>(), IsAny<Product>())).ReturnsAsync(() => null);
             var result = await _sut.updateProduct(1, updateProduct);
