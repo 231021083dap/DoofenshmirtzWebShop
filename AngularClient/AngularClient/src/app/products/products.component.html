@@ -5,7 +5,7 @@
         <!--DUMMY DATA - REMEMBER TO CHANGE TO DATABASE DATA-->
         <select id="dropdownCategory">
             <option value="0" selected disabled hidden>Select Category</option>
-            <option *ngFor="let category of categories" [value]="category.id" >{{category.name}}</option>
+            <option *ngFor="let category of categories" [value]="category.id" >{{category.categoryName}}</option>
         </select>
         <br>
         <select name="sort" id="sort">
