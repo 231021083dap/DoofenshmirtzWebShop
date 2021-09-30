@@ -1,5 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -49,5 +50,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
+  toUserPage(): void{
+    this.router.navigate(['/userpage']);
+  }
 }

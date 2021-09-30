@@ -1,3 +1,12 @@
+*{
+    border:1px solid #000;
+}
+section{
+    width:100%;
+}
+li{
+    list-style: none;
+}
 .search{
     display: flex;
     justify-content: space-evenly;
@@ -6,6 +15,11 @@
 .result ul, .content a{
     display:grid;
     grid-template-columns: 20% 40% 20% 20%;
+}
+.result ul{
+    margin:10px;
+    display: flex;
+    justify-content: space-evenly;
 }
 .result ul li{
     border:1px solid #000;
