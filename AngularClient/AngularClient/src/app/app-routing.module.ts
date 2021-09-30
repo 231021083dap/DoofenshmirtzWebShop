@@ -27,6 +27,7 @@ const routes: Routes = [
   {path: 'products', component:ProductsComponent},
   {path: 'signup', component:SignupComponent},
   {path: 'singleproduct', component:SingleProductComponent},
+  {path: 'singleproduct/:id', component:SingleProductComponent},
   {path: 'userpage', component:UserPageComponent},
   {path: 'admin/dashboard', component:DashboardComponent},
   {path: 'admin/databases/products', component:AdminProductsComponent},
