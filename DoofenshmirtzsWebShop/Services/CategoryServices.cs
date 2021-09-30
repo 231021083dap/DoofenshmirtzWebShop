@@ -53,7 +53,7 @@ namespace DoofenshmirtzsWebShop.Services
         {
             Category category = new Category
             {
-                categoryName = newCategory.name
+                categoryName = newCategory.categoryName
             };
 
             category = await _categoryRepository.create(category);

@@ -56,7 +56,7 @@ namespace DoofenshmirtzsWebshopCategoryTests
             int categoryID = 1;
             NewCategory newCategory = new NewCategory
             {
-                name = "Inators"
+                categoryName = "Inators"
             };
 
             Category category = new Category
