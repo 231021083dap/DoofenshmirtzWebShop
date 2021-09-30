@@ -22,6 +22,7 @@ export class AdminUsersComponent implements OnInit {
     id: 0,
     email: '',
     username: '',
+    password: '',
     token: ''
   }
 
@@ -39,6 +40,7 @@ export class AdminUsersComponent implements OnInit {
       id: 0,
       email: '',
       username: '',
+      password: '',
       token: ''
     }
     
