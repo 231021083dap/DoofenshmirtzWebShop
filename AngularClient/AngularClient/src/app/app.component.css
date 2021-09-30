@@ -2,81 +2,72 @@ li, a{
     list-style: none;
     text-decoration: none;
 }
-.clientSide{
-    display: flex;
-    flex-direction: column;
-}
-
-.clientSide header{
-    grid-area: header;
-}
-.clientSide nav{
-    grid-area: nav;
-    display: flex;
-    justify-content: space-between;
-}
-.clientSide nav ul{
-    display: flex;
-    justify-content: space-evenly;
-}
-.clientSide nav ul li{
-    margin:10px;
-}
-.clientSide nav ul li a{
-    padding:10px;
-    border-radius: 10px;
-    transition: 0.7s;
-    color:#000;
-}
-.clientSide nav ul li a:hover{
-    background-color: #ddd;
-    transition: 0.7s;
-    box-shadow: 2px 2px 5px;
-}
-.adminSide{
+article{
     display:grid;
-    grid-template-columns: 25% auto;
-    grid-template-areas: 
-    "nav main"
-    "nav main";
 }
 
-.adminSide nav{
-    grid-area: nav  ;
-    background-color:#aaa;
+.clientSide, .clientSide header{
+    display: inherit;
+    grid-template-columns:auto;
+    grid-template-rows:auto;
+    grid-column-start:1;
+    grid-column-end: 3;
+    text-align: center;
 }
-.adminSide nav ul li{
-    margin:10px;
-    border:1px solid #000;
-}
-.adminSide nav ul li a{
-    display: flex;
-    justify-content: space-between;
-    padding:10px;
-}
-.adminSide nav ul li a img{
-    width:20px;
-    height: 20px;
-    border:1px solid #000;
-}
-.adminSide nav ul li label:hover{
-    cursor: pointer;
-}
-
-.container > .clientSide, .adminSide{
-    grid-area: main;
-}
-
-footer{
+.clientSide header{
+    background-color:rgb(70, 18, 80);
+    height:120px;
     display:flex;
     justify-content: center;
     align-items: center;
 }
+.clientSide nav, .clientSide nav ul{
+    display:flex;
+    justify-content: space-between;
+}
+.clientSide nav ul li{
+    display: flex;
+    justify-content: space-evenly;
+    margin:10px;
+}
+.clientSide nav ul li a{
+    padding:10px;
+    border:1px solid #000;
+    border-radius: 10px;
+    transition: 0.7s;
+}
+.clientSide nav ul li a:hover{
+    background-color: #ccc;
+    transition: 0.7s;
+    box-shadow: 1px 1px 5px #000;
+}
+
+.adminSide{
+    display: inherit;
+    grid-template-columns: 25% auto;
+    grid-template-rows: auto;
+    grid-column-start:1;
+    grid-column-end:1;
+}
+
+.container{
+    display: inherit;
+    grid-template-columns:5% auto 10%;
+    grid-template-rows:auto;
+    grid-column-start:2;
+    grid-column-end:2;
+}
+
+footer{
+    grid-template-columns:auto;
+    grid-template-rows:auto;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding:20px;
+}
 
 footer ul{
     display: flex;
-}
-
-footer ul li{
-    margin:10px;
+    justify-content: center;
+    align-items: center;
 }
