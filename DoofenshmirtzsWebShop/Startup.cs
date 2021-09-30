@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 namespace DoofenshmirtzsWebShop
 {
@@ -62,7 +63,10 @@ namespace DoofenshmirtzsWebShop
             services.AddScoped<IUserService, UserServices>();
             services.AddScoped<IUserRepository, UserRepository>();
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x =>
+            {
+                x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DoofenshmirtzsWebShop", Version = "v1" });
