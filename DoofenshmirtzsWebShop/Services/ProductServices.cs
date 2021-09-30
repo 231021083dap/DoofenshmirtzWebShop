@@ -76,11 +76,11 @@ namespace DoofenshmirtzsWebShop.Services
         {
             Product product = new Product
             {
-                productName = newProduct.productName,
-                productDescription = newProduct.productDescription,
-                productStock = newProduct.productStock,
-                productPrice = newProduct.productPrice,
-                categoryID = newProduct.categoryID
+                productName = newProduct.name,
+                productDescription = newProduct.description,
+                productStock = newProduct.stock,
+                productPrice = newProduct.price,
+                categoryID = newProduct.categoryId
             };
             product = await _productRepository.newProduct(product);
 

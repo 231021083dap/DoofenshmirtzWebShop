@@ -105,11 +105,11 @@ namespace DoofenshmirtzsWebShopProductTests
         {
             NewProduct newProduct = new NewProduct
             {
-                productName = "Stop-Slacking-Off-And-Get-To-Work-Inator",
-                productDescription = "the perfect gift for lazy people.",
-                productStock = 400,
-                productPrice = 7999,
-                categoryID = 1
+                name = "Stop-Slacking-Off-And-Get-To-Work-Inator",
+                description = "the perfect gift for lazy people.",
+                stock = 400,
+                price = 7999,
+                categoryId = 1
             };
             Product product = new Product
             {
@@ -125,11 +125,11 @@ namespace DoofenshmirtzsWebShopProductTests
             NotNull(result);
             IsType<ProductResponse>(result);
             Equal(1, result.ID);
-            Equal(newProduct.productName, result.name);
-            Equal(newProduct.productDescription, result.description);
-            Equal(newProduct.productStock, result.stock);
-            Equal(newProduct.productPrice, result.price);
-            Equal(newProduct.categoryID, result.categoryId);
+            Equal(newProduct.name, result.name);
+            Equal(newProduct.description, result.description);
+            Equal(newProduct.stock, result.stock);
+            Equal(newProduct.price, result.price);
+            Equal(newProduct.categoryId, result.categoryId);
         }
         [Fact]
         public async void returnUpdate_WhenProductIsUpdated()
