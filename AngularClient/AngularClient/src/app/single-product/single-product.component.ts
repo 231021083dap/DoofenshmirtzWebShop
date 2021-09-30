@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/category.service';
+import { Category, productGallery, products } from 'src/app/models';
+import { productService } from 'src/app/product.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-single-product',
@@ -6,10 +10,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./single-product.component.css']
 })
 export class SingleProductComponent implements OnInit {
-
-  constructor() { }
+  productId: number;
+  categories: Category[] = [];
+  category: Category = {id:0, categoryName:''}
+  gallery: productGallery[] = []
+  products: products[] = []
+  product: products = {
+    id: 0, name: '', 
+    description:'', 
+    stock: 0, 
+    price: 0, 
+    categoryId: this.category, 
+    imageGallery:this.gallery
+  };
+  constructor(
+    private router: Router, 
+    private actRoute: ActivatedRoute, 
+    private categoryService: CategoryService, 
+    private productService: productService
+    ) { }
 
   ngOnInit(): void {
+    this.productId = parseInt(this.actRoute.snapshot.params.id);
+    this.categoryService.getCategories().subscribe(a => this.categories = a);
+    console.log(this.productId);
+    this.productService.getProductById(this.productId).subscribe(a => this.product = a);
   }
 
 }

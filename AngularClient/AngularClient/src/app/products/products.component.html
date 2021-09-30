@@ -18,11 +18,13 @@
     </div>
     <div class="display">
         <div class="item" *ngFor="let product of products">
+            <a routerLink="/singleproduct/{{product.id}}">
             <div class="portrait">
                 <img src="#" alt="portrait">
             </div>
             <h3>{{product.name}}</h3>
             <p>{{product.description}}</p>
+            </a>
         </div>
     </div>
 </div>
