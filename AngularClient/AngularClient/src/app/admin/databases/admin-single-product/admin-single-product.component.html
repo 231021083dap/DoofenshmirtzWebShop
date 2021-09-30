@@ -1,0 +1,30 @@
+<article>
+    <section class="banner">
+        <header>
+            <h2>PRODUCT PAGE</h2>
+        </header>
+    </section>
+    <section class="leftPanel">
+        <img src="#" alt="Product Image">
+        <input type="file">
+    </section>
+    <section class="rightPanel">
+        <input type="text" placeholder="Product Name" [value]="product.name" [(ngModel)]="product.name">
+        <select name="categoryList" id="categoryList" [(ngModel)]="product.categoryId">
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+        <textarea id="desc"  placeholder="description" [value]="product.description"[(ngModel)]="product.description"></textarea>
+        <div>
+            <label>Stock:</label><input type="number" placeholder="Stock" [value]="product.stock" [(ngModel)]="product.stock">
+            <label>$</label><input type="number" placeholder="Price" [value]="product.price"[(ngModel)]="product.price">
+        </div>
+    </section>
+    <section class="footer" *ngIf="!isNew()">
+        <button (click)="saveChanges()">Edit</button>
+        <button (click)="onDelete()">Delete</button>
+    </section>
+    <section class="footer" *ngIf="isNew()">
+        <button (click)="onCancel()">Cancel</button>
+        <button (click)="saveChanges()">Create</button>
+    </section>
+</article>

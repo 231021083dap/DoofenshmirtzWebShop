@@ -1,0 +1,37 @@
+header{
+    border:1px solid #000;
+    text-align: center;
+    margin:10px;
+    border-radius: 10px;
+}
+article{
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+.activities-section{
+    border:1px solid #000;
+    padding:10px;
+    margin:10px;
+}
+.activities-section h5{
+    text-align: center;
+    border:1px solid #000;
+    border-radius:10px;
+    padding:10px;
+}
+div{
+    border:1px solid #000;
+    border-radius:20px;
+    padding:10px;
+}
+
+.left-panel{
+    margin:10px;
+    height:300px;
+}
+
+.right-panel{
+    margin:10px;
+    height: 200px;
+    max-height: 200px;
+}

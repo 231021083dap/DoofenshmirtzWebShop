@@ -1,0 +1,86 @@
+article{
+    display:grid;
+    grid-template-columns: 40% auto;
+    grid-template-rows: 10% 10% 50% 10% 20%;
+    column-gap: 10px;
+    row-gap: 10px;
+    grid-template-areas:
+    "header header"
+    "Lpanel Rpanel"
+    "Lpanel Rpanel"
+    "Lpanel Rpanel"
+    "Lpanel Rpanel"
+    ". Rpanel"
+    "footer footer";
+}
+section{
+    display: flex;
+    flex-direction: column;
+}
+.banner{
+    border:1px solid #000;
+    border-radius: 10px;
+    margin:10px;
+    padding:10px;
+    grid-area: header;
+    text-align: center;
+}
+.leftPanel{
+    grid-area: Lpanel;
+    margin:10px;
+}
+.leftPanel img{
+    border:1px solid #000;
+    border-radius: 20px;
+    height: 350px;
+}
+.rightPanel{
+    grid-area: Rpanel;
+    margin:10px;
+}
+#desc{
+    height: 150px;
+}
+.rightPanel div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rightPanel div label{
+    font-size: 24px;
+}
+.rightPanel div input{
+    width:80%;
+}
+header{
+    grid-area: header;
+}
+textarea{
+    resize: none;
+    border-radius: 20px;
+    padding:10px;
+    margin:10px;
+}
+.footer{
+    grid-area: footer;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.footer button{
+    padding:20px;
+    width:200px;
+    font-size: 20px;
+    margin:10px;
+    box-shadow: 1px 1px 5px;
+}
+input{
+    height:60px;
+    border-radius:20px;
+    font-size: 15px;
+    margin:10px;
+}
+select{
+    height: 60px;
+    margin:10px;
+}

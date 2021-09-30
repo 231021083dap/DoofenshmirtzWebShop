@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { products, productGallery, Category } from '../models';
-import { productService, galleryService, categoryService } from '../service-list.service';
+import { productService } from '../product.service';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-products',
@@ -8,11 +9,16 @@ import { productService, galleryService, categoryService } from '../service-list
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  public searchInput: string;
   products: products[] = [];
-  constructor(private productService: productService) { }
+  categories:Category[] = [];
+  category: Category = {id: 0, name: ''};
+  constructor(private productService: productService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    console.log("Sup");
     this.productService.getProducts().subscribe(a => this.products = a);
+    this.categoryService.getCategories().subscribe(a =>  this.categories = a);
   }
 
 }

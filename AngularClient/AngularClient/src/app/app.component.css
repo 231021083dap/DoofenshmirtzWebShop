@@ -1,38 +1,82 @@
-header{
-    text-align: center;
+li, a{
+    list-style: none;
+    text-decoration: none;
+}
+.clientSide{
+    display: flex;
+    flex-direction: column;
+}
+
+.clientSide header{
+    grid-area: header;
+}
+.clientSide nav{
+    grid-area: nav;
+    display: flex;
+    justify-content: space-between;
+}
+.clientSide nav ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+.clientSide nav ul li{
+    margin:10px;
+}
+.clientSide nav ul li a{
+    padding:10px;
+    border-radius: 10px;
+    transition: 0.7s;
+    color:#000;
+}
+.clientSide nav ul li a:hover{
+    background-color: #ddd;
+    transition: 0.7s;
+    box-shadow: 2px 2px 5px;
+}
+.adminSide{
+    display:grid;
+    grid-template-columns: 25% auto;
+    grid-template-areas: 
+    "nav main"
+    "nav main";
+}
+
+.adminSide nav{
+    grid-area: nav  ;
+    background-color:#aaa;
+}
+.adminSide nav ul li{
+    margin:10px;
     border:1px solid #000;
 }
-nav{
-    border:1px solid #000;
-    display:flex;
+.adminSide nav ul li a{
+    display: flex;
     justify-content: space-between;
     padding:10px;
 }
-ul{
-    display:flex;
-    justify-content: center;
-}
-li{
-    list-style:none;
-}
-a.headerLink{
-    margin:10px;
-    padding:10px;
-    padding:10px;
+.adminSide nav ul li a img{
+    width:20px;
+    height: 20px;
     border:1px solid #000;
-    text-decoration: none;
-    border-radius: 10px;
 }
-a.leftLink{
-    width:200px;
+.adminSide nav ul li label:hover{
+    cursor: pointer;
 }
+
+.container > .clientSide, .adminSide{
+    grid-area: main;
+}
+
 footer{
-    border: 1px solid #000;
-    height:150px;
     display:flex;
     justify-content: center;
     align-items: center;
 }
-a.footerLink{
-    padding:0 10px;
+
+footer ul{
+    display: flex;
+}
+
+footer ul li{
+    margin:10px;
 }

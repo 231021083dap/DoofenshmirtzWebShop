@@ -1,21 +1,44 @@
-<header>
-  <h1>DOOFENSHIRTZ EEEEVILLL WEEEEEEBSHOOOOOOP~</h1>
-</header>
-<nav>
-  <ul>
-    <li><a class="headerLink leftLink" href="/">Home</a></li>
-    <li><a class="headerLink leftLink" href="/products">Products</a></li>
-  </ul>
-  <ul>
-    <li><a class="headerLink rightLink" href="/login">Log In</a></li>
-    <li><a class="headerLink rightLink" href="/cart">Cart</a></li>
-  </ul>
-</nav>
-<router-outlet></router-outlet>
-<footer>
-  <ul>
-    <li><a class="footerLink" href="/contact">Contact Us</a></li>
-    <li>|</li>
-    <li><a class="footerLink" href="/about">About Us</a></li>
-  </ul>
-</footer>
+<a routerLink="/">developer link to Client Page    </a><br>
+<a routerLink="/admin/dashboard">developer link to admin site    </a><br>
+<a routerLink="/userpage">developer link to User Page</a><br>
+<a routerLink="/admin/orders">developer link to Orders Page in Admin</a>
+
+<article>
+    <section class="clientSide" *ngIf="!isOnAdminPage()">
+      <header>
+        <h1>DOOFENSHMIIIIRTZ EEEVIIIL WEEEEEBSHOOOOOP~</h1>
+      </header>
+      <nav>
+        <ul>
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/products">Product</a></li>
+        </ul>
+        <ul>
+          <li><a routerLink="/login">Login</a></li>
+          <li><a routerLink="/cart">Cart</a></li>
+        </ul>
+      </nav>
+
+    </section>
+    <section class="adminSide" *ngIf="isOnAdminPage()">
+      <nav>
+        <ul>
+          <li><a routerLink="/admin/dashboard"><img src="#" alt="I"><label>Dashboard</label></a></li>
+          <li><a routerLink="/admin/databases/products"><img src="#" alt="I"><label>Databases</label></a></li>
+          <li><a routerLink="/admin/orders"><img src="#" alt="I"><label>Orders</label></a></li>
+        </ul>
+      </nav>
+
+    </section>
+    <section class="container">
+      <router-outlet></router-outlet>
+    </section>
+
+  <footer>
+<ul>
+  <li><a routerLink="/contact">Contact</a></li>
+  <li>|</li>
+  <li><a routerLink="/about">About Us</a></li>
+</ul>
+  </footer>
+</article>

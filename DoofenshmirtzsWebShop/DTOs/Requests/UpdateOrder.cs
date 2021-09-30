@@ -9,11 +9,11 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
 {
     public class UpdateOrder
     {
-        [Required]
-        public DateTime orderDate { get; set; }
-
+        public DateTime date { get; set; }
         [ForeignKey("User.userID")]
         public int userID { get; set; }
-        public int orderItemId { get; set; }
+        
+
+
     }
 }

@@ -34,7 +34,7 @@ namespace DoofenshmirtzsWebShop.Services
             return categories == null ? null : categories.Select(a => new CategoryResponse
             {
                 ID = a.categoryID,
-                name = a.categoryName
+                categoryName = a.categoryName
             }).ToList();
         }
 
@@ -45,7 +45,7 @@ namespace DoofenshmirtzsWebShop.Services
             return category == null ? null : new CategoryResponse
             {
                 ID = category.categoryID,
-                name = category.categoryName
+                categoryName = category.categoryName
             };
         }
 
@@ -53,14 +53,14 @@ namespace DoofenshmirtzsWebShop.Services
         {
             Category category = new Category
             {
-                categoryName = newCategory.categoryName
+                categoryName = newCategory.name
             };
 
             category = await _categoryRepository.create(category);
             return category == null ? null : new CategoryResponse
             {
                 ID = category.categoryID,
-                name = category.categoryName
+                categoryName = category.categoryName
             };
         }
 
@@ -68,15 +68,15 @@ namespace DoofenshmirtzsWebShop.Services
         {
             Category category = new Category
             {
-                categoryName = updateCategory.categoryName
+                categoryName = updateCategory.name
             };
 
             category = await _categoryRepository.update(categoryID, category);
 
             return category == null ? null : new CategoryResponse
             {
-                ID = category.categoryID,
-                name = category.categoryName
+                //ID = category.categoryID,
+                categoryName = category.categoryName
             };
         }
 

@@ -12,13 +12,17 @@ import { SingleProductComponent } from './single-product/single-product.componen
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { UserPageComponent } from './user-page/user-page.component';
-import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { AdminDatabaseComponent } from './admin/admin-database/admin-database.component';
-import { AdminNewCategoryComponent } from './admin/admin-new-category/admin-new-category.component';
-import { AdminNewProductComponent } from './admin/admin-new-product/admin-new-product.component';
-import { AdminNewuserComponent } from './admin/admin-newuser/admin-newuser.component';
-import { AdminNewRoleComponent } from './admin/admin-new-role/admin-new-role.component';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { searchPipe } from './products/search.pipe';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { DatabasesComponent } from './admin/databases/databases.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { AdminSingleProductComponent } from './admin/databases/admin-single-product/admin-single-product.component';
+import { AdminCategoriesComponent } from './admin/databases/admin-categories/admin-categories.component';
+import { AdminUsersComponent } from './admin/databases/admin-users/admin-users.component';
+import { AdminProductsComponent } from './admin/databases/admin-products/admin-products.component';
+import { AdminRolesComponent } from './admin/databases/admin-roles/admin-roles.component';
 
 @NgModule({
   declarations: [
@@ -32,17 +36,21 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
     ContactComponent,
     AboutComponent,
     UserPageComponent,
-    AdminDashboardComponent,
-    AdminDatabaseComponent,
-    AdminNewCategoryComponent,
-    AdminNewProductComponent,
-    AdminNewuserComponent,
-    AdminNewRoleComponent,
-    AdminOrdersComponent,
+    searchPipe,
+    DashboardComponent,
+    DatabasesComponent,
+    OrdersComponent,
+    AdminSingleProductComponent,
+    AdminCategoriesComponent,
+    AdminUsersComponent,
+    AdminProductsComponent,
+    AdminRolesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
