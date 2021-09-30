@@ -11,7 +11,7 @@ export class OrdersComponent implements OnInit {
 
 
   Orders: Orders[] = [];
-  user: User = {id: 0, email:'', username:'', token:'' };
+  user: User = {id: 0, email:'', username:'', password: '', token:'' };
   orderItems: OrderItems = {id:0,price:0,quantity:0 ,orderID:0, productName: ''}
   constructor(private orderService: OrdersService) { }
 
