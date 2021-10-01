@@ -116,5 +116,49 @@ namespace DoofenshmirtzsWebShop.Controllers
                 return Problem(ex.Message);
             }
         }
+
+        [Authorize(Role.Admin)]
+        [HttpPut("{userID}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> update([FromRoute] int userID, [FromBody] UpdateUser updateUser)
+        {
+            try
+            {
+                UserResponse user = await _userService.update(userID, updateUser);
+                if (user == null)
+                {
+                    return Problem("User wasn't updated - try the fudge again");
+                }
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [Authorize(Role.Admin)]
+        [HttpDelete("{userID}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> delete([FromRoute] int userID)
+        {
+            try
+            {
+                bool result = await _userService.delete(userID);
+                if (!result)
+                {
+                    return Problem("User wasn't deleted - Magic?");
+                }
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
     }
  }
