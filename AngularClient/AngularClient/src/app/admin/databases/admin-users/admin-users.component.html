@@ -3,6 +3,8 @@
     <div class="liu">
         <h2>List of Users</h2>
 <p *ngFor="let users of users">
+    <button (click)="edit(users)">Edit</button>
+    <button (click)="delete(users)">Slet</button>
     {{users.username}}
 </p>
     </div>
@@ -16,10 +18,10 @@
         <input [ngModel]="user.username" class="username input"  id="username-input" type="text" placeholder="Username">
         <br>
         <label class="password"  id="password-label">Password</label>
-        <input class="password input"  id="password-input" type="password" placeholder="Password">
+        <input [ngModel]="user.password" class="password input"  id="password-input" type="password" placeholder="Password">
         <br>
         <label class="password"  id="repeatpw-label">Repeat Password</label>
-        <input [ngModel]="user.password" class="password input"  id="repeatpw-input" type="password" placeholder="Password">
+        <input  class="password input"  id="repeatpw-input" type="password" placeholder="Password">
         <select [ngModel]="user.role" class="roleselect">
             <option [value]="0">Choose Role</option>
             <option >User</option>
