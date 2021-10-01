@@ -70,10 +70,10 @@ namespace DoofenshmirtzsWebShopUserTests
         {
             NewUser newUser = new NewUser
             {
-                userEmail = "platypus@perry.com",
-                userPassword = "Grrrr",
-                userName = "Agent P",
-                userRole = Role.User
+                email = "platypus@perry.com",
+                password = "Grrrr",
+                username = "Agent P",
+                role = Role.User
             };
             int ID = 1;
             User user = new User
@@ -93,10 +93,10 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.NotNull(result);
             Assert.IsType<UserResponse>(result);
             Assert.Equal(ID, result.ID);
-            Assert.Equal(newUser.userEmail, result.email);
-            Assert.Equal(newUser.userPassword, result.password);
-            Assert.Equal(newUser.userName, result.username);
-            Assert.Equal(newUser.userRole, result.Role);
+            Assert.Equal(newUser.email, result.email);
+            Assert.Equal(newUser.password, result.password);
+            Assert.Equal(newUser.username, result.username);
+            Assert.Equal(newUser.role, result.Role);
         }
 
         [Fact]

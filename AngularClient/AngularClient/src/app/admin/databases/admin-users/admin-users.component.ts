@@ -41,7 +41,6 @@ export class AdminUsersComponent implements OnInit {
       email: '',
       username: '',
       password: '',
-      token: ''
     }
     
 
@@ -49,12 +48,12 @@ export class AdminUsersComponent implements OnInit {
   edit(user:User):void{
     this.user = user;
   }
-  delete(user:User):void{
+  /*delete(user:User):void{
     if(confirm('Do you want to delete?')){
       this.userService.deleteUser(user.id)
       .subscribe(() => {this.getUsers()})
     }
-  }
+  }*/
   save():void{
     if(this.user.id == 0){
       this.userService.newUser(this.user)
@@ -63,11 +62,11 @@ export class AdminUsersComponent implements OnInit {
         this.cancel();
       })
     }
-    else{
+    /*else{
       this.userService.updateUser(this.user.id, this.user)
       .subscribe(() => {this.cancel})
       this.cancel();
-    }
+    } */
   }
 
 

@@ -145,9 +145,9 @@ namespace DoofenshmirtzsWebShopUserTests
 
             NewUser newUser = new NewUser
             {
-                userEmail = "perry@platypus.com",
-                userName = "Perry",
-                userPassword = "Platypus"
+                email = "perry@platypus.com",
+                username = "Perry",
+                password = "Platypus"
             };
             User user = new User
             {
