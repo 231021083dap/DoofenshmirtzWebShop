@@ -77,9 +77,9 @@ namespace DoofenshmirtzsWebShop.Services
         {
             User user = new User
             {
-                userEmail = newUser.userEmail,
-                userPassword = newUser.userPassword,
-                userName = newUser.userName,
+                userEmail = newUser.email,
+                userPassword = newUser.password,
+                userName = newUser.username,
                 userRole = Helpers.Role.User // Force all users created through register to Role.User
             };
 

@@ -22,28 +22,28 @@ namespace DoofenshmirtzsWebShop.Controllers
             _userService = userService;
         }
 
-        [AllowAnonymous]
-        [HttpPost("Authorization")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Authenticate(LoginRequest login)
-        {
-            try
-            {
-                LoginResponse response = await _userService.Authenticate(login);
-                if (response == null)
-                {
-                    return Unauthorized();
-                }
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return Problem(ex.Message);
-            }
-        }
+        //[AllowAnonymous]
+        //[HttpPost("Authorization")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //public async Task<IActionResult> Authenticate(LoginRequest login)
+        //{
+        //    try
+        //    {
+        //        LoginResponse response = await _userService.Authenticate(login);
+        //        if (response == null)
+        //        {
+        //            return Unauthorized();
+        //        }
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Problem(ex.Message);
+        //    }
+        //}
 
         [AllowAnonymous]
         [HttpPost("Register")]
@@ -63,7 +63,7 @@ namespace DoofenshmirtzsWebShop.Controllers
             }
         }
 
-        [Authorize(Role.Admin)] // Only admins are allowed to enter this endpoint
+        //[Authorize(Role.Admin)] // Only admins are allowed to enter this endpoint
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -91,7 +91,7 @@ namespace DoofenshmirtzsWebShop.Controllers
         }
 
 
-        [Authorize(Role.User, Role.Admin)]
+        //[Authorize(Role.User, Role.Admin)]
         [HttpGet("{user.ID}")]
         public async Task<IActionResult> getByID([FromRoute] int userID)
         {
