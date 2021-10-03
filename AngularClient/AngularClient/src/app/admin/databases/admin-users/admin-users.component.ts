@@ -1,15 +1,7 @@
 import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler/src/core';
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  Role,
-  User
-} from 'src/app/models';
-import {
-  UserService
-} from 'src/app/user.service';
+import { Component, OnInit } from '@angular/core';
+import { Role, User } from 'src/app/models';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-admin-users',
@@ -43,7 +35,6 @@ export class AdminUsersComponent implements OnInit {
       password: '',
       token: ''
     }
-    
 
   }
   edit(user:User):void{
@@ -69,6 +60,4 @@ export class AdminUsersComponent implements OnInit {
       this.cancel();
     }
   }
-
-
 }
