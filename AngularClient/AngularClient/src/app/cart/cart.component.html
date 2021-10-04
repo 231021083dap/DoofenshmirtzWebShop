@@ -14,9 +14,9 @@
             </div>
             <div>
                 <h4>
-                    Product Title
+                    {{item.name}}
                 </h4>
-                <p>Description</p>
+                <p>{{item.description}}</p>
             </div>
         </div>
         <div class="quantity">
@@ -32,7 +32,7 @@
             <button>X</button>
         </div>
         <div class="price">
-            <label>$9.99</label>
+            <label>{{item.price | currency}}</label>
         </div>
     </div>
     <div class="checkout">
