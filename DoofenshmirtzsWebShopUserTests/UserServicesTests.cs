@@ -172,8 +172,8 @@ namespace DoofenshmirtzsWebShopUserTests
             {
                 userID = ID,
                 userEmail = "tests@testa.dk",
-                userPassword = "George",
-                userName = "George",
+                userPassword = "it",
+                userName = "works",
                 userRole = Role.User
             };
 
