@@ -118,7 +118,7 @@ namespace DoofenshmirtzsWebShop.Controllers
         }
 
         //[Authorize(Role.Admin)]
-        [HttpPut("{user.ID}")]
+        [HttpPut("{userID}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
