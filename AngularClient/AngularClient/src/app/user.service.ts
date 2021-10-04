@@ -34,6 +34,7 @@ export class UserService {
     return this.http.post < User > (this.apiUrl, user, this.httpOptions)
   };
   updateUser(userID: number, user: User): Observable < User > {
+    console.log(this.apiUrl, userID);
     return this.http.put < User > (`${this.apiUrl}/${userID}`, user, this.httpOptions)
   };
   deleteUser(userID: number): Observable < Boolean > {
