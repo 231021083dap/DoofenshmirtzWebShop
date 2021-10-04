@@ -38,7 +38,7 @@ namespace DoofenshmirtzsWebShopUserTests
                 email = "doofen@evil.com",
                 password = "DamnYouPerry",
                 username = "Doof",
-                Role = DoofenshmirtzsWebShop.Helpers.Role.Admin
+                role = DoofenshmirtzsWebShop.Helpers.Role.Admin
             });
 
             users.Add(new UserResponse
@@ -47,7 +47,7 @@ namespace DoofenshmirtzsWebShopUserTests
                 email = "perry@platypus.com",
                 password = "GrRrRr",
                 username = "Agent P", 
-                Role = DoofenshmirtzsWebShop.Helpers.Role.User
+                role = DoofenshmirtzsWebShop.Helpers.Role.User
             });
 
             _userService.Setup(s => s.getAll())
@@ -91,7 +91,7 @@ namespace DoofenshmirtzsWebShopUserTests
             _sut.ControllerContext.HttpContext.Items["User"] = new UserResponse
             {
                 ID = 2,
-                Role = DoofenshmirtzsWebShop.Helpers.Role.User
+                role = DoofenshmirtzsWebShop.Helpers.Role.User
             };
 
             UserResponse user = new UserResponse

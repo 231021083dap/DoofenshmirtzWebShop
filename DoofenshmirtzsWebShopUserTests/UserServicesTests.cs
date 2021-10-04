@@ -96,7 +96,7 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.Equal(newUser.email, result.email);
             Assert.Equal(newUser.password, result.password);
             Assert.Equal(newUser.username, result.username);
-            Assert.Equal(newUser.role, result.Role);
+            Assert.Equal(newUser.role, result.role);
         }
 
         [Fact]
@@ -139,7 +139,7 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.Equal(user.userEmail, result.email);
             Assert.Equal(user.userPassword, result.password);
             Assert.Equal(user.userName, result.username);
-            Assert.Equal(user.userRole, result.Role);
+            Assert.Equal(user.userRole, result.role);
         }
 
         [Fact]
@@ -160,10 +160,10 @@ namespace DoofenshmirtzsWebShopUserTests
         {
             UpdateUser updateUser = new UpdateUser
             {
-                userEmail = "tests@testa.dk",
-                userPassword = "George",
-                userName = "George",
-                userRole = Role.User
+                email = "tests@testa.dk",
+                password = "George",
+                username = "George",
+                role = Role.User
             };
 
             int ID = 1;
@@ -185,9 +185,9 @@ namespace DoofenshmirtzsWebShopUserTests
             Assert.NotNull(result);
             Assert.IsType<UserResponse>(result);
             Assert.Equal(ID, result.ID);
-            Assert.Equal(updateUser.userEmail, result.email);
-            Assert.Equal(updateUser.userPassword, result.password);
-            Assert.Equal(updateUser.userName, result.username);
+            Assert.Equal(updateUser.email, result.email);
+            Assert.Equal(updateUser.password, result.password);
+            Assert.Equal(updateUser.username, result.username);
 
         }
 
@@ -196,10 +196,10 @@ namespace DoofenshmirtzsWebShopUserTests
         {
             UpdateUser updateUser = new UpdateUser
             {
-                userEmail = "John@dieharder.dk",
-                userPassword = "George",
-                userName = "John",
-                userRole = Role.User
+                email = "John@dieharder.dk",
+                password = "George",
+                username = "John",
+                role = Role.User
             };
 
             int ID = 1;
