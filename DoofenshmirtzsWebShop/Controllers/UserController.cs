@@ -46,7 +46,7 @@ namespace DoofenshmirtzsWebShop.Controllers
         //}
 
         [AllowAnonymous]
-        [HttpPut("Register")]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

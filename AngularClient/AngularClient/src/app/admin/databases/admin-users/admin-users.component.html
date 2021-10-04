@@ -20,9 +20,13 @@
         <label class="password"  id="password-label">Password</label>
         <input [ngModel]="user.password" class="password input"  id="password-input" type="password" placeholder="Password">
         <br>
-        <label class="password"  id="repeatpw-label">Repeat Password</label>
-        <input  class="password input"  id="repeatpw-input" type="password" placeholder="Password">
-        <select [ngModel]="user.role" class="roleselect">
+        
+        <!-- 
+            
+            <label class="password"  id="repeatpw-label">Repeat Password</label>
+            <input  class="password input"  id="repeatpw-input" type="password" placeholder="Password">
+        -->
+            <select [ngModel]="user.role" class="roleselect">
             <option [value]="0">Choose Role</option>
             <option >User</option>
             <option >Admin</option>
