@@ -3,6 +3,7 @@ import { CategoryService } from 'src/app/category.service';
 import { Category, productGallery, products } from 'src/app/models';
 import { productService } from 'src/app/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CartServiceService } from '../cart-service.service';
 
 @Component({
   selector: 'app-single-product',
@@ -25,6 +26,7 @@ export class SingleProductComponent implements OnInit {
     imageGallery:this.gallery
   };
   constructor(
+    private cartService: CartServiceService,
     private router: Router, 
     private actRoute: ActivatedRoute, 
     private categoryService: CategoryService, 
@@ -36,6 +38,10 @@ export class SingleProductComponent implements OnInit {
     this.categoryService.getCategories().subscribe(a => this.categories = a);
     console.log(this.productId);
     this.productService.getProductById(this.productId).subscribe(a => this.product = a);
+  }
+  addToCart(product:products){
+    this.cartService.addToCart(product);
+    alert("Your item has been added to your cart!")
   }
 
 }
