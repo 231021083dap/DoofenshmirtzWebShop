@@ -14,7 +14,6 @@ import { AboutComponent } from './about/about.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { searchPipe } from './products/search.pipe';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { DatabasesComponent } from './admin/databases/databases.component';
 import { OrdersComponent } from './admin/orders/orders.component';
@@ -23,6 +22,7 @@ import { AdminCategoriesComponent } from './admin/databases/admin-categories/adm
 import { AdminUsersComponent } from './admin/databases/admin-users/admin-users.component';
 import { AdminProductsComponent } from './admin/databases/admin-products/admin-products.component';
 import { AdminRolesComponent } from './admin/databases/admin-roles/admin-roles.component';
+import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { AdminRolesComponent } from './admin/databases/admin-roles/admin-roles.c
     ContactComponent,
     AboutComponent,
     UserPageComponent,
-    searchPipe,
     DashboardComponent,
     DatabasesComponent,
     OrdersComponent,
@@ -50,7 +49,8 @@ import { AdminRolesComponent } from './admin/databases/admin-roles/admin-roles.c
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

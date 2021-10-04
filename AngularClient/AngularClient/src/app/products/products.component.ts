@@ -10,6 +10,7 @@ import { CategoryService } from '../category.service';
 })
 export class ProductsComponent implements OnInit {
   public searchInput: string;
+  public dropdownInput: string;
   products: products[] = [];
   categories:Category[] = [];
   category: Category = {id: 0, categoryName: ''};

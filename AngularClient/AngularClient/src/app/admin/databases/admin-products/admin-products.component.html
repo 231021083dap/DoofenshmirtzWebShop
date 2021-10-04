@@ -18,7 +18,7 @@
         </ul>
     </div>
         <!--DISPLAY PRODUCTS-->
-            <div class="content" id="products" *ngFor="let product of products">
+            <div class="content" id="products" *ngFor="let product of products.slice().reverse()">
                 <a routerLink="/admin/databases/singleProduct/{{product.id}}">
                 <img src="#" alt="portrait">
                 <div class="textfield">
