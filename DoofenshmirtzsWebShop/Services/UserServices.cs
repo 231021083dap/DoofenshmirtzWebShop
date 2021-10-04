@@ -40,7 +40,7 @@ namespace DoofenshmirtzsWebShop.Services
                 email = u.userEmail,
                 password = u.userPassword,
                 username = u.userName,
-                Role = u.userRole,
+                role = u.userRole,
             }).ToList();
         }
 
@@ -92,10 +92,10 @@ namespace DoofenshmirtzsWebShop.Services
         {
             User user = new User
             {
-                userEmail = updateUser.userEmail,
-                userName = updateUser.userName,
-                userPassword = updateUser.userPassword,
-                userRole = updateUser.userRole
+                userEmail = updateUser.email,
+                userName = updateUser.username,
+                userPassword = updateUser.password,
+                userRole = updateUser.role
             };
 
             user = await _userRepository.update(userID, user);
@@ -117,7 +117,7 @@ namespace DoofenshmirtzsWebShop.Services
                 email = user.userEmail,
                 password = user.userPassword,
                 username = user.userName,
-                Role = user.userRole
+                role = user.userRole
             };
         }
 

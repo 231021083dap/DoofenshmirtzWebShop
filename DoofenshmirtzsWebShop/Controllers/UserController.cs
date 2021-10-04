@@ -99,7 +99,7 @@ namespace DoofenshmirtzsWebShop.Controllers
             {
                 //Only admins can access other user records
                 var currentUser = (UserResponse)HttpContext.Items["User"];
-                if (currentUser == null || (userID != currentUser.ID && currentUser.Role != Role.Admin))
+                if (currentUser == null || (userID != currentUser.ID && currentUser.role != Role.Admin))
                 {
                     return Unauthorized(new { message = "Unauthorized" });
                 }
