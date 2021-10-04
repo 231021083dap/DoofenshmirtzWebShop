@@ -45,8 +45,8 @@ namespace DoofenshmirtzsWebShop.Controllers
         //    }
         //}
 
-        [AllowAnonymous]
-        [HttpPut("Register")]
+        //[AllowAnonymous]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -118,7 +118,7 @@ namespace DoofenshmirtzsWebShop.Controllers
         }
 
         //[Authorize(Role.Admin)]
-        [HttpPut("{userID}")]
+        [HttpPut("{user.ID}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
