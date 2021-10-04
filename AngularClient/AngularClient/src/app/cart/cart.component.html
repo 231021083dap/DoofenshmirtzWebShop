@@ -35,6 +35,11 @@
             <label>{{item.price | currency}}</label>
         </div>
     </div>
+    <div class="clearcart">
+        <button (click)="clearCart()" class="clearbtn">
+            Clear Cart
+        </button>
+    </div>
     <div class="checkout">
         <div class="tax">
             <p>moms.</p> <p>$1.99</p>

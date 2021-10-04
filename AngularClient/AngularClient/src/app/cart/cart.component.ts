@@ -16,4 +16,12 @@ items = this.cartService.getItems();
     console.log(this.items)
   }
 
+  clearCart(){
+    this.items = this.cartService.clearCart();
+  }
+
+  deleteCartItem(productID:number){
+    // this.items = this.cartService.deleteCartItem(productID);
+  }
+
 }
