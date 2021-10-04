@@ -94,13 +94,20 @@ namespace DoofenshmirtzsWebShop.Services
             {
                 userEmail = updateUser.email,
                 userName = updateUser.username,
-                userPassword = updateUser.password,
+                //userPassword = updateUser.password,
                 userRole = updateUser.role
             };
 
             user = await _userRepository.update(userID, user);
 
-            return userResponse(user);
+            return user == null ? null : new UserResponse
+            {
+                ID = user.userID,
+                email = user.userEmail,
+                username = user.userName,
+                //password = user.userPassword,
+                role = user.userRole
+            };
         }
 
         public async Task<bool> delete(int userID)

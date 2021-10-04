@@ -85,6 +85,7 @@ namespace DoofenshmirtzsWebShop.Repositories
                 {
                     updateUser.userPassword = user.userPassword;
                 }
+                await _context.SaveChangesAsync();
             }
             return updateUser;
         }
