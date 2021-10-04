@@ -1,23 +1,15 @@
 <div class="content">
     <div class="search">
-        <input type="search" name="searchbar"  placeholder="search">
+        <input type="search" name="searchbar"  placeholder="search" [(ngModel)]="searchInput">
         <br>
-        <!--DUMMY DATA - REMEMBER TO CHANGE TO DATABASE DATA-->
-        <select id="dropdownCategory">
-            <option value="0" selected disabled hidden>Select Category</option>
-            <option *ngFor="let category of categories" [value]="category.id" >{{category.categoryName}}</option>
+        <select id="dropdownCategory" [(ngModel)]="dropdownInput">
+            <option value="Select Category" selected disabled hidden>Select Category</option>
+            <option *ngFor="let category of categories" [value]="category.categoryName" >{{category.categoryName}}</option>
         </select>
         <br>
-        <select name="sort" id="sort">
-            <option value="alphateical">a-z</option>
-            <option value="alphateical_reverse">z-a</option>
-            <option value="pricelow">Price (low - high)</option>
-            <option value="pricehigh">Price (high - low)</option>
-        </select>
-        <button>Search</button>
     </div>
     <div class="display">
-        <div class="item" *ngFor="let product of products">
+        <div class="item" *ngFor="let product of products | filter:searchInput | filter:dropdownInput">
             <a routerLink="/singleproduct/{{product.id}}">
             <div class="portrait">
                 <img src="#" alt="portrait">
