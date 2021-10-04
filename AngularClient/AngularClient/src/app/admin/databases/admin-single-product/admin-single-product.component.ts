@@ -47,21 +47,27 @@ export class AdminSingleProductComponent implements OnInit {
     return this.router.url.includes("/admin/databases/singleProduct/new");
   }
   onCancel(): void{
-    this.router.navigateByUrl("/admin/databases/products");
+    this.router.navigate(["/admin/databases/products"]);
   }
 
   saveChanges(): void{
     if(this.product.id == 0){
       console.log( "Log: Create = ", this.product);
-      this.productService.newProduct(this.product).subscribe(a => {
-        this.products.push(a); this.product = {id:0, name:'', description:'', stock: 0, price: 0, categoryId: 0,
+      this.productService.newProduct(this.product)
+      .subscribe(a => {
+        this.products.push(a);
+        this.product = {id:0, name:'', description:'', 
+        stock: 0, price: 0, categoryId: 0,
       category: this.category, imageGallery:this.gallery}});
       this.router.navigate(['/admin/databases/products']);
     }
     else{
       console.log("Log: Update", this.product);
-      this.productService.updateProduct(this.product.id, this.product).subscribe(() => this.product = {
-        id:0, name:'', description:'', stock: 0, price: 0, categoryId: 0,
+      this.productService.updateProduct(
+        this.product.id, this.product)
+        .subscribe(() => this.product = {
+        id:0, name:'', description:'', stock: 0, price: 0, 
+        categoryId: 0,
       category: this.category, imageGallery:this.gallery});
       this.router.navigate(['/admin/databases/products']);
     }
