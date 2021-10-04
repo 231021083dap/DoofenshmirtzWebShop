@@ -52,12 +52,14 @@ export class AdminUsersComponent implements OnInit {
   }
   save(): void {
     if (this.user.id == 0) {
+      console.log("Log: Create =", this.user)
       this.userService.newUser(this.user)
         .subscribe(a => {
           this.users.push(a);
           this.cancel();
         })
     } else {
+      console.log("Log: Update =", this.user)
       this.userService.updateUser(this.user.id, this.user)
         .subscribe(() => {
           this.cancel
