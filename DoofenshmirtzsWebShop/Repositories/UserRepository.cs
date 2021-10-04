@@ -80,7 +80,7 @@ namespace DoofenshmirtzsWebShop.Repositories
 
                 updateUser.userEmail = user.userEmail;
                 updateUser.userName = user.userName;
-
+                updateUser.userRole = user.userRole;
                 if (user.userPassword != null)
                 {
                     updateUser.userPassword = user.userPassword;

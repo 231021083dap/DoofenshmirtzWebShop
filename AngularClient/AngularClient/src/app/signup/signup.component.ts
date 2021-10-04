@@ -36,6 +36,7 @@ export class SignupComponent implements OnInit {
         .subscribe(a => {
           this.users.push(a);
           this.cancel();
+          alert("You are now a registered user!");
         })
     }
   }
