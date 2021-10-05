@@ -10,6 +10,18 @@ export class CartServiceService {
 
   constructor() { }
 
+  createCart():void{
+    let cart = localStorage.getItem('cart')
+    if(cart == null || cart == 'null')
+    {
+      this.items = []
+      localStorage.setItem('cart', JSON.stringify(this.items));
+    }
+    else {
+      this.items = JSON.parse(localStorage.getItem('cart'))
+    }
+  }
+
   addToCart(product:products){
     this.items.push(product);
   }
