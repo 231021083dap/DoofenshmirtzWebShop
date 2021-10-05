@@ -52,7 +52,7 @@ namespace DoofenshmirtzsWebShop.Services
 
         public async Task<LoginResponse> Authenticate(LoginRequest login)
         {
-            User user = await _userRepository.getByEmail(login.Email);
+            User user = await _userRepository.getByEmail(login.Username);
             if (user == null)
             {
                 return null;

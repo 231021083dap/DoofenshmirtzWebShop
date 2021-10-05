@@ -14,13 +14,13 @@ namespace DoofenshmirtzsWebShop.DTOs.Requests
         public string email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Username has to be less than 320 chars")]
+        [StringLength(100, ErrorMessage = "Username has to be less than 100 chars")]
         [MinLength(1, ErrorMessage = "Username must contain at least 1 char")]
         public string username { get; set; }
 
         [Required]
-        [StringLength(50, ErrorMessage = "Email has to be less than 320 chars")]
-        [MinLength(1, ErrorMessage = "Email must contain at least 1 char")]
+        [StringLength(50, ErrorMessage = "Email has to be less than 50 chars")]
+        [MinLength(8, ErrorMessage = "Email must contain at least 8 char")]
         public string password { get; set; }
 
 
