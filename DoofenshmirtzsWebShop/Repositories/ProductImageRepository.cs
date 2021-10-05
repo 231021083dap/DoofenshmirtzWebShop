@@ -9,18 +9,20 @@ namespace DoofenshmirtzsWebShop.Repositories
 {
     public interface IProductImageRepository
     {
+        /*
         Task<ProductImage> create(ProductImage productImage);
-        Task<ProductImage> delete(int productImageID);
+        Task<ProductImage> delete(int productImageID);*/
     }
 
-    public class ProductImageRepository : IProductImageRepository
+    public class ProductImageRepository // : IProductImageRepository
     {
+        /*
         private readonly DoofenshmirtzWebShopContext _context;
         public ProductImageRepository(DoofenshmirtzWebShopContext context)
         {
             _context = context;
         }       
-
+        
         public async Task<ProductImage> create(ProductImage productImage)
         {
             _context.ProductImage.Add(productImage);
@@ -37,6 +39,6 @@ namespace DoofenshmirtzsWebShop.Repositories
                 await _context.SaveChangesAsync();
             }
             return productImage;
-        }
+        }*/
     }
 }

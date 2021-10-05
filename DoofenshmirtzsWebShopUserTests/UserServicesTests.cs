@@ -219,7 +219,7 @@ namespace DoofenshmirtzsWebShopUserTests
 
             LoginRequest login = new LoginRequest
             {
-                Email = email,
+                Username = email,
                 Password = password
             };
 

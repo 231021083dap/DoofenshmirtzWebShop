@@ -92,7 +92,7 @@ namespace DoofenshmirtzsWebShop.Controllers
 
 
         //[Authorize(Role.User, Role.Admin)]
-        [HttpGet("{user.ID}")]
+        [HttpGet("{userID}")]
         public async Task<IActionResult> getByID([FromRoute] int userID)
         {
             try
