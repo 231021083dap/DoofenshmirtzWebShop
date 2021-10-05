@@ -114,7 +114,7 @@ namespace DoofenshmirtzsWebShop
 
             app.UseRouting();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseMiddleware<JwtMiddleware>();
 
