@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoofenshmirtzsWebShop.Migrations
 {
     [DbContext(typeof(DoofenshmirtzWebShopContext))]
-    [Migration("20210921113312_products")]
-    partial class products
+    [Migration("20211005063756_dews")]
+    partial class dews
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -116,18 +116,10 @@ namespace DoofenshmirtzsWebShop.Migrations
                     b.Property<DateTime>("orderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("orderItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("orderItemsorderItemID")
-                        .HasColumnType("int");
-
                     b.Property<int>("userID")
                         .HasColumnType("int");
 
                     b.HasKey("orderID");
-
-                    b.HasIndex("orderItemsorderItemID");
 
                     b.HasIndex("userID");
 
@@ -137,23 +129,20 @@ namespace DoofenshmirtzsWebShop.Migrations
                         new
                         {
                             orderID = 1,
-                            orderDate = new DateTime(2021, 9, 21, 13, 33, 11, 860, DateTimeKind.Local).AddTicks(5797),
-                            orderItemId = 0,
-                            userID = 1
+                            orderDate = new DateTime(2021, 9, 21, 12, 23, 21, 0, DateTimeKind.Unspecified),
+                            userID = 2
                         },
                         new
                         {
                             orderID = 2,
-                            orderDate = new DateTime(2021, 9, 21, 13, 33, 11, 865, DateTimeKind.Local).AddTicks(410),
-                            orderItemId = 0,
-                            userID = 2
+                            orderDate = new DateTime(2021, 10, 21, 12, 23, 21, 0, DateTimeKind.Unspecified),
+                            userID = 3
                         },
                         new
                         {
                             orderID = 3,
-                            orderDate = new DateTime(2021, 9, 21, 13, 33, 11, 865, DateTimeKind.Local).AddTicks(476),
-                            orderItemId = 0,
-                            userID = 2
+                            orderDate = new DateTime(2021, 9, 25, 12, 23, 21, 0, DateTimeKind.Unspecified),
+                            userID = 3
                         });
                 });
 
@@ -178,7 +167,61 @@ namespace DoofenshmirtzsWebShop.Migrations
 
                     b.HasKey("orderItemID");
 
+                    b.HasIndex("orderID");
+
+                    b.HasIndex("productID");
+
                     b.ToTable("OrderItem");
+
+                    b.HasData(
+                        new
+                        {
+                            orderItemID = 1,
+                            orderID = 1,
+                            orderItemPrice = 100,
+                            orderItemQuantity = 1,
+                            productID = 1
+                        },
+                        new
+                        {
+                            orderItemID = 2,
+                            orderID = 1,
+                            orderItemPrice = 30,
+                            orderItemQuantity = 1,
+                            productID = 1
+                        },
+                        new
+                        {
+                            orderItemID = 3,
+                            orderID = 2,
+                            orderItemPrice = 125,
+                            orderItemQuantity = 5,
+                            productID = 2
+                        },
+                        new
+                        {
+                            orderItemID = 4,
+                            orderID = 2,
+                            orderItemPrice = 30,
+                            orderItemQuantity = 1,
+                            productID = 2
+                        },
+                        new
+                        {
+                            orderItemID = 5,
+                            orderID = 3,
+                            orderItemPrice = 30,
+                            orderItemQuantity = 1,
+                            productID = 3
+                        },
+                        new
+                        {
+                            orderItemID = 6,
+                            orderID = 3,
+                            orderItemPrice = 500,
+                            orderItemQuantity = 55,
+                            productID = 3
+                        });
                 });
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Product", b =>
@@ -320,6 +363,15 @@ namespace DoofenshmirtzsWebShop.Migrations
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Address", b =>
                 {
+                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", null)
+                        .WithMany("address")
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Order", b =>
+                {
                     b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("userID")
@@ -329,21 +381,21 @@ namespace DoofenshmirtzsWebShop.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Order", b =>
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.OrderItem", b =>
                 {
-                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.OrderItem", "orderItems")
-                        .WithMany()
-                        .HasForeignKey("orderItemsorderItemID");
-
-                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.User", "Users")
-                        .WithMany()
-                        .HasForeignKey("userID")
+                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.Order", null)
+                        .WithMany("orderItems")
+                        .HasForeignKey("orderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("orderItems");
+                    b.HasOne("DoofenshmirtzsWebShop.Database.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("productID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Users");
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Product", b =>
@@ -368,9 +420,19 @@ namespace DoofenshmirtzsWebShop.Migrations
                     b.Navigation("product");
                 });
 
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Order", b =>
+                {
+                    b.Navigation("orderItems");
+                });
+
             modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.Product", b =>
                 {
                     b.Navigation("ImageList");
+                });
+
+            modelBuilder.Entity("DoofenshmirtzsWebShop.Database.Entities.User", b =>
+                {
+                    b.Navigation("address");
                 });
 #pragma warning restore 612, 618
         }
