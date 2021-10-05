@@ -1,6 +1,7 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
+import { TokenStorageService } from '../token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,48 +9,44 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
-  email: string = '';
-  password: string = '';
-  submitted = false;
-  error = '';
+  form: any = {
+    username: '',
+    password: ''
+  };
+  isLoggedIn = false;
+  failedLogin = false;
+  errorMessage = '';
+  roles: string[] = []
 
-  constructor(
-   private route: ActivatedRoute,
-   private router: Router,
-   private authencationService: AuthenticationService
-  ) {
-    if (this.authencationService.currentUserValue != null && this.authencationService.currentUserValue.id > 0)
-    {
-      this.router.navigate(['/']);
-    }
-   }
+  constructor(private authService: AuthenticationService, private tokenStorage: TokenStorageService, private router:Router){}
 
   ngOnInit(): void {
-
+    if(this.tokenStorage.getToken()){
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
   }
 
   login(): void {
-    this.error = '';
-    this.authencationService.login(this.email, this.password)
-    .subscribe({
-      next: () => {
-        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        this.router.navigate([returnUrl]);
+    const{username, password} = this.form;
+    this.authService.login(username, password).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.failedLogin = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        console.log(username, password)
+        this.router.navigate(['/userPage']);
       },
-      error: obj => {
-        if (obj.error.status == 400 ||obj.error.status == 401 || obj.error.status == 500) 
-        {
-          this.error = 'Wrong username or password.';
-        }
-        else {
-          this.error = obj.error.title;
-        }
-      }
-    });
+      err => {
+        this.errorMessage = err.error.message;
+        this.failedLogin = true;
+      }   
+    );
   }
 
   toUserPage(): void{
-    this.router.navigate(['/userpage']);
   }
 }
