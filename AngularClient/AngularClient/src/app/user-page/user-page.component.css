@@ -69,15 +69,16 @@
 .orderListInFull {
     border: 1px solid #000;
     border-radius: 10px;
-    margin: 5px 5px 5px 5px;
+    margin: 5px 10px 5px 10px;
 }
 
 .orderTitleOnID {
     font-weight: bold;
+    margin-left: 5px;
 }
 
 .viewOrderButton {
-    height: 25%;
-    align-self: flex-end;
+    height: 10%;
+    margin-left: 5px;
     border-radius: 5px;
 }
