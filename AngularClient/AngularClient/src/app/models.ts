@@ -54,3 +54,11 @@ export interface Orders{
     user?:User,
     orderItems?:OrderItems[] 
 }
+
+export interface Token {
+    id: number,
+    username: string,
+    email: string,
+    role: Role,
+    token: string
+}

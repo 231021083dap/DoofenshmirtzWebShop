@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   async login(): Promise<void> {
     await this.authService.login(this.form.username, this.form.password);
     
-    if (this.authService.authenticated()) {
+    if (this.authService.authenticated) {
       let user = await this.authService.user();
       this.router.navigate(['/userpage/' + user.id]);
     }
