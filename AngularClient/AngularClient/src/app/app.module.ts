@@ -54,10 +54,10 @@ import { JwtModule } from '@auth0/angular-jwt';
     Ng2SearchPipeModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => localStorage.getItem("token"),
-        allowedDomains: [window.location.host]
-      },
-    })
+      tokenGetter: () => localStorage.getItem("token"),
+      allowedDomains: [window.location.host]
+    },
+  })
   ],
   providers: [],
   bootstrap: [AppComponent]
