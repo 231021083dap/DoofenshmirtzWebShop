@@ -48,37 +48,36 @@
     margin: 5px;
 }
 
-.specificOrder {
-    display: grid;
-    grid-template-columns: 20% 65% 15%;
-    line-height: 0%;
-    margin: 5px;
-}
-
-.orderPicture {
-    border: 1px solid #000;
-    border-radius: 10px;
-    grid-column-start: 1;
-    grid-column-end: 1;
-}
-
-.orderText {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    padding: 15px;
-}
-
 #title {
     font-size: 30px;
     font-weight: bolder;
 }
 
-#bodyText {
-    font-size: 15px;
+.listOfOrdersClass {
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+#titleOfOrderList {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.orderListInFull {
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin: 5px 5px 5px 5px;
+}
+
+.orderTitleOnID {
+    font-weight: bold;
 }
 
 .viewOrderButton {
-    height: 20%;
+    height: 25%;
     align-self: flex-end;
     border-radius: 5px;
 }
