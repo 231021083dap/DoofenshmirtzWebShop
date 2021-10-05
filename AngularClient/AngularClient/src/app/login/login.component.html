@@ -10,6 +10,7 @@
         <label>Username:</label>
         <input
         [(ngModel)]="form.username"
+        name="username"
          type="text"
          class="textbox" 
          id="username" 
@@ -19,6 +20,7 @@
         <label>Password:</label>
         <input 
         [(ngModel)]="form.password"
+        name="password"
         type="password" 
         class="textbox" 
         id="password" 
@@ -26,7 +28,7 @@
         required
         minlength="8">
         <a href="">Forgot Password?</a>
-        <button (click)="login()">Log in</button>
+        <button>Log in</button>
     </div>
     <p>or...</p>
     <a class="signup" href="../signup/">JOIN THE EVIL EMPIRE TODAY</a>
