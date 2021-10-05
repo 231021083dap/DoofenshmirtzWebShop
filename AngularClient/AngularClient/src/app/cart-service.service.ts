@@ -22,4 +22,8 @@ export class CartServiceService {
     this.items = [];
     return this.items;
   }
+
+  deleteCartItem(productID:number){
+    this.items.splice(productID);
+  }
 }

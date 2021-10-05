@@ -80,3 +80,10 @@
     background-color: rgb(151, 211, 61);
     font-size:24px;
 }
+.clearbtn{
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    color: #000;
+    margin: 10px;
+}

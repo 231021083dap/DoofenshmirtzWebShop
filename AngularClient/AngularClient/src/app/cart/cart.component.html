@@ -1,22 +1,22 @@
 <div class="caption">
-    <ul class="item">
+    <ul  class="item">
         <li class="product">Product</li>
         <li class="quantity">Quantity</li>
         <li class="delete">Remove</li>
         <li class="price">Price</li>
     </ul>
 </div>
-<div class="content">
-    <div class="item item-background">
+<div class="content" >
+    <div class="item item-background" *ngFor="let item of items">
         <div class="product">
             <div class="portrait">
                 <img src="#" alt="portrait">
             </div>
             <div>
                 <h4>
-                    Product Title
+                    {{item.name}}
                 </h4>
-                <p>Description</p>
+                <p>{{item.description}}</p>
             </div>
         </div>
         <div class="quantity">
@@ -32,8 +32,13 @@
             <button>X</button>
         </div>
         <div class="price">
-            <label>$9.99</label>
+            <label>{{item.price | currency}}</label>
         </div>
+    </div>
+    <div class="clearcart">
+        <button (click)="clearCart()" class="clearbtn">
+            Clear Cart
+        </button>
     </div>
     <div class="checkout">
         <div class="tax">
