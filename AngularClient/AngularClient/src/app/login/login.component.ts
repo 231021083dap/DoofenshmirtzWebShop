@@ -27,25 +27,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login(): void {
-    console.log(this.form.username, this.form.password);
-    const{username, password} = this.form;
-    this.authService.login(username, password).subscribe(
-      data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.tokenStorage.saveUser(data);
-
-        this.failedLogin = false;
-        this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
-        console.log(username, password)
-        this.router.navigate(['/userPage']);
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.failedLogin = true;
-      }   
-    );
+  async login(): Promise<void> {
+    await this.authService.login(this.form.username, this.form.password);
+    
+    if (this.authService.authenticated()) {
+      let user = await this.authService.user();
+      this.router.navigate(['/userpage/' + user.id]);
+    }
   }
 
   toUserPage(): void{

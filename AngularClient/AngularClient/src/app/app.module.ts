@@ -23,6 +23,7 @@ import { AdminUsersComponent } from './admin/databases/admin-users/admin-users.c
 import { AdminProductsComponent } from './admin/databases/admin-products/admin-products.component';
 import { AdminRolesComponent } from './admin/databases/admin-roles/admin-roles.component';
 import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,13 @@ import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem("token"),
+        allowedDomains: [window.location.host]
+      },
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
