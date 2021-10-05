@@ -75,7 +75,7 @@ namespace DoofenshmirtzsWebShop.Services
 
             return category == null ? null : new CategoryResponse
             {
-                //ID = category.categoryID,
+                ID = category.categoryID,
                 categoryName = category.categoryName
             };
         }
