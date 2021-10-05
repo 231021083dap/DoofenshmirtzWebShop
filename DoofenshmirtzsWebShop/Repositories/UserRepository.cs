@@ -12,7 +12,7 @@ namespace DoofenshmirtzsWebShop.Repositories
     {
         Task<List<User>> getAll();
         Task<User> register(User user);
-        Task<User> getByEmail(string Email);
+        Task<User> getByUsername(string Email);
         Task<User> getByID(int userId);
         Task<User> update(int userId, User user);
         Task<User> delete(int userId);
@@ -50,9 +50,9 @@ namespace DoofenshmirtzsWebShop.Repositories
             return user;
         }
 
-        public async Task<User> getByEmail(string Email)
+        public async Task<User> getByUsername(string Username)
         {
-            return await _context.User.FirstOrDefaultAsync(u => u.userEmail == Email);
+            return await _context.User.FirstOrDefaultAsync(u => u.userName == Username);
         }
 
         public async Task<User> getByID(int userID)

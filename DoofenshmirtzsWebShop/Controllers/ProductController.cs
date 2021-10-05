@@ -1,5 +1,7 @@
-﻿using DoofenshmirtzsWebShop.DTOs.Requests;
+﻿using DoofenshmirtzsWebShop.Authorization;
+using DoofenshmirtzsWebShop.DTOs.Requests;
 using DoofenshmirtzsWebShop.DTOs.Responses;
+using DoofenshmirtzsWebShop.Helpers;
 using DoofenshmirtzsWebShop.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -66,7 +68,8 @@ namespace DoofenshmirtzsWebShop.Controllers
                 return Problem(ex.Message);
             }
         }
-
+        
+        [Authorize(Role.Admin)]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -90,6 +93,7 @@ namespace DoofenshmirtzsWebShop.Controllers
 
         }
 
+        [Authorize(Role.Admin)]
         [HttpPut("{productID}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -113,6 +117,7 @@ namespace DoofenshmirtzsWebShop.Controllers
             }
         }
 
+        [Authorize(Role.Admin)]
         [HttpDelete("{productID}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
