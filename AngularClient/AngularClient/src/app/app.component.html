@@ -1,7 +1,4 @@
-<a routerLink="/">developer link to Client Page    </a><br>
-<a routerLink="/admin/dashboard">developer link to admin site    </a><br>
-<a routerLink="/userpage">developer link to User Page</a><br>
-<a routerLink="/admin/orders">developer link to Orders Page in Admin</a>
+
 
 <article>
     <section class="clientSide" *ngIf="!isOnAdminPage()">
@@ -12,6 +9,9 @@
         <ul>
           <li><a routerLink="/">Home</a></li>
           <li><a routerLink="/products">Product</a></li>
+          <li>
+            <a routerLink="/userpage/1">userpage</a>
+          </li>
         </ul>
         <ul>
           <li><a routerLink="/login">Login</a></li>
