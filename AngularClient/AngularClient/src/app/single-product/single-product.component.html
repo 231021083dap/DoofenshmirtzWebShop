@@ -4,9 +4,7 @@
         <h2>{{product.name}}</h2>
         <p>Current stock: {{product.stock}}</p>
         <p>Price: ${{product.price}}</p>
-        <p>Type: <select name="categoryList" id="categoryList" [(ngModel)]="product.categoryId" disabled>
-            <option *ngFor="let category of categories" [value]="category.id">{{category.categoryName}}</option>
-        </select></p>
+        <p>Type: {{product.category.categoryName}}</p>
         <p>Statistics?</p>
     </div>
     <button (click)="addToCart(product)">Add to Cart</button>

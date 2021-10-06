@@ -1,11 +1,9 @@
 <section>
     <app-databases></app-databases>
-    <div class="search">
-        <label>Search: <input type="search"></label> <label>Sort: <select name="sort" id="sort">
-            <option value="0">A - Z</option>
-            <option value="0">Z - A</option>
-            <option value="0">Price (Lo- Hi)</option>
-            <option value="0">Price (Hi - Lo)</option>
+    <div class="search"  placeholder="search">
+        <label>Search: <input type="search" [(ngModel)]="searchInput"></label> <label>category: <select name="categories" id="categories" [(ngModel)]="dropdownInput">
+            <option value="0">Select Category</option>
+            <option *ngFor="let category of categories">{{category.categoryName}}</option>
             </select> </label>
             <button (click)="newItem()">New</button>
     </div>
@@ -18,11 +16,15 @@
         </ul>
     </div>
         <!--DISPLAY PRODUCTS-->
-            <div class="content" id="products" *ngFor="let product of products.slice().reverse()">
+            <div class="content" id="products" 
+            *ngFor="let product of products.slice().reverse() | 
+            filter:searchInput | 
+            filter:dropdownInput">
                 <a routerLink="/admin/databases/singleProduct/{{product.id}}">
                 <img src="#" alt="portrait">
                 <div class="textfield">
                     <h4>{{product.name}}</h4>
+                    <p>{{product.category.categoryName}}</p>
                     <p>{{product.description}}</p>
                 </div>
                 <h2>{{product.stock}}</h2>

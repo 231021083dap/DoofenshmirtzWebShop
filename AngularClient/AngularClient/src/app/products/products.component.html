@@ -3,8 +3,8 @@
         <input type="search" name="searchbar"  placeholder="search" [(ngModel)]="searchInput">
         <br>
         <select id="dropdownCategory" [(ngModel)]="dropdownInput">
-            <option value="Select Category" selected disabled hidden>Select Category</option>
-            <option *ngFor="let category of categories" [value]="category.categoryName" >{{category.categoryName}}</option>
+            <option value="0" selected>Select Category</option>
+            <option *ngFor="let category of categories">{{category.categoryName}}</option>
         </select>
         <br>
     </div>
@@ -15,6 +15,7 @@
                 <img src="#" alt="portrait">
             </div>
             <h3>{{product.name}}</h3>
+            <p>Category: {{product.category.categoryName}}</p>
             <p>{{product.description}}</p>
             </a>
         </div>

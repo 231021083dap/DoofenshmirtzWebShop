@@ -9,6 +9,7 @@ import { User } from '../models';
 })
 export class UserPageComponent implements OnInit {
   username: string;
+  email: string;
 
   constructor(private authService: AuthenticationService) { }
 
@@ -16,6 +17,7 @@ export class UserPageComponent implements OnInit {
     let user = await this.authService.user();
 
     this.username = user.username;
+    this.email = user.email;
   }
 
 }

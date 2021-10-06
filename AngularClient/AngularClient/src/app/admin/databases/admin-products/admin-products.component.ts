@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { products } from 'src/app/models';
+import { CategoryService } from 'src/app/category.service';
+import { Category, products } from 'src/app/models';
 import { productService } from 'src/app/product.service';
 
 @Component({
@@ -9,12 +10,17 @@ import { productService } from 'src/app/product.service';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit {
+  public searchInput:string;
+  public dropdownInput: string;
+  categories:Category[] = [];
   products:products[] = [];
   constructor(
+    private categoryService:CategoryService,
     private productService: productService, 
     private router: Router) { }
 
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(a => this.categories = a);
   this.productService.getProducts().subscribe(a => this.products = a);
   }
   newItem(): void{
