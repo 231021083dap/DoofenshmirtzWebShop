@@ -62,7 +62,7 @@ export class AdminUsersComponent implements OnInit {
       console.log("Log: Update =", this.user)
       this.userService.updateUser(this.user.id, this.user)
         .subscribe(() => {
-          this.cancel
+          this.cancel()
         })
       this.cancel();
     }
