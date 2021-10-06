@@ -69,7 +69,7 @@ namespace DoofenshmirtzsWebShop.Controllers
             }
         }
         
-        [Authorize(Role.Admin)]
+        //[Authorize(Role.Admin)]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -93,7 +93,7 @@ namespace DoofenshmirtzsWebShop.Controllers
 
         }
 
-        [Authorize(Role.Admin)]
+       // [Authorize(Role.Admin)]
         [HttpPut("{productID}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -117,7 +117,7 @@ namespace DoofenshmirtzsWebShop.Controllers
             }
         }
 
-        [Authorize(Role.Admin)]
+        //[Authorize(Role.Admin)]
         [HttpDelete("{productID}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
